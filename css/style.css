@@ -10,14 +10,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 18px 40px;
     background: #0B3C5D;
 }
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
     color: white;
 }
 
@@ -143,16 +145,19 @@ body {
 
 .hero-content h2 {
     font-size: 2.8rem;
-    margin-bottom: 15px;
+    line-height: 1.10;
+    margin-bottom: 100px;
 }
 
 .hero-content p {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
 }
 
 .hero-content .tagline {
     font-size: 1.2rem;
     font-style: italic;
+    margin-top: 1px;
+    line-height: 0.8;
 }
 
 .hero h2 {
@@ -167,6 +172,23 @@ body {
 .tagline {
     font-style: italic;
     margin: 10px 0;
+}
+
+.highlight {
+    position: relative;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.highlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    /* warm Sri Lanka gold */
 }
 
 .section {
