@@ -310,16 +310,35 @@ footer {
 .villa-card {
     display: flex;
     gap: 35px;
-    margin-bottom: 15px;
     align-items: center;
     flex-direction: row-reverse;
+    padding: 28px 0;
+    position: relative;
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+}
+
+.villa-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -32px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(0, 0, 0, 0.08),
+        transparent
+    );
 }
 
 .villa-image img {
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    object-fit: contain;       /* KEY FIX */
+    object-fit: contain;
+    /* KEY FIX */
     display: block;
 
     max-height: 100%;
@@ -329,15 +348,18 @@ footer {
 
 .villa-image {
     width: 45%;
-    height: 420px;
+    height: 360px;
     overflow: hidden;
     border-radius: 16px;
     display: flex;
-    align-items: center;        /* vertical center */
-    justify-content: center;    /* horizontal center */
+    align-items: center;
+    /* vertical center */
+    justify-content: center;
+    /* horizontal center */
     overflow: hidden;
-    padding: 16px;  
-    background: #f6f7f8;        /* soft neutral background */
+    padding: 16px;
+    background: #f6f7f8;
+    /* soft neutral background */
     border-radius: 18px;
 }
 
@@ -350,7 +372,23 @@ footer {
 
 .villa-content h3 {
     font-size: 2rem;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.villa-content p {
+    margin-bottom: 12px;
+}
+
+.villa-content ul {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.villa-actions {
+    display: flex;
+    gap: 14px;
+    /* space for future buttons */
+    margin-top: 18px;
 }
 
 .location {
@@ -512,6 +550,7 @@ footer {
         margin-bottom: 15px;
         flex-direction: column;
         gap: 30px;
+        padding: 22px 0;
     }
 
     .villa-image img {
@@ -521,7 +560,7 @@ footer {
     .villa-image {
         justify-content: center;
         width: 100%;
-        height: 260px;
+        height: 240px;
         padding: 12px;
     }
 
