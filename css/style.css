@@ -1,9 +1,34 @@
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #FAFAF8;
-    color: #1F2933;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                 "Helvetica Neue", sans-serif;
+    font-size: 16px;
     line-height: 1.7;
+    color: #222;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .navbar {
@@ -192,7 +217,7 @@ body {
 }
 
 .section {
-    padding: 80px 20px;
+    padding: 80px 0;
     max-width: 1000px;
     margin: auto;
 }
@@ -287,6 +312,11 @@ footer {
     background: #f9f9f9;
 }
 
+.experience-desc {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
 .container {
     max-width: 1200px;
     margin: auto;
@@ -301,9 +331,17 @@ footer {
 
 .section-subtitle {
     text-align: center;
-    color: #555;
+    color: #666;
     margin-top: 0;
     margin-bottom: 35px;
+    font-size: 16px;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    line-height: 1.6    
+}
+
+p {
+    margin-bottom: 16px;
 }
 
 /* Villa Card */
@@ -375,6 +413,8 @@ footer {
 
 .villa-content p {
     margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 .villa-content ul {
@@ -414,12 +454,13 @@ footer {
 /* Button */
 .btn-primary {
     display: inline-block;
-    padding: 14px 26px;
+    padding: 12px 22px;
     background: #0b3c5d;
     color: white;
-    border-radius: 30px;
+    border-radius: 999px;
     text-decoration: none;
     font-weight: 500;
+    font-size: 14px;
     transition: background 0.3s ease;
 }
 
@@ -484,9 +525,10 @@ footer {
     padding: 12px 22px;
     border: 1px solid #0b3c5d;
     color: #0b3c5d;
-    border-radius: 30px;
+    border-radius: 999px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .highlight-exp .btn-secondary {
@@ -645,6 +687,18 @@ footer {
     border: 0;
 }
 
+.experiences-section {
+    padding: 72px 0;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
 
 @media (max-width: 1024px) {
     .direct-benefits {
@@ -653,6 +707,18 @@ footer {
 }
 
 @media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
     .logo {
         font-size: 1.5rem;
     }
