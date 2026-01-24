@@ -162,16 +162,31 @@ h4 {
 .hero-content {
     max-width: 1000px;
     margin: 0 auto;
-    /* horizontal centering */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* ← THIS is the missing piece */
+
     text-align: center;
-    /* center text when wrapped */
+
     color: white;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;              /* space between buttons */
+    margin-top: 24px;
+    flex-wrap: wrap;        /* safe on small screens */
+    justify-content: center;
 }
 
 .hero-content h2 {
     font-size: 2.8rem;
     line-height: 1.10;
     margin-bottom: 100px;
+    /* color: white; */
+    font-family: 'Playfair Display', serif;
+    /* text-align: center; */
 }
 
 .hero-content p {
@@ -700,6 +715,81 @@ p {
     text-decoration: none;
 }
 
+/* Feature pills container */
+.feature-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 18px;
+}
+
+/* Individual pill */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border: 1.5px solid #1f2937;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #1f2937;
+    background: #ffffff;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+}
+
+/* Villa meta row */
+.villa-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 12px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Left side: guests & bathrooms */
+.meta-left {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Price block */
+.meta-price {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.meta-price .price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.meta-price .per-night {
+    font-size: 1rem;
+    color: #64748b;
+    margin-left: 0px;
+}
+
+/* Subtle hover (desktop only) */
+@media (hover: hover) {
+    .pill:hover {
+        background: #1f2937;
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
+}
+
 @media (max-width: 1024px) {
     .direct-benefits {
         grid-template-columns: repeat(2, 1fr);
@@ -803,5 +893,18 @@ p {
 
     .map-embed {
         height: 260px;
+    }
+
+    .pill {
+        font-size: 0.75rem;
+        padding: 5px 12px;
+    }
+
+    .villa-meta {
+        align-items: flex-start;
+    }
+
+    .meta-price {
+        text-align: left;
     }
 }
