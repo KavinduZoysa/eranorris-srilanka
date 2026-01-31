@@ -71,8 +71,26 @@
             <!-- Villa Card 1 -->
             <div class="villa-card">
                 <div class="villa-image">
-                    <img src="assets/images/birdsong.jpg" alt="Birdsong Villa Rathgama">
+                    <div class="villa-slider" data-slider="birdsong">
+                        <div class="villa-slides">
+                            <img src="assets/images/birdsong/dji_fly_1.jpg" class="villa-slide active" />
+                            <img src="assets/images/birdsong/dji_fly_2.jpg" class="villa-slide" />
+                            <img src="assets/images/birdsong/dji_fly_3.jpg" class="villa-slide" />
+                            <img src="assets/images/birdsong/dji_fly_4.jpg" class="villa-slide" />
+                        </div>
+
+                        <button class="villa-nav prev" onclick="changeVillaSlide('birdsong', -1)">❮</button>
+                        <button class="villa-nav next" onclick="changeVillaSlide('birdsong', 1)">❯</button>
+
+                        <div class="villa-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="villa-content">
                     <h3>Birdsong</h3>
                     <div class="villa-meta">
@@ -112,8 +130,38 @@
             <!-- Villa Card 2 -->
             <div class="villa-card">
                 <div class="villa-image">
-                    <img src="assets/images/serene-luxe.jpg" alt="Serene Luxe Villa Hikkaduwa">
+                    <div class="villa-slider" data-slider="serene">
+                        <div class="villa-slides">
+                            <img src="assets/images/serene-luxe/garden1.jpg" class="villa-slide active" />
+                            <img src="assets/images/serene-luxe/garden2.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/living1.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/living2.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/living3.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/bedroom1.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/bedroom2.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/bathroom1.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/bathroom2.jpg" class="villa-slide" />
+                            <img src="assets/images/serene-luxe/kitchen1.jpg" class="villa-slide" />
+                        </div>
+
+                        <button class="villa-nav prev" onclick="changeVillaSlide('serene', -1)">❮</button>
+                        <button class="villa-nav next" onclick="changeVillaSlide('serene', 1)">❯</button>
+
+                        <div class="villa-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="villa-content">
                     <h3>Serene Luxe</h3>
                     <div class="villa-meta">
@@ -404,6 +452,26 @@
     </a>
 
     <script src="assets/js/hero-slider.js"></script>
+
+    <script>
+        function changeVillaSlide(sliderId, direction) {
+            const slider = document.querySelector(`[data-slider="${sliderId}"]`);
+            const slides = slider.querySelectorAll(".villa-slide");
+            const dots = slider.querySelectorAll(".dot");
+
+            let currentIndex = [...slides].findIndex(s => s.classList.contains("active"));
+            slides[currentIndex].classList.remove("active");
+            dots[currentIndex].classList.remove("active");
+
+            let nextIndex = currentIndex + direction;
+            if (nextIndex < 0) nextIndex = slides.length - 1;
+            if (nextIndex >= slides.length) nextIndex = 0;
+
+            slides[nextIndex].classList.add("active");
+            dots[nextIndex].classList.add("active");
+        }
+    </script>
+
 </body>
 
 </html>

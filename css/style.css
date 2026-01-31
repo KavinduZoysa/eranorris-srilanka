@@ -385,16 +385,10 @@ p {
 }
 
 .villa-image img {
-    max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     object-fit: contain;
-    /* KEY FIX */
     display: block;
-
-    max-height: 100%;
-    width: auto;
-    height: auto;
 }
 
 .villa-image {
@@ -779,6 +773,88 @@ p {
     font-size: 1rem;
     color: #64748b;
     margin-left: 0px;
+}
+
+/* Villa image slider */
+.villa-slider {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.villa-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+.villa-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* IMPORTANT: no ugly cropping */
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 12px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.villa-slide.active {
+    opacity: 1;
+}
+
+/* Navigation arrows */
+.villa-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.villa-nav.prev {
+    left: 1px;
+}
+
+.villa-nav.next {
+    right: 1px;
+}
+
+/* Dots */
+.villa-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.villa-dots .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+}
+
+.villa-dots .dot.active {
+    background: white;
 }
 
 /* Subtle hover (desktop only) */
