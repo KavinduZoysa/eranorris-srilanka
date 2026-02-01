@@ -921,22 +921,39 @@ p {
     color: #94a3b8;
 }
 
-.lang-switch {
+.nav-wrapper {
     display: flex;
-    gap: 6px;
-    font-size: 0.85rem;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.lang-switch {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    display: flex;
     align-items: center;
+    gap: 4px;
 }
 
 .lang-switch a {
     text-decoration: none;
-    color: white;
     font-weight: 500;
+    color: white;
+    margin-left: 0px;
+    font-size: 0.65rem;
+    text-decoration: none;
+    letter-spacing: 0.3px;
 }
 
 .lang-switch a.active {
     font-weight: 700;
     text-decoration: underline;
+}
+
+.lang-switch .sep {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
 }
 
 /* Mobile */
@@ -1072,5 +1089,9 @@ p {
 
     .meta-price {
         text-align: left;
+    }
+
+    .nav-wrapper {
+        align-items: center;
     }
 }
