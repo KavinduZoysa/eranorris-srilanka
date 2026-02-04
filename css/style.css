@@ -944,9 +944,11 @@ p {
     font-size: 0.65rem;
     text-decoration: none;
     letter-spacing: 0.3px;
+     opacity: 0.6;
 }
 
 .lang-switch a.active {
+    opacity: 1;
     font-weight: 700;
     text-decoration: underline;
 }

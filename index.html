@@ -13,6 +13,9 @@
         rel="stylesheet">
     <link rel="icon" href="assets/images/favicon.png">
     <link rel="alternate" hreflang="de" href="https://your-site.netlify.app/index-de.html">
+    <link rel="alternate" hreflang="en" href="https://your-domain.com/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://your-domain.com/index.html">
+
 </head>
 
 <body>
@@ -23,15 +26,17 @@
         <div class="nav-wrapper">
             <nav>
                 <a href="index.html">Home</a>
-                <a href="villas.html">Villas</a>
-                <a href="experiences.html">Experiences</a>
+                <a href="#villas">Villas</a>
+                <a href="#experiences">Experiences</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Book Now</a>
                 <a href="gallery.html">Gallery</a>
             </nav>
 
             <div class="lang-switch">
-                <a href="index.html" class="active">EN</a><span class="sep">|</span><a href="index-de.html">DE</a>
+                <a href="index.html" class="active" onclick="localStorage.setItem('siteLang','en')">EN</a>
+                <span class="sep">|</span>
+                <a href="index-de.html" onclick="localStorage.setItem('siteLang','de')">DE</a>
             </div>
         </div>
     </header>
@@ -40,6 +45,7 @@
     <section class="hero">
         <div class="hero-slider">
             <div class="slide active" style="background-image: url('assets/images/hero/hero3.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/images/hero/dji_fly_3.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero6.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero4.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero7.jpg');"></div>
@@ -47,6 +53,7 @@
             <div class="slide" style="background-image: url('assets/images/hero/hero6.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero2.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero8.jpg');"></div>
+            <div class="slide" style="background-image: url('assets/images/hero/dji_fly_4.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero10.jpg');"></div>
             <div class="slide" style="background-image: url('assets/images/hero/hero9.jpg');"></div>
         </div>
@@ -528,6 +535,27 @@
             dots[nextIndex].classList.add("active");
         }
     </script>
+
+    <script>
+        (function () {
+            const userLang = navigator.language || navigator.userLanguage;
+            const savedLang = localStorage.getItem('siteLang');
+
+            // If user already chose a language → do nothing
+            if (savedLang) return;
+
+            // Detect German users
+            if (userLang.startsWith('de') && !window.location.pathname.includes('index-de')) {
+                window.location.href = '/index-de.html';
+            }
+
+            // Detect non-German users on DE page
+            if (!userLang.startsWith('de') && window.location.pathname.includes('index-de')) {
+                window.location.href = '/index.html';
+            }
+        })();
+    </script>
+
 
 </body>
 
