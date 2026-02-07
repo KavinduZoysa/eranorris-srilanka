@@ -1046,6 +1046,68 @@ p {
     background: white;
 }
 
+.about-section {
+    padding: 80px 20px;
+}
+
+.about-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.about-section p {
+    margin-bottom: 18px;
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+.about-section ul {
+    margin: 20px 0;
+}
+
+.about-highlight {
+    margin-top: 30px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.contact-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.contact-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.contact-content h2 {
+    margin-bottom: 20px;
+}
+
+.contact-content p {
+    margin-bottom: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
     .footer-content {
