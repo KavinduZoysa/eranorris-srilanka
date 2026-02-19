@@ -225,6 +225,14 @@ h4 {
     color: #f1f5f9;
 }
 
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    /* slightly darker */
+}
+
 .tagline {
     font-style: italic;
     margin: 10px 0;
@@ -1084,7 +1092,7 @@ p {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -1154,9 +1162,11 @@ p {
 }
 
 .review-card {
-    min-width: 380px;   /* Fixed card width */
+    min-width: 380px;
+    /* Fixed card width */
     max-width: 380px;
-    height: 320px;      /* Fixed height */
+    height: 320px;
+    /* Fixed height */
     background: #ffffff;
     padding: 28px;
     border-radius: 16px;
@@ -1167,11 +1177,12 @@ p {
 
 .review-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
 }
 
 .review-text {
-    overflow-y: auto;   /* Internal vertical scroll */
+    overflow-y: auto;
+    /* Internal vertical scroll */
     margin-bottom: 16px;
     line-height: 1.6;
     font-size: 0.95rem;
@@ -1328,12 +1339,64 @@ p {
 
 @media (max-width: 1024px) {
     .review-card {
-        flex: 0 0 50%;   /* 2 cards */
+        flex: 0 0 50%;
+        /* 2 cards */
     }
 }
 
 @media (max-width: 768px) {
     .review-card {
-        flex: 0 0 100%;  /* 1 card */
+        flex: 0 0 100%;
+        /* 1 card */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+        /* smaller, elegant */
+        line-height: 1.2;
+        padding: 0 16px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 16px 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-arrow {
+        background: rgba(0, 0, 0, 0.3);
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero .tagline {
+        font-size: 1.1rem;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 60px;
     }
 }
