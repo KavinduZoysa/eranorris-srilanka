@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Eranorris | Villas & Local Experiences in Sri Lanka</title>
+    <title>Über Eranorris | Villen &amp; Erlebnisse in Sri Lanka</title>
     <meta name="description"
-        content="Lernen Sie Eranorris Villas & Experiences kennen – eine von Einheimischen geführte Sammlung ruhiger Villen und authentischer Sri-Lanka-Erlebnisse im Süden Sri Lankas.">
+        content="Lernen Sie Eranorris Villas &amp; Experiences kennen – eine von Einheimischen geführte Sammlung ruhiger Villen und authentischer Sri-Lanka-Erlebnisse im Süden Sri Lankas.">
     <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+
     <header class="navbar">
-        <div class="logo">Eranorris Villas & Experiences</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="index.html#villas">Villas</a>
-            <a href="index.html#experiences">Experiences</a>
-            <a href="about.html" class="active">About</a>
-        </nav>
+        <div class="logo">Eranorris Villen &amp; Erlebnisse</div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menü" onclick="toggleMobileNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-wrapper" id="navWrapper">
+            <nav>
+                <a href="index-de.html" onclick="closeMobileNav()">Startseite</a>
+                <a href="index-de.html#villas" onclick="closeMobileNav()">Villen</a>
+                <a href="index-de.html#experiences" onclick="closeMobileNav()">Erlebnisse</a>
+                <a href="about-de.html" class="active" onclick="closeMobileNav()">Über uns</a>
+                <a href="contact.html" onclick="closeMobileNav()">Direkt buchen</a>
+                <a href="gallery.html" onclick="closeMobileNav()">Galerie</a>
+            </nav>
+
+            <div class="lang-switch">
+                <a href="about.html">EN</a><span class="sep">|</span><a href="about-de.html" class="active">DE</a>
+            </div>
+        </div>
     </header>
 
     <section class="about-section">
@@ -61,9 +81,27 @@
 
     <footer class="site-footer">
         <div class="footer-bottom">
-            <p>© 2026 Eranorris. All rights reserved.</p>
+            <p>© 2026 Eranorris. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('navWrapper');
+            const ham = document.getElementById('hamburger');
+            const overlay = document.getElementById('mobileOverlay');
+            nav.classList.toggle('open');
+            ham.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+        function closeMobileNav() {
+            document.getElementById('navWrapper').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    </script>
 
 </body>
 

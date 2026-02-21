@@ -1,64 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Eranorris | Villas & Local Experiences in Sri Lanka</title>
-    <meta name="description" content="Learn about Eranorris Villas & Experiences – a locally hosted collection of peaceful villas and authentic Sri Lankan experiences in Southern Sri Lanka.">
+    <title>About Eranorris | Villas &amp; Local Experiences in Sri Lanka</title>
+    <meta name="description"
+        content="Learn about Eranorris Villas &amp; Experiences – a locally hosted collection of peaceful villas and authentic Sri Lankan experiences in Southern Sri Lanka.">
     <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-<header class="navbar">
-    <div class="logo">Eranorris Villas & Experiences</div>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="index.html#villas">Villas</a>
-        <a href="index.html#experiences">Experiences</a>
-        <a href="about.html" class="active">About</a>
-    </nav>
-</header>
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
 
-<section class="about-section">
-    <div class="container">
-        <h1>About Eranorris</h1>
+    <header class="navbar">
+        <div class="logo">Eranorris Villas &amp; Experiences</div>
 
-        <p>
-            Eranorris was created with a simple idea — to offer peaceful villas and authentic
-            local experiences that reflect the true spirit of Southern Sri Lanka.
-        </p>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <p>
-            We are a locally hosted collection of private villas in Rathgama and Hikkaduwa,
-            designed for travelers who value calm, comfort, and meaningful experiences.
-        </p>
+        <div class="nav-wrapper" id="navWrapper">
+            <nav>
+                <a href="index.html" onclick="closeMobileNav()">Home</a>
+                <a href="index.html#villas" onclick="closeMobileNav()">Villas</a>
+                <a href="index.html#experiences" onclick="closeMobileNav()">Experiences</a>
+                <a href="about.html" class="active" onclick="closeMobileNav()">About</a>
+                <a href="contact.html" onclick="closeMobileNav()">Book Now</a>
+                <a href="gallery.html" onclick="closeMobileNav()">Gallery</a>
+            </nav>
+        </div>
+    </header>
 
-        <p>
-            From cinnamon harvesting traditions to kayaking in quiet lagoons,
-            we believe Sri Lanka is best experienced slowly — not rushed.
-        </p>
+    <section class="about-section">
+        <div class="container">
+            <h1>About Eranorris</h1>
 
-        <h2>Our Philosophy</h2>
-        <ul>
-            <li>✔ No mass tourism</li>
-            <li>✔ Personal hosting</li>
-            <li>✔ Carefully curated stays</li>
-            <li>✔ Experiences rooted in local culture</li>
-        </ul>
+            <p>
+                Eranorris was created with a simple idea — to offer peaceful villas and authentic
+                local experiences that reflect the true spirit of Southern Sri Lanka.
+            </p>
 
-        <p class="about-highlight">
-            We don’t aim for one-time stays.
-            We create experiences that make you want to return.
-        </p>
-    </div>
-</section>
+            <p>
+                We are a locally hosted collection of private villas in Rathgama and Hikkaduwa,
+                designed for travelers who value calm, comfort, and meaningful experiences.
+            </p>
 
-<footer class="site-footer">
-    <div class="footer-bottom">
-        <p>© 2026 Eranorris. All rights reserved.</p>
-    </div>
-</footer>
+            <p>
+                From cinnamon harvesting traditions to kayaking in quiet lagoons,
+                we believe Sri Lanka is best experienced slowly — not rushed.
+            </p>
+
+            <h2>Our Philosophy</h2>
+            <ul>
+                <li>✔ No mass tourism</li>
+                <li>✔ Personal hosting</li>
+                <li>✔ Carefully curated stays</li>
+                <li>✔ Experiences rooted in local culture</li>
+            </ul>
+
+            <p class="about-highlight">
+                We don't aim for one-time stays.
+                We create experiences that make you want to return.
+            </p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <p>© 2026 Eranorris. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('navWrapper');
+            const ham = document.getElementById('hamburger');
+            const overlay = document.getElementById('mobileOverlay');
+            nav.classList.toggle('open');
+            ham.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+        function closeMobileNav() {
+            document.getElementById('navWrapper').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    </script>
 
 </body>
+
 </html>
