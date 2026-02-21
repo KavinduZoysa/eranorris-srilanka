@@ -1257,6 +1257,137 @@ p {
     display: block;
 }
 
+/* Floating Button */
+.wa-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #0B3C5D, #0f4c75);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(11, 60, 93, 0.5);
+    z-index: 9999;
+    animation: pulse 2s infinite;
+    transition: 0.3s ease;
+}
+
+.wa-float:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(11, 60, 93, 0.7);
+}
+
+.wa-float img {
+    width: 30px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Notification Badge */
+.wa-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff3b3b;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chat Window */
+.wa-chat {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 320px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.wa-header {
+    background: linear-gradient(135deg, #1576b6, #0f4c75);
+    color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wa-header p {
+    font-size: 12px;
+    margin: 3px 0 0 0;
+}
+
+#waClose {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.wa-body {
+    padding: 16px;
+}
+
+.wa-message {
+    background: white;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.wa-buttons a {
+    display: block;
+    text-decoration: none;
+    background: white;
+    border: 1px solid #0B3C5D;
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    color: #0B3C5D;
+    font-weight: 500;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.wa-buttons a:hover {
+    background: #0B3C5D;
+    color: white;
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+    .wa-chat {
+        width: 90%;
+        right: 5%;
+    }
+}
+
 /* ============================
    TABLET  (≤ 1024px)
    ============================ */

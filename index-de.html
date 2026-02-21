@@ -37,7 +37,6 @@
                 <a href="#villas" onclick="closeMobileNav()">Villen</a>
                 <a href="#experiences" onclick="closeMobileNav()">Erlebnisse</a>
                 <a href="about-de.html" onclick="closeMobileNav()">Über uns</a>
-                <a href="contact.html" onclick="closeMobileNav()">Direkt buchen</a>
                 <a href="gallery.html" onclick="closeMobileNav()">Galerie</a>
             </nav>
 
@@ -534,7 +533,7 @@
                         <li>🕰 Halbtägiges Erlebnis</li>
                     </ul>
 
-                    <a href="https://wa.me/940710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20das%20Zimt-Erlebnis."
+                    <a href="https://wa.me/94710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20das%20Zimt-Erlebnis."
                         class="btn-secondary" target="_blank">
                         Per WhatsApp anfragen
                     </a>
@@ -592,7 +591,7 @@
                         <li>🌙 Übernachtung</li>
                     </ul>
 
-                    <a href="https://wa.me/940710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20die%20eintägige%20Zimt-Dorf-Tour."
+                    <a href="https://wa.me/94710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20die%20eintägige%20Zimt-Dorf-Tour."
                         class="btn-secondary" target="_blank">
                         Per WhatsApp anfragen
                     </a>
@@ -640,7 +639,7 @@
                         <li>🦜 Vogelbeobachtung</li>
                     </ul>
 
-                    <a href="https://wa.me/940710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20das%20Kajakfahren%20in%20der%20Rathgama-Lagune."
+                    <a href="https://wa.me/94710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20das%20Kajakfahren%20in%20der%20Rathgama-Lagune."
                         class="btn-secondary" target="_blank">
                         Per WhatsApp anfragen
                     </a>
@@ -683,10 +682,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/940710630867?text=Hallo%20Eranorris%20Villas%20%26%20Experiences,%20ich%20interessiere%20mich%20für%20die%20Buchung%20einer%20Villa%20oder%20eines%20Erlebnisses.%20Reisedaten:%20___%20bis%20___.%20Gäste:%20___"
-        class="whatsapp-float" target="_blank" aria-label="Per WhatsApp chatten">
-        💬
-    </a>
+
 
     <div id="contactModal" class="contact-modal">
         <div class="contact-content">
@@ -803,6 +799,57 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="wa-float" id="waToggle">
+        <span class="wa-badge">1</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+
+    <!-- WhatsApp Chat Window -->
+    <div class="wa-chat" id="waChat">
+        <div class="wa-header">
+            <div>
+                <strong>Eranorris Villen & Erlebnisse</strong>
+                <p>Antwortet normalerweise in wenigen Minuten</p>
+            </div>
+            <span id="waClose">✕</span>
+        </div>
+
+        <div class="wa-body">
+            <div class="wa-message">
+                👋 Hallo! Willkommen bei <strong>Eranorris Villen & Erlebnisse</strong><br><br>
+                Wie können wir Ihnen heute helfen?
+            </div>
+
+            <div class="wa-buttons">
+                <a href="https://wa.me/94710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20die%20Buchung%20einer%20Villa."
+                    target="_blank">🏡 Villenbuchung</a>
+
+                <a href="https://wa.me/94710630867?text=Hallo,%20ich%20interessiere%20mich%20für%20Ihre%20Erlebnisse."
+                    target="_blank">🌿 Erlebnisse</a>
+
+                <a href="https://wa.me/94710630867?text=Hallo,%20ich%20habe%20eine%20Frage." target="_blank">❓
+                    Allgemeine Anfrage</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const waToggle = document.getElementById("waToggle");
+        const waChat = document.getElementById("waChat");
+        const waClose = document.getElementById("waClose");
+        const waBadge = document.querySelector(".wa-badge");
+
+        waToggle.addEventListener("click", () => {
+            waChat.style.display = "flex";
+            waBadge.style.display = "none";
+        });
+
+        waClose.addEventListener("click", () => {
+            waChat.style.display = "none";
+        });
     </script>
 
 </body>
