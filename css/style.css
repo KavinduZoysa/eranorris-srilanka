@@ -75,7 +75,7 @@ h4 {
 
     background:
         linear-gradient(rgba(11, 60, 93, 0.6), rgba(11, 60, 93, 0.6)),
-        url('../assets/images/hero.jpg') center center / cover no-repeat;
+        url('../assets/images/hero/webp/hero1.webp') center center / cover no-repeat;
 }
 
 .hero-slider {
