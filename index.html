@@ -26,7 +26,41 @@
     <link rel="canonical" href="https://eranorrissrilanka.com/">
     <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/">
     <link rel="alternate" hreflang="de" href="https://eranorrissrilanka.com/index-de.html">
+    <link rel="alternate" hreflang="ru" href="https://eranorrissrilanka.com/index-ru.html">
     <link rel="alternate" hreflang="x-default" href="https://eranorrissrilanka.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Eranorris Villas &amp; Experiences">
+    <meta property="og:title" content="Peaceful Villas in Southern Sri Lanka | Eranorris">
+    <meta property="og:description"
+        content="Stay at peaceful private villas and enjoy authentic local experiences in Southern Sri Lanka near Galle and Hikkaduwa.">
+    <meta property="og:url" content="https://eranorrissrilanka.com/">
+    <meta property="og:image" content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Peaceful Villas in Southern Sri Lanka | Eranorris">
+    <meta name="twitter:description"
+        content="Stay at peaceful private villas and enjoy authentic local experiences in Southern Sri Lanka near Galle and Hikkaduwa.">
+    <meta name="twitter:image" content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Eranorris Villas & Experiences",
+      "url": "https://eranorrissrilanka.com/",
+      "image": "https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp",
+      "description": "Peaceful private villa stays and authentic local experiences in Southern Sri Lanka.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hikkaduwa",
+        "addressRegion": "Southern Province",
+        "addressCountry": "LK"
+      },
+      "priceRange": "USD 29+"
+    }
+    </script>
 
     <!-- Preload first hero image for much faster loading -->
     <link rel="preload" as="image" href="assets/images/hero/webp/serene-luxe-living-room-interior.webp">
@@ -58,6 +92,8 @@
                 <a href="index.html" class="active" onclick="localStorage.setItem('siteLang','en')">EN</a>
                 <span class="sep">|</span>
                 <a href="index-de.html" onclick="localStorage.setItem('siteLang','de')">DE</a>
+                <span class="sep">|</span>
+                <a href="index-ru.html" onclick="localStorage.setItem('siteLang','ru')">RU</a>
             </div>
         </div>
     </header>
@@ -87,8 +123,8 @@
             </p>
 
             <div class="hero-actions">
-                <a class="btn" href="#villas" class="btn-primary">Explore Our Villas</a>
-                <a class="btn btn-outline" href="#experiences" class="btn-secondary">View Experiences</a>
+                <a class="btn btn-primary" href="#villas">Explore Our Villas</a>
+                <a class="btn btn-outline btn-secondary" href="#experiences">View Experiences</a>
             </div>
         </div>
 
@@ -743,13 +779,19 @@
             // If user already chose a language → do nothing
             if (savedLang) return;
 
-            // Detect German users
+            // Detect German / Russian users
             if (userLang.startsWith('de') && !window.location.pathname.includes('index-de')) {
                 window.location.href = '/index-de.html';
             }
+            if (userLang.startsWith('ru') && !window.location.pathname.includes('index-ru')) {
+                window.location.href = '/index-ru.html';
+            }
 
-            // Detect non-German users on DE page
+            // Detect users on localized pages and fallback to EN if language does not match
             if (!userLang.startsWith('de') && window.location.pathname.includes('index-de')) {
+                window.location.href = '/index.html';
+            }
+            if (!userLang.startsWith('ru') && window.location.pathname.includes('index-ru')) {
                 window.location.href = '/index.html';
             }
         })();
