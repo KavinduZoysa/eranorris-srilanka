@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBE06WHJCS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-TBE06WHJCS');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Experiences in Sri Lanka — Cinnamon, Yala Safari, Kayaking | Eranorris</title>
+    <meta name="description"
+        content="Authentic local experiences in Southern Sri Lanka. Join a cinnamon peeling workshop, explore Yala National Park on a private safari, or kayak on Rathgama Lagoon. Book directly with Eranorris.">
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.png">
+
+    <link rel="canonical" href="https://eranorrissrilanka.com/experiences.html">
+    <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/experiences.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Eranorris Villas &amp; Experiences">
+    <meta property="og:title" content="Local Experiences in Sri Lanka | Eranorris">
+    <meta property="og:description"
+        content="Cinnamon experience, Yala safari, and kayaking in Southern Sri Lanka. Book directly with Eranorris.">
+    <meta property="og:url" content="https://eranorrissrilanka.com/experiences.html">
+    <meta property="og:image"
+        content="https://eranorrissrilanka.com/assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Eranorris Experiences in Southern Sri Lanka",
+      "url": "https://eranorrissrilanka.com/experiences.html",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Cinnamon Experience",
+          "url": "https://eranorrissrilanka.com/experiences.html#cinnamon"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Yala National Park Safari",
+          "url": "https://eranorrissrilanka.com/experiences.html#yala"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Kayaking in Rathgama Lagoon",
+          "url": "https://eranorrissrilanka.com/experiences.html#kayaking"
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preload" as="image" href="assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp">
+
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background: linear-gradient(rgba(11, 60, 93, 0.72), rgba(11, 60, 93, 0.72)),
+                url('assets/images/hero/webp/tourists-cinnamon-peeling-session.webp') center/cover no-repeat;
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero .breadcrumb {
+            font-size: 0.82rem;
+            opacity: 0.75;
+            margin-bottom: 16px;
+            letter-spacing: 0.04em;
+        }
+
+        .page-hero .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .page-hero .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0 0 16px;
+            color: white;
+            line-height: 1.15;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 620px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        /* ── Experiences Page ── */
+        .exp-page {
+            background: #f7f8fa;
+            padding: 60px 0 80px;
+        }
+
+        /* ── Full-width experience card ── */
+        .exp-card-full {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(11, 60, 93, 0.09);
+            overflow: hidden;
+            margin-bottom: 56px;
+            display: flex;
+            flex-direction: row;
+            min-height: 460px;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            scroll-margin-top: 80px;
+        }
+
+        .exp-card-full:hover {
+            box-shadow: 0 20px 60px rgba(11, 60, 93, 0.16);
+            transform: translateY(-3px);
+        }
+
+        .exp-card-full:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Image side */
+        .ecf-gallery {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #e8edf2;
+        }
+
+        .ecf-slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .ecf-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .ecf-slide.active {
+            opacity: 1;
+        }
+
+        .ecf-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.38);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .ecf-nav:hover {
+            background: rgba(0, 0, 0, 0.62);
+        }
+
+        .ecf-nav.prev {
+            left: 14px;
+        }
+
+        .ecf-nav.next {
+            right: 14px;
+        }
+
+        .ecf-dots {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+            z-index: 2;
+        }
+
+        .ecf-dots .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .ecf-dots .dot.active {
+            background: white;
+        }
+
+        .ecf-count {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(0, 0, 0, 0.44);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        /* Dark image overlay for mood */
+        .ecf-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Content side */
+        .ecf-body {
+            flex: 1;
+            padding: 44px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ecf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e8f4fd;
+            color: #0b3c5d;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .ecf-badge.yala {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .ecf-badge.kayak {
+            background: #dcfce7;
+            color: #14532d;
+        }
+
+        .ecf-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            color: #0f172a;
+            margin: 0 0 8px;
+            line-height: 1.15;
+        }
+
+        .ecf-duration {
+            font-size: 0.88rem;
+            color: #64748b;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ecf-desc {
+            font-size: 0.97rem;
+            line-height: 1.75;
+            color: #374151;
+            margin-bottom: 24px;
+        }
+
+        /* What's included */
+        .ecf-includes-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #0b3c5d;
+            margin-bottom: 12px;
+        }
+
+        .ecf-includes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px 16px;
+            margin-bottom: 26px;
+        }
+
+        .ecf-include-item {
+            font-size: 0.88rem;
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .ecf-include-item .check {
+            color: #16a34a;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Options pills */
+        .ecf-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .ecf-option {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #334155;
+            background: #f8fafc;
+            white-space: nowrap;
+        }
+
+        /* CTA */
+        .ecf-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ecf-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 26px;
+            background: #0b3c5d;
+            color: white;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.25s, transform 0.2s;
+        }
+
+        .ecf-btn-primary:hover {
+            background: #06283d;
+            transform: translateY(-1px);
+        }
+
+        .ecf-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 26px;
+            border: 2px solid #0b3c5d;
+            color: #0b3c5d;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.25s;
+        }
+
+        .ecf-btn-secondary:hover {
+            background: #0b3c5d;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Why Eranorris callout */
+        .why-banner {
+            background: #0b3c5d;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .why-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .why-banner p {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .why-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px 20px;
+        }
+
+        .why-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .why-item h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .why-item p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: white;
+            margin: 0;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .exp-card-full {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .ecf-gallery {
+                width: 100%;
+                height: 280px;
+            }
+
+            .ecf-body {
+                padding: 28px 24px;
+            }
+
+            .ecf-body h2 {
+                font-size: 1.8rem;
+            }
+
+            .ecf-includes {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ecf-actions {
+                flex-direction: column;
+            }
+
+            .ecf-btn-primary,
+            .ecf-btn-secondary {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+
+    <header class="navbar">
+        <div class="logo">Eranorris Villas &amp; Experiences</div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-wrapper" id="navWrapper">
+            <nav>
+                <a href="index.html" onclick="closeMobileNav()">Home</a>
+                <a href="villas.html" onclick="closeMobileNav()">Villas</a>
+                <a href="experiences.html" class="active" onclick="closeMobileNav()">Experiences</a>
+                <a href="about.html" onclick="closeMobileNav()">About</a>
+                <a href="gallery.html" onclick="closeMobileNav()">Gallery</a>
+            </nav>
+            <div class="lang-switch">
+                <a href="experiences.html" class="active" onclick="localStorage.setItem('siteLang','en')">EN</a>
+                <span class="sep">|</span>
+                <a href="index-de.html" onclick="localStorage.setItem('siteLang','de')">DE</a>
+                <span class="sep">|</span>
+                <a href="index-ru.html" onclick="localStorage.setItem('siteLang','ru')">RU</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Experiences</p>
+        <h1>Local Experiences in Southern Sri Lanka</h1>
+        <p>Carefully curated activities that connect you with the real spirit of Sri Lanka — its nature, culture, and
+            people.</p>
+    </section>
+
+    <!-- Experiences -->
+    <section class="exp-page">
+        <div class="container">
+
+            <!-- ── Experience 1: Cinnamon ── -->
+            <div class="exp-card-full" id="cinnamon">
+                <div class="ecf-gallery">
+                    <div class="ecf-slides" id="slides-cinnamon">
+                        <img src="assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp"
+                            alt="Couple holding a large bundle of freshly processed cinnamon quills, Sri Lanka"
+                            class="ecf-slide active">
+                        <img src="assets/images/cinnamon-experience/webp/local-guide-cinnamon-harvesting.webp"
+                            alt="Local Sri Lankan guide harvesting cinnamon from a tree trunk with a billhook"
+                            class="ecf-slide">
+                        <img src="assets/images/cinnamon-experience/webp/cinnamon-processing-tools.webp"
+                            alt="Traditional cinnamon processing tools and freshly peeled cinnamon sticks on a table"
+                            class="ecf-slide">
+                        <img src="assets/images/cinnamon-experience/webp/tourists-cinnamon-peeling-workshop.webp"
+                            alt="Tourists participating in hands-on cinnamon peeling workshop on a tropical veranda"
+                            class="ecf-slide">
+                        <img src="assets/images/cinnamon-experience/webp/guest-carving-cinnamon-stick.webp"
+                            alt="Guest carving a cinnamon stick during a local workshop in Sri Lanka" class="ecf-slide">
+                        <img src="assets/images/cinnamon-experience/webp/guest-holding-cinnamon-branches.webp"
+                            alt="Guest holding freshly cut cinnamon branches in a Sri Lankan garden" class="ecf-slide">
+                        <img src="assets/images/cinnamon-experience/webp/traditional-sri-lankan-lunch.webp"
+                            alt="Traditional Sri Lankan lunch with rice, curries, fried fish and fresh papaya"
+                            class="ecf-slide">
+                        <img src="assets/images/one-night-stay/webp/aerial-birdsong-villa-red-rooftop-private-garden-paths.webp"
+                            alt="Aerial view of Birdsong Villa with red-tiled rooftop and private tropical garden paths"
+                            class="ecf-slide">
+                    </div>
+                    <div class="ecf-overlay"></div>
+                    <button class="ecf-nav prev" onclick="changeEcfSlide('cinnamon', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="ecf-nav next" onclick="changeEcfSlide('cinnamon', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="ecf-dots" id="dots-cinnamon">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span>
+                    </div>
+                    <div class="ecf-count" id="count-cinnamon">1 / 8</div>
+                </div>
+
+                <div class="ecf-body">
+                    <div>
+                        <div class="ecf-badge">🌿 Cultural Experience</div>
+                        <h2>Cinnamon Experience</h2>
+                        <p class="ecf-duration">🕰 3-hour half-day tour · or · One-night stay with full immersion</p>
+
+                        <p class="ecf-desc">
+                            Sri Lanka produces the world's finest true cinnamon, and this immersive experience puts you
+                            at
+                            the heart of it. Guided by local artisans, you'll venture into a real cinnamon garden, learn
+                            to harvest and peel cinnamon bark by hand, and discover the age-old craft that has shaped
+                            Southern Sri Lankan life for generations. The one-night stay option extends into evening
+                            with a
+                            traditional home-cooked meal, a BBQ dinner, and optional turtle watching at the beach.
+                        </p>
+
+                        <p class="ecf-includes-title">What's Included</p>
+                        <div class="ecf-includes">
+                            <div class="ecf-include-item"><span class="check">✔</span> Cinnamon garden visit &
+                                harvesting</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Hands-on peeling & processing
+                                workshop</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Traditional Sri Lankan lunch
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Local guide (English speaking)
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> BBQ dinner (overnight only)</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Turtle watching (overnight only)
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Overnight accommodation
+                                (overnight option)</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Sri Lankan breakfast (overnight
+                                only)</div>
+                        </div>
+
+                        <div class="ecf-options">
+                            <span class="ecf-option">🕰 3-Hour Half-Day Tour</span>
+                            <span class="ecf-option">🌙 One-Night Full Immersion</span>
+                            <span class="ecf-option">🍽 Meals Included</span>
+                            <span class="ecf-option">👨‍👩‍👧 Small Groups</span>
+                        </div>
+                    </div>
+
+                    <div class="ecf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20the%20Cinnamon%20Experience."
+                            class="ecf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Experience 2: Yala Safari ── -->
+            <div class="exp-card-full" id="yala" style="flex-direction: row-reverse;">
+                <div class="ecf-gallery">
+                    <div class="ecf-slides" id="slides-yala">
+                        <img src="assets/images/yala/webp/elephant2.webp"
+                            alt="Wild elephants in Yala National Park, Sri Lanka" class="ecf-slide active">
+                        <img src="assets/images/yala/webp/elephant.webp"
+                            alt="Wild elephants at a watering hole in Yala National Park" class="ecf-slide">
+                        <img src="assets/images/yala/webp/leapord.webp"
+                            alt="Leopard resting in the wild during a private safari in Yala National Park"
+                            class="ecf-slide">
+                        <img src="assets/images/yala/webp/bear.webp"
+                            alt="Sloth bear spotted during a private safari in Yala National Park, Sri Lanka"
+                            class="ecf-slide">
+                        <img src="assets/images/yala/webp/peacock.webp"
+                            alt="Peacock displaying feathers in the wild at Yala National Park" class="ecf-slide">
+                        <img src="assets/images/yala/webp/leapord2.webp"
+                            alt="Leopard resting naturally in the wild of Yala National Park" class="ecf-slide">
+                    </div>
+                    <div class="ecf-overlay"></div>
+                    <button class="ecf-nav prev" onclick="changeEcfSlide('yala', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="ecf-nav next" onclick="changeEcfSlide('yala', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="ecf-dots" id="dots-yala">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    </div>
+                    <div class="ecf-count" id="count-yala">1 / 6</div>
+                </div>
+
+                <div class="ecf-body">
+                    <div>
+                        <div class="ecf-badge yala">🐘 Wildlife Safari</div>
+                        <h2>Yala National Park Safari</h2>
+                        <p class="ecf-duration">🕰 Half-day guided tour · Pick-up &amp; drop-off included</p>
+
+                        <p class="ecf-desc">
+                            Yala National Park is one of Sri Lanka's most iconic wildlife destinations and has one of
+                            the highest leopard densities in the world. On this private safari, you'll explore the
+                            rugged scrublands and lagoons of Yala in an open-roofed jeep, with an experienced naturalist
+                            guide pointing out elephants, leopards, sloth bears, crocodiles, peacocks, and hundreds of
+                            bird species. We arrange comfortable pick-up from your hotel and handle all park entry
+                            details,
+                            so you can focus entirely on the wildlife.
+                        </p>
+
+                        <p class="ecf-includes-title">What's Included</p>
+                        <div class="ecf-includes">
+                            <div class="ecf-include-item"><span class="check">✔</span> Private safari jeep (open-top)
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Experienced naturalist guide
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Pick-up &amp; drop-off from your
+                                hotel</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Yala National Park entry</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Elephants, leopards &amp; diverse
+                                wildlife</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Birdwatching opportunities</div>
+                        </div>
+
+                        <div class="ecf-options">
+                            <span class="ecf-option">🚙 Private Jeep</span>
+                            <span class="ecf-option">🐆 Leopard Territory</span>
+                            <span class="ecf-option">📍 Yala National Park</span>
+                            <span class="ecf-option">🚐 Hotel Transfer Included</span>
+                        </div>
+                    </div>
+
+                    <div class="ecf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20the%20Yala%20Safari%20Tour."
+                            class="ecf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Experience 3: Kayaking ── -->
+            <div class="exp-card-full" id="kayaking">
+                <div class="ecf-gallery">
+                    <div class="ecf-slides" id="slides-kayaking">
+                        <img src="assets/images/kayak/webp/serene-sunrise-calm-rathgama-lagoon-reflections.webp"
+                            alt="Serene sunrise reflections on the calm peaceful waters of Rathgama Lagoon, Southern Sri Lanka"
+                            class="ecf-slide active">
+                        <img src="assets/images/kayak/webp/sunset-kayaking-rathgama-lagoon-cormorants-silhouette.webp"
+                            alt="Peaceful sunset kayaking on Rathgama Lagoon with cormorants silhouetted on calm water"
+                            class="ecf-slide">
+                        <img src="assets/images/kayak/webp/kayaking-yellow-tandem-kayak-rathgama-lagoon.webp"
+                            alt="Kayaking in a yellow tandem kayak on the quiet Rathgama Lagoon, Sri Lanka"
+                            class="ecf-slide">
+                        <img src="assets/images/kayak/webp/couple-kayaking-orange-lifejackets-peaceful-green-shore.webp"
+                            alt="Couple kayaking in orange life jackets near the peaceful green shore of Rathgama Lagoon"
+                            class="ecf-slide">
+                        <img src="assets/images/kayak/webp/sunset-paddle-sparkling-calm-lagoon-water-closeup.webp"
+                            alt="Close-up of a paddle in sparkling calm lagoon water at sunset, Rathgama experience"
+                            class="ecf-slide">
+                    </div>
+                    <div class="ecf-overlay"></div>
+                    <button class="ecf-nav prev" onclick="changeEcfSlide('kayaking', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="ecf-nav next" onclick="changeEcfSlide('kayaking', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="ecf-dots" id="dots-kayaking">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span>
+                    </div>
+                    <div class="ecf-count" id="count-kayaking">1 / 5</div>
+                </div>
+
+                <div class="ecf-body">
+                    <div>
+                        <div class="ecf-badge kayak">🚣 Nature Activity</div>
+                        <h2>Kayaking in Rathgama Lagoon</h2>
+                        <p class="ecf-duration">🕰 Flexible duration · Available at sunrise &amp; sunset · 50m from
+                            Birdsong Villa</p>
+
+                        <p class="ecf-desc">
+                            Rathgama Lagoon is one of Southern Sri Lanka's hidden gems — a calm, glassy stretch of water
+                            bordered by mangroves, coconut palms, and quiet fishing villages. Paddle at your own pace
+                            and
+                            enjoy the stillness as cormorants skim the surface and colourful kingfishers dart through
+                            the
+                            trees. Whether you go at dawn as the mist lifts from the water, or at dusk as the sky turns
+                            gold and pink, kayaking here is a deeply peaceful, unforgettable experience.
+                        </p>
+
+                        <p class="ecf-includes-title">What's Included</p>
+                        <div class="ecf-includes">
+                            <div class="ecf-include-item"><span class="check">✔</span> Single or tandem kayak rental
+                            </div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Life jackets &amp; safety
+                                equipment</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Local guide (optional)</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Scenic mangrove routes</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Bird watching along the way</div>
+                            <div class="ecf-include-item"><span class="check">✔</span> Sunrise &amp; sunset sessions
+                                available</div>
+                        </div>
+
+                        <div class="ecf-options">
+                            <span class="ecf-option">🌅 Sunrise &amp; Sunset Sessions</span>
+                            <span class="ecf-option">🦜 Bird Watching</span>
+                            <span class="ecf-option">🌿 Mangrove Exploration</span>
+                            <span class="ecf-option">🚣 Solo &amp; Tandem Kayaks</span>
+                        </div>
+                    </div>
+
+                    <div class="ecf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20Kayaking%20in%20Rathgama%20Lagoon."
+                            class="ecf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Eranorris -->
+    <section class="why-banner">
+        <h2>Why Book With Eranorris?</h2>
+        <p>We're a small family operation. When you book with us, you're supporting local people — not a travel agency.
+        </p>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="icon">💬</div>
+                <h4>Direct &amp; Personal</h4>
+                <p>Book directly on WhatsApp. Talk to the host, not a chatbot. Get instant answers.</p>
+            </div>
+            <div class="why-item">
+                <div class="icon">🌿</div>
+                <h4>Authentic Experiences</h4>
+                <p>Every experience is led by local people who have been doing this their whole lives.</p>
+            </div>
+            <div class="why-item">
+                <div class="icon">💰</div>
+                <h4>Best Rates Guaranteed</h4>
+                <p>No platform fees or middlemen. Direct booking always means the best price.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Eranorris Villas &amp; Experiences</h3>
+                <p>Peaceful villas and meaningful local experiences in Southern Sri Lanka.
+                    Designed for travelers who value calm, authenticity, and comfort.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="villas.html">Villas</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Book Directly</h4>
+                <a class="whatsapp-footer" href="https://wa.me/94710630867" target="_blank"
+                    onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                    WhatsApp: +94 71 063 0867
+                </a>
+                <p class="small">Fast response · Best rates · Personal service</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Eranorris. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="wa-float" id="waToggle">
+        <span class="wa-badge">1</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+    <div class="wa-chat" id="waChat">
+        <div class="wa-header">
+            <div>
+                <strong>Eranorris Villas &amp; Experiences</strong>
+                <p>Typically replies within minutes</p>
+            </div>
+            <span id="waClose">✕</span>
+        </div>
+        <div class="wa-body">
+            <div class="wa-message">
+                👋 Hello! Welcome to <strong>Eranorris Villas &amp; Experiences</strong><br><br>
+                How can we help you today?
+            </div>
+            <div class="wa-buttons">
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20a%20villa."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🏡
+                    Villa Booking</a>
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20your%20experiences."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🌿
+                    Experiences</a>
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20would%20like%20to%20ask%20a%20question."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">❓
+                    General Inquiry</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('navWrapper');
+            const ham = document.getElementById('hamburger');
+            const overlay = document.getElementById('mobileOverlay');
+            nav.classList.toggle('open');
+            ham.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+        function closeMobileNav() {
+            document.getElementById('navWrapper').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function changeEcfSlide(id, dir) {
+            const slides = document.querySelectorAll(`#slides-${id} .ecf-slide`);
+            const dots = document.querySelectorAll(`#dots-${id} .dot`);
+            const countEl = document.getElementById(`count-${id}`);
+            let cur = [...slides].findIndex(s => s.classList.contains('active'));
+            slides[cur].classList.remove('active');
+            dots[cur].classList.remove('active');
+            let next = cur + dir;
+            if (next < 0) next = slides.length - 1;
+            if (next >= slides.length) next = 0;
+            slides[next].classList.add('active');
+            dots[next].classList.add('active');
+            if (countEl) countEl.textContent = `${next + 1} / ${slides.length}`;
+        }
+
+        document.querySelectorAll('.ecf-dots').forEach(dotGroup => {
+            const id = dotGroup.id.replace('dots-', '');
+            dotGroup.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    const slides = document.querySelectorAll(`#slides-${id} .ecf-slide`);
+                    const dots = document.querySelectorAll(`#dots-${id} .dot`);
+                    const countEl = document.getElementById(`count-${id}`);
+                    slides.forEach(s => s.classList.remove('active'));
+                    dots.forEach(d => d.classList.remove('active'));
+                    slides[i].classList.add('active');
+                    dots[i].classList.add('active');
+                    if (countEl) countEl.textContent = `${i + 1} / ${slides.length}`;
+                });
+            });
+        });
+
+        const waToggle = document.getElementById('waToggle');
+        const waChat = document.getElementById('waChat');
+        const waClose = document.getElementById('waClose');
+        const waBadge = document.querySelector('.wa-badge');
+        waToggle.addEventListener('click', () => { waChat.style.display = 'flex'; waBadge.style.display = 'none'; });
+        waClose.addEventListener('click', () => { waChat.style.display = 'none'; });
+    </script>
+
+</body>
+
+</html>

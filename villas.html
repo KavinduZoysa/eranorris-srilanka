@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBE06WHJCS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-TBE06WHJCS');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private Villas in Southern Sri Lanka | Eranorris</title>
+    <meta name="description"
+        content="Discover our peaceful private villas near Hikkaduwa and Rathgama in Southern Sri Lanka. Ideal for couples, families, long stays, and slow travel. Book directly for the best rates.">
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.png">
+
+    <link rel="canonical" href="https://eranorrissrilanka.com/villas.html">
+    <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/villas.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Eranorris Villas &amp; Experiences">
+    <meta property="og:title" content="Private Villas in Southern Sri Lanka | Eranorris">
+    <meta property="og:description"
+        content="Peaceful private villa stays near Hikkaduwa and Rathgama. Book directly for the best rates.">
+    <meta property="og:url" content="https://eranorrissrilanka.com/villas.html">
+    <meta property="og:image"
+        content="https://eranorrissrilanka.com/assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Eranorris Villas in Southern Sri Lanka",
+      "url": "https://eranorrissrilanka.com/villas.html",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Villa Serene Luxe – Hikkaduwa",
+          "url": "https://eranorrissrilanka.com/villas.html#serene-luxe"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Birdsong Villa – Rathgama",
+          "url": "https://eranorrissrilanka.com/villas.html#birdsong"
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preload" as="image"
+        href="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp">
+
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background: linear-gradient(rgba(11, 60, 93, 0.70), rgba(11, 60, 93, 0.70)),
+                url('assets/images/hero/webp/birdsong-villa-side-patio-view.webp') center/cover no-repeat;
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-hero .breadcrumb {
+            font-size: 0.82rem;
+            opacity: 0.75;
+            margin-bottom: 16px;
+            letter-spacing: 0.04em;
+        }
+
+        .page-hero .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .page-hero .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0 0 16px;
+            color: white;
+            line-height: 1.15;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        /* ── Villas Section ── */
+        .villas-page {
+            background: #f7f8fa;
+            padding: 60px 0 80px;
+        }
+
+        /* ── Enlarged villa card for dedicated page ── */
+        .villa-card-full {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(11, 60, 93, 0.09);
+            overflow: hidden;
+            margin-bottom: 56px;
+            display: flex;
+            flex-direction: row;
+            min-height: 480px;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            scroll-margin-top: 80px;
+        }
+
+        .villa-card-full:hover {
+            box-shadow: 0 20px 60px rgba(11, 60, 93, 0.16);
+            transform: translateY(-3px);
+        }
+
+        .villa-card-full:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Image side */
+        .vcf-gallery {
+            width: 52%;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #e8edf2;
+            min-height: 440px;
+        }
+
+        /* Alternate layout — image on right (desktop only) */
+        .vcf-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .vcf-slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .vcf-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .vcf-slide.active {
+            opacity: 1;
+        }
+
+        /* Gallery arrow nav */
+        .vcf-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.38);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .vcf-nav:hover {
+            background: rgba(0, 0, 0, 0.62);
+        }
+
+        .vcf-nav.prev {
+            left: 14px;
+        }
+
+        .vcf-nav.next {
+            right: 14px;
+        }
+
+        .vcf-dots {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+            z-index: 2;
+        }
+
+        .vcf-dots .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .vcf-dots .dot.active {
+            background: white;
+        }
+
+        /* Image count badge */
+        .vcf-count {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(0, 0, 0, 0.44);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        /* Content side */
+        .vcf-body {
+            flex: 1;
+            padding: 44px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .vcf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e8f4fd;
+            color: #0b3c5d;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .vcf-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin: 0 0 6px;
+            line-height: 1.15;
+        }
+
+        .vcf-location {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vcf-desc {
+            font-size: 0.97rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 22px;
+        }
+
+        /* Meta row */
+        .vcf-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .vcf-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.88rem;
+            color: #374151;
+        }
+
+        .vcf-price-block {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .vcf-price {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #0b3c5d;
+            line-height: 1;
+        }
+
+        .vcf-price-sub {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Amenities grid */
+        .vcf-amenities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+            margin-bottom: 22px;
+        }
+
+        .vcf-amenity {
+            font-size: 0.85rem;
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .vcf-amenity-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Pills */
+        .vcf-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .vcf-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #334155;
+            background: #f8fafc;
+            white-space: nowrap;
+        }
+
+        /* Action buttons */
+        .vcf-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .vcf-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 26px;
+            background: #0b3c5d;
+            color: white;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.25s, transform 0.2s;
+        }
+
+        .vcf-btn-primary:hover {
+            background: #06283d;
+            transform: translateY(-1px);
+        }
+
+        .vcf-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 26px;
+            border: 2px solid #0b3c5d;
+            color: #0b3c5d;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.25s;
+        }
+
+        .vcf-btn-outline:hover {
+            background: #0b3c5d;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Maps section */
+        .villas-maps {
+            background: white;
+            padding: 60px 0 80px;
+        }
+
+        .villas-maps h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .villas-maps .section-subtitle {
+            margin-bottom: 40px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .villa-card-full {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .vcf-gallery {
+                width: 100%;
+                height: 280px;
+            }
+
+            .vcf-body {
+                padding: 28px 24px;
+            }
+
+            .vcf-body h2 {
+                font-size: 1.8rem;
+            }
+
+            .vcf-price-block {
+                margin-left: 0;
+                text-align: left;
+            }
+
+            .vcf-amenities {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .vcf-actions {
+                flex-direction: column;
+            }
+
+            .vcf-btn-primary,
+            .vcf-btn-outline {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+
+    <header class="navbar">
+        <div class="logo">Eranorris Villas &amp; Experiences</div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-wrapper" id="navWrapper">
+            <nav>
+                <a href="index.html" onclick="closeMobileNav()">Home</a>
+                <a href="villas.html" class="active" onclick="closeMobileNav()">Villas</a>
+                <a href="experiences.html" onclick="closeMobileNav()">Experiences</a>
+                <a href="about.html" onclick="closeMobileNav()">About</a>
+                <a href="gallery.html" onclick="closeMobileNav()">Gallery</a>
+            </nav>
+            <div class="lang-switch">
+                <a href="villas.html" class="active" onclick="localStorage.setItem('siteLang','en')">EN</a>
+                <span class="sep">|</span>
+                <a href="index-de.html" onclick="localStorage.setItem('siteLang','de')">DE</a>
+                <span class="sep">|</span>
+                <a href="index-ru.html" onclick="localStorage.setItem('siteLang','ru')">RU</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Villas</p>
+        <h1>Our Villas in Southern Sri Lanka</h1>
+        <p>Peaceful, private stays designed for comfort, slow travel, and meaningful moments near Hikkaduwa and
+            Rathgama.</p>
+    </section>
+
+    <!-- Villa Listings -->
+    <section class="villas-page">
+        <div class="container">
+
+            <!-- ── Villa 1: Serene Luxe ── -->
+            <div class="villa-card-full" id="serene-luxe">
+
+                <!-- Gallery -->
+                <div class="vcf-gallery">
+                    <div class="vcf-slides" id="slides-serene">
+                        <img src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
+                            alt="Private Serene Luxe Villa veranda with white pillars and quiet tropical garden at dusk"
+                            class="vcf-slide active">
+                        <img src="assets/images/serene-luxe/webp/lush-tropical-garden-alocasia-warmly-lit-veranda.webp"
+                            alt="Lush private tropical garden with Alocasia plants and warmly lit villa veranda at Serene Luxe"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/peaceful-living-room-dark-sofas-carved-wooden-doorway.webp"
+                            alt="Peaceful spacious living room with dark grey sofas and carved wooden doorway at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/quiet-tv-lounge-wall-screen-plant-shelves-wooden-desk.webp"
+                            alt="Quiet TV lounge with wall-mounted screen, plant shelves and wooden desk at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/private-open-plan-living-kitchen-skylight.webp"
+                            alt="Private open-plan living room and kitchen with dark sofas and round skylight at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/quiet-bedroom-four-poster-bed-mosquito-net-red-bedding.webp"
+                            alt="Quiet elegant bedroom with four-poster bed, mosquito net and red bedding at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/peaceful-bedroom-garden-view-sliding-doors.webp"
+                            alt="Peaceful bedroom with four-poster bed and private garden-view sliding doors at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/private-bathroom-wooden-towel-rack-orange-towels.webp"
+                            alt="Private bathroom with wooden towel rack, orange towels and walk-in shower at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/open-air-outdoor-shower-river-stone-floor-natural-light.webp"
+                            alt="Open-air outdoor shower with concrete walls, river stone floor and natural light at Serene Luxe Villa"
+                            class="vcf-slide">
+                        <img src="assets/images/serene-luxe/webp/fully-equipped-kitchen-dark-cabinets-granite-breakfast-bar.webp"
+                            alt="Fully equipped private kitchen with dark wood cabinets, granite breakfast bar at Serene Luxe Villa"
+                            class="vcf-slide">
+                    </div>
+                    <button class="vcf-nav prev" onclick="changeVcfSlide('serene', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="vcf-nav next" onclick="changeVcfSlide('serene', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="vcf-dots" id="dots-serene">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="vcf-count" id="count-serene">1 / 10</div>
+                </div>
+
+                <!-- Body -->
+                <div class="vcf-body">
+                    <div>
+                        <div class="vcf-badge">🌟 Premium Villa</div>
+                        <h2>Villa Serene Luxe</h2>
+                        <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the beach</p>
+
+                        <div class="vcf-meta">
+                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            <div class="vcf-price-block">
+                                <div class="vcf-price">USD 32</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
+                        </div>
+
+                        <p class="vcf-desc">
+                            An elegant and calm private villa tucked away close to Hikkaduwa's beaches and attractions.
+                            Designed for couples and travellers seeking a refined, peaceful escape with all the comforts
+                            of home —
+                            from a fully equipped kitchen and a dedicated workspace to a serene tropical garden and an
+                            open-air outdoor shower.
+                            Ideal for long stays, remote work, and slow travel.
+                        </p>
+
+                        <div class="vcf-amenities">
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen
+                                (gas, fridge, microwave)</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Dedicated workspace &
+                                high-speed Wi-Fi</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning & ceiling
+                                fans</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Four-poster bed with
+                                mosquito net</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Open-air outdoor shower
+                            </div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV & washing machine
+                            </div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private tropical garden
+                                with veranda</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Cinnamon experience nearby
+                            </div>
+                        </div>
+
+                        <div class="vcf-pills">
+                            <span class="vcf-pill">🌿 Quiet &amp; Private</span>
+                            <span class="vcf-pill">🏖 3 km to Hikkaduwa Beach</span>
+                            <span class="vcf-pill">💻 Remote Work Ready</span>
+                            <span class="vcf-pill">🧘 Long Stay Friendly</span>
+                            <span class="vcf-pill">✨ Elegant &amp; Peaceful</span>
+                        </div>
+                    </div>
+
+                    <div class="vcf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20Villa%20Serene%20Luxe."
+                            class="vcf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Book on WhatsApp
+                        </a>
+                        <a href="https://www.airbnb.com/rooms/1536856378645031857" class="vcf-btn-outline"
+                            target="_blank" rel="noopener noreferrer">
+                            View on Airbnb
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Villa 2: Birdsong ── -->
+            <div class="villa-card-full vcf-reverse" id="birdsong">
+
+                <!-- Gallery -->
+                <div class="vcf-gallery">
+                    <div class="vcf-slides" id="slides-birdsong">
+                        <img src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
+                            alt="Aerial drone view of Birdsong Villa with red-tiled roof and stone garden paths, Rathgama"
+                            class="vcf-slide active">
+                        <img src="assets/images/birdsong/webp/birdsong-villa-aerial-overview.webp"
+                            alt="Bird's-eye view of Birdsong Villa surrounded by lush tropical greenery, Rathgama"
+                            class="vcf-slide">
+                        <img src="assets/images/birdsong/webp/birdsong-villa-terrace-clay-pots.webp"
+                            alt="Birdsong Villa side terrace with traditional clay pots and wooden furniture"
+                            class="vcf-slide">
+                        <img src="assets/images/birdsong/webp/birdsong-villa-garden-dining-area.webp"
+                            alt="Birdsong Villa outdoor garden dining area with blue table and tropical plants"
+                            class="vcf-slide">
+                        <img src="assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp"
+                            alt="Aerial view of Birdsong Villa rooftop and tropical garden canopy, Rathgama"
+                            class="vcf-slide">
+                    </div>
+                    <button class="vcf-nav prev" onclick="changeVcfSlide('birdsong', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="vcf-nav next" onclick="changeVcfSlide('birdsong', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="vcf-dots" id="dots-birdsong">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span>
+                    </div>
+                    <div class="vcf-count" id="count-birdsong">1 / 5</div>
+                </div>
+
+                <!-- Body -->
+                <div class="vcf-body">
+                    <div>
+                        <div class="vcf-badge">🌴 Nature Retreat</div>
+                        <h2>Birdsong Villa</h2>
+                        <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the beach</p>
+
+                        <div class="vcf-meta">
+                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            <div class="vcf-price-block">
+                                <div class="vcf-price">USD 18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
+                        </div>
+
+                        <p class="vcf-desc">
+                            A peaceful nature-surrounded villa perfect for relaxation and slow living.
+                            Nestled in a lush tropical garden in the quiet village of Rathgama, Birdsong Villa offers
+                            a truly authentic Sri Lankan experience. Kayaking on Rathgama Lagoon is just 50 metres away,
+                            and the beautiful beach is only 3 km. Wake up to birdsong, enjoy fresh fruits from the
+                            garden,
+                            and feel at home from day one.
+                        </p>
+
+                        <div class="vcf-amenities">
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen (gas
+                                cooker, fridge)</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Dedicated workspace &
+                                high-speed Wi-Fi</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning & ceiling
+                                fans</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV & washing machine
+                            </div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private lush tropical
+                                garden</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fresh garden fruits
+                                included</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Kayaking 50m from villa
+                            </div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Scooter rental available
+                            </div>
+                        </div>
+
+                        <div class="vcf-pills">
+                            <span class="vcf-pill">🌴 Surrounded by Nature</span>
+                            <span class="vcf-pill">🏖 3 km to Beach</span>
+                            <span class="vcf-pill">🚣 Kayaking 50m Away</span>
+                            <span class="vcf-pill">🍍 Fresh Garden Fruits</span>
+                            <span class="vcf-pill">🧘 Long Stay Friendly</span>
+                        </div>
+                    </div>
+
+                    <div class="vcf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20Birdsong%20Villa."
+                            class="vcf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Book on WhatsApp
+                        </a>
+                        <a href="https://www.airbnb.com/rooms/765197841460579390" class="vcf-btn-outline"
+                            target="_blank" rel="noopener noreferrer">
+                            View on Airbnb
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Map Locations -->
+    <section class="villas-maps">
+        <div class="container">
+            <h2>Villa Locations</h2>
+            <p class="section-subtitle">Peaceful stays in Southern Sri Lanka, close to beaches and nature</p>
+
+            <div class="maps-grid">
+                <div class="map-card">
+                    <h3>Villa Serene Luxe · Hikkaduwa</h3>
+                    <p class="map-desc">Close to Hikkaduwa Beach with easy access to cafés and coastal life.</p>
+                    <div class="map-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="map-card">
+                    <h3>Birdsong Villa · Rathgama</h3>
+                    <p class="map-desc">A calm nature retreat, 3 km from the beach and 10 km from Hikkaduwa.</p>
+                    <div class="map-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.175237450766!2d80.1432864!3d6.1070918999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1772780de384b%3A0x392f3891df8dd850!2sBirdsong%20Villa!5e0!3m2!1sen!2slk!4v1768661044389!5m2!1sen!2slk"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Eranorris Villas &amp; Experiences</h3>
+                <p>Peaceful villas and meaningful local experiences in Southern Sri Lanka.
+                    Designed for travelers who value calm, authenticity, and comfort.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <a href="villas.html">Villas</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Book Directly</h4>
+                <a class="whatsapp-footer" href="https://wa.me/94710630867" target="_blank"
+                    onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                    WhatsApp: +94 71 063 0867
+                </a>
+                <p class="small">Fast response · Best rates · Personal service</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Eranorris. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="wa-float" id="waToggle">
+        <span class="wa-badge">1</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+    <div class="wa-chat" id="waChat">
+        <div class="wa-header">
+            <div>
+                <strong>Eranorris Villas &amp; Experiences</strong>
+                <p>Typically replies within minutes</p>
+            </div>
+            <span id="waClose">✕</span>
+        </div>
+        <div class="wa-body">
+            <div class="wa-message">
+                👋 Hello! Welcome to <strong>Eranorris Villas &amp; Experiences</strong><br><br>
+                How can we help you today?
+            </div>
+            <div class="wa-buttons">
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20a%20villa."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🏡
+                    Villa Booking</a>
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20your%20experiences."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🌿
+                    Experiences</a>
+                <a href="https://wa.me/94710630867?text=Hello,%20I%20would%20like%20to%20ask%20a%20question."
+                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">❓
+                    General Inquiry</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('navWrapper');
+            const ham = document.getElementById('hamburger');
+            const overlay = document.getElementById('mobileOverlay');
+            nav.classList.toggle('open');
+            ham.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+        function closeMobileNav() {
+            document.getElementById('navWrapper').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Gallery slider
+        function changeVcfSlide(id, dir) {
+            const slides = document.querySelectorAll(`#slides-${id} .vcf-slide`);
+            const dots = document.querySelectorAll(`#dots-${id} .dot`);
+            const countEl = document.getElementById(`count-${id}`);
+            let cur = [...slides].findIndex(s => s.classList.contains('active'));
+            slides[cur].classList.remove('active');
+            dots[cur].classList.remove('active');
+            let next = cur + dir;
+            if (next < 0) next = slides.length - 1;
+            if (next >= slides.length) next = 0;
+            slides[next].classList.add('active');
+            dots[next].classList.add('active');
+            if (countEl) countEl.textContent = `${next + 1} / ${slides.length}`;
+        }
+
+        // Dot click
+        document.querySelectorAll('.vcf-dots').forEach(dotGroup => {
+            const id = dotGroup.id.replace('dots-', '');
+            dotGroup.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    const slides = document.querySelectorAll(`#slides-${id} .vcf-slide`);
+                    const dots = document.querySelectorAll(`#dots-${id} .dot`);
+                    const countEl = document.getElementById(`count-${id}`);
+                    slides.forEach(s => s.classList.remove('active'));
+                    dots.forEach(d => d.classList.remove('active'));
+                    slides[i].classList.add('active');
+                    dots[i].classList.add('active');
+                    if (countEl) countEl.textContent = `${i + 1} / ${slides.length}`;
+                });
+            });
+        });
+
+        // WA float
+        const waToggle = document.getElementById('waToggle');
+        const waChat = document.getElementById('waChat');
+        const waClose = document.getElementById('waClose');
+        const waBadge = document.querySelector('.wa-badge');
+        waToggle.addEventListener('click', () => { waChat.style.display = 'flex'; waBadge.style.display = 'none'; });
+        waClose.addEventListener('click', () => { waChat.style.display = 'none'; });
+    </script>
+
+</body>
+
+</html>
