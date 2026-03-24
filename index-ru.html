@@ -22,6 +22,9 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="icon" href="assets/images/favicon.png">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
     <link rel="canonical" href="https://eranorrissrilanka.com/index-ru.html">
     <link rel="alternate" hreflang="ru" href="https://eranorrissrilanka.com/index-ru.html">
@@ -399,6 +402,76 @@
                 </div>
             </div>
 
+            <!-- Villa Card 3 -->
+            <div class="villa-card">
+                <div class="villa-image">
+                    <div class="villa-slider" data-slider="coco">
+                        <div class="villa-slides">
+                            <img src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
+                                alt="Внешний вид Coco Garden Villas в Хиккадуве" class="villa-slide active" />
+                            <img src="assets/images/coco-garden/webp/coco-garden-villas-living-room1.webp"
+                                alt="Гостиная зона Coco Garden Villas" class="villa-slide" />
+                            <img src="assets/images/coco-garden/webp/coco-villas-bedroom1.webp"
+                                alt="Комфортабельная спальня в Coco Garden Villas" class="villa-slide" />
+                            <img src="assets/images/coco-garden/webp/coco-villas-kitchen1.webp"
+                                alt="Полностью оборудованная кухня в Coco Garden Villas" class="villa-slide" />
+                            <img src="assets/images/coco-garden/webp/coco-villas-terrace1.webp"
+                                alt="Частная терраса в Coco Garden Villas" class="villa-slide" />
+                        </div>
+
+                        <button class="villa-nav prev" onclick="changeVillaSlide('coco', -1)">❮</button>
+                        <button class="villa-nav next" onclick="changeVillaSlide('coco', 1)">❯</button>
+
+                        <div class="villa-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="villa-content">
+                    <a href="villas-ru.html#coco-garden" style="text-decoration:none; color:inherit;">
+                        <h3>Coco Garden</h3>
+                    </a>
+                    <div class="villa-meta">
+                        <div class="meta-left">
+                            <span class="meta-item">👥 2 гостя</span>
+                            <span class="meta-item">🛁 1 ванная</span>
+                        </div>
+
+                        <div class="meta-price">
+                            <span class="price">18</span>
+                            <span class="per-night">/ночь</span>
+                        </div>
+                    </div>
+
+                    <p class="details">
+                        Спокойная частная вилла в Хиккадуве, идеально подходящая для расслабляющего тропического отдыха.
+                        Coco Garden Villas предлагает комфортное убежище с 1 спальней для пар или соло-путешественников.
+                    </p>
+                    <p class="location">📍 Хиккадува, округ Галле</p>
+
+                    <div class="feature-pills">
+                        <span class="pill">🌿 Тихо и приватно</span>
+                        <span class="pill">🏡 Вся вилла целиком</span>
+                        <span class="pill">🛜 Быстрый Wi-Fi</span>
+                        <span class="pill">💻 Готово для удаленной работы</span>
+                        <span class="pill">🍳 Полностью оборудованная кухня</span>
+                    </div>
+
+                    <div class="villa-actions">
+                        <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хочу%20забронировать%20Coco%20Garden%20Villas." class="btn-primary"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            Забронировать в WhatsApp
+                        </a>
+                        <a href="villas-ru.html#coco-garden" class="btn-secondary">Посмотреть виллу →</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -409,39 +482,8 @@
                 Спокойное жилье на юге Шри-Ланки, рядом с пляжами и природой
             </p>
 
-            <div class="maps-grid">
-
-                <!-- Serene Luxe -->
-                <div class="map-card">
-                    <h3>Villa Serene Luxe · Hikkaduwa</h3>
-                    <p class="map-desc">
-                        Близко к пляжу Хиккадува, с удобным доступом к кафе и прибрежной жизни.
-                    </p>
-
-                    <div class="map-embed">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-
-                <!-- Birdsong Villa -->
-                <div class="map-card">
-                    <h3>Birdsong Villa · Rathgama</h3>
-                    <p class="map-desc">
-                        Спокойный отдых на природе, в 3 км от пляжа и 10 км от Хиккадувы.
-                    </p>
-
-                    <div class="map-embed">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.175237450766!2d80.1432864!3d6.1070918999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1772780de384b%3A0x392f3891df8dd850!2sBirdsong%20Villa!5e0!3m2!1sen!2slk!4v1768661044389!5m2!1sen!2slk"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-
-            </div>
+            <!-- Global Interactive Map -->
+            <div id="global-map" style="height: 500px; width: 100%; border-radius: 12px; z-index: 1;"></div>
         </div>
     </section>
 
@@ -872,6 +914,24 @@
             slides[nextIndex].classList.add("active");
             dots[nextIndex].classList.add("active");
         }
+
+        // Add dot click listeners for villa sliders
+        document.querySelectorAll('.villa-slider').forEach(slider => {
+            const dots = slider.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const slides = slider.querySelectorAll(".villa-slide");
+                    const currentActiveSlide = slider.querySelector(".villa-slide.active");
+                    const currentActiveDot = slider.querySelector(".dot.active");
+
+                    if (currentActiveSlide) currentActiveSlide.classList.remove("active");
+                    if (currentActiveDot) currentActiveDot.classList.remove("active");
+
+                    slides[index].classList.add("active");
+                    dot.classList.add("active");
+                });
+            });
+        });
     </script>
 
     <script>
@@ -964,6 +1024,9 @@
         });
     </script>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/map.js"></script>
 </body>
 
 </html>

@@ -907,11 +907,12 @@ p {
 /* Dots */
 .villa-dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 6px;
+    gap: 8px;
+    z-index: 5;
 }
 
 .villa-dots .dot {
@@ -919,6 +920,9 @@ p {
     height: 8px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
 }
 
 .villa-dots .dot.active {

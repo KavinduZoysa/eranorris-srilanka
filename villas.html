@@ -109,6 +109,31 @@
                 {"@type": "LocationFeatureSpecification", "name": "Dedicated workspace", "value": true}
               ]
             }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "VacationRental",
+              "name": "Coco Garden Villas – Hikkaduwa, Sri Lanka",
+              "url": "https://eranorrissrilanka.com/villas.html#coco-garden",
+              "image": "https://eranorrissrilanka.com/assets/images/coco-garden/webp/coco-garden-villas-exterior.webp",
+              "description": "A peaceful private villa in Hikkaduwa, perfect for a relaxing tropical stay. Offers a comfortable 1-bedroom retreat for couples or solo travelers.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Hikkaduwa",
+                "addressRegion": "Southern Province",
+                "addressCountry": "LK"
+              },
+              "petsAllowed": false,
+              "numberOfRooms": 1,
+              "amenityFeature": [
+                {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true},
+                {"@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true},
+                {"@type": "LocationFeatureSpecification", "name": "Private garden", "value": true},
+                {"@type": "LocationFeatureSpecification", "name": "Fully equipped kitchen", "value": true}
+              ]
+            }
           }
         ]
       },
@@ -554,6 +579,20 @@
                 justify-content: center;
             }
         }
+        .vcf-map {
+            margin-top: 30px;
+            width: 100%;
+            height: 320px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .vcf-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
     </style>
 </head>
 
@@ -713,6 +752,12 @@
                             View on Airbnb
                         </a>
                     </div>
+
+                    <div class="vcf-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
 
@@ -814,43 +859,122 @@
                             View on Airbnb
                         </a>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- Map Locations -->
-    <section class="villas-maps">
-        <div class="container">
-            <h2>Villa Locations</h2>
-            <p class="section-subtitle">Peaceful stays in Southern Sri Lanka, close to beaches and nature</p>
-
-            <div class="maps-grid">
-                <div class="map-card">
-                    <h3>Villa Serene Luxe · Hikkaduwa</h3>
-                    <p class="map-desc">Close to Hikkaduwa Beach with easy access to cafés and coastal life.</p>
-                    <div class="map-embed">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-
-                <div class="map-card">
-                    <h3>Birdsong Villa · Rathgama</h3>
-                    <p class="map-desc">A calm nature retreat, 3 km from the beach and 10 km from Hikkaduwa.</p>
-                    <div class="map-embed">
+                    <div class="vcf-map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.175237450766!2d80.1432864!3d6.1070918999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1772780de384b%3A0x392f3891df8dd850!2sBirdsong%20Villa!5e0!3m2!1sen!2slk!4v1768661044389!5m2!1sen!2slk"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
+
+            <!-- ── Villa 3: Coco Garden ── -->
+            <div class="villa-card-full" id="coco-garden">
+
+                <!-- Gallery -->
+                <div class="vcf-gallery">
+                    <div class="vcf-slides" id="slides-coco">
+                        <img src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
+                            alt="Coco Garden Villas exterior view in Hikkaduwa" class="vcf-slide active">
+                        <img src="assets/images/coco-garden/webp/coco-garden-villas-living-room1.webp"
+                            alt="Coco Garden Villas living room area" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villa-living-room2.webp"
+                            alt="Coco Garden Villas cozy living space" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-bedroom1.webp"
+                            alt="Coco Garden Villas comfortable bedroom" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-bedroom2.webp"
+                            alt="Coco Garden Villas bedroom detail" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-kitchen1.webp"
+                            alt="Coco Garden Villas fully equipped kitchen" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-kitchen2.webp"
+                            alt="Coco Garden Villas kitchen appliances" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-kitchen3.webp"
+                            alt="Coco Garden Villas kitchen area" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-dinind-area1.webp"
+                            alt="Coco Garden Villas dining area" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-dining-area2.webp"
+                            alt="Coco Garden Villas indoor dining" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-bathroom1.webp"
+                            alt="Coco Garden Villas clean bathroom" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-bathroom2.webp"
+                            alt="Coco Garden Villas bathroom shower" class="vcf-slide">
+                        <img src="assets/images/coco-garden/webp/coco-villas-terrace1.webp"
+                            alt="Coco Garden Villas private terrace" class="vcf-slide">
+                    </div>
+                    <button class="vcf-nav prev" onclick="changeVcfSlide('coco', -1)"
+                        aria-label="Previous image">&#10094;</button>
+                    <button class="vcf-nav next" onclick="changeVcfSlide('coco', 1)"
+                        aria-label="Next image">&#10095;</button>
+                    <div class="vcf-dots" id="dots-coco">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="vcf-count" id="count-coco">1 / 13</div>
+                </div>
+
+                <!-- Body -->
+                <div class="vcf-body">
+                    <div>
+                        <div class="vcf-badge">🌴 Tropical Getaway</div>
+                        <h2>Coco Garden Villas</h2>
+                        <p class="vcf-location">📍 Hikkaduwa, Galle District</p>
+
+                        <div class="vcf-meta">
+                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            <div class="vcf-price-block">
+                                <div class="vcf-price">18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
+                        </div>
+
+                        <p class="vcf-desc">
+                            A peaceful private villa in Hikkaduwa, perfect for a relaxing tropical stay. Coco Garden Villas offers a comfortable 1-bedroom retreat for couples or solo travelers, featuring standard amenities including a fully equipped kitchen, fast Wi-Fi, and air conditioning to ensure a restful long or short stay.
+                        </p>
+
+                        <div class="vcf-amenities">
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fast Wi-Fi</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private garden</div>
+                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Close to local attractions</div>
+                        </div>
+
+                        <div class="vcf-pills">
+                            <span class="vcf-pill">🌿 Quiet &amp; Private</span>
+                            <span class="vcf-pill">🏡 Entire Villa</span>
+                            <span class="vcf-pill">💻 Remote Work Ready</span>
+                        </div>
+                    </div>
+
+                    <div class="vcf-actions">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20Coco%20Garden%20Villas."
+                            class="vcf-btn-primary" target="_blank"
+                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            💬 Book on WhatsApp
+                        </a>
+                        <a href="https://www.airbnb.com/rooms/53776181" class="vcf-btn-outline"
+                            target="_blank" rel="noopener noreferrer">
+                            View on Airbnb
+                        </a>
+                    </div>
+
+                    <div class="vcf-map">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Coco+Garden+Villas,+Hikkaduwa&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
+
+
 
     <!-- Footer -->
     <footer class="site-footer">
