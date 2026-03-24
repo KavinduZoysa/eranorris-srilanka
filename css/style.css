@@ -659,9 +659,23 @@ p {
     color: #333;
 }
 
-.why-direct-section {
+.why-direct-section,
+.nomad-section {
     padding: 80px 0;
     background: #ffffff;
+}
+
+.home-story {
+    padding: 80px 0;
+    background: #f7f8fa;
+}
+
+.home-story .story-content {
+    max-width: 900px;
+    margin: 0 auto;
+    color: #333;
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 .direct-benefits {
