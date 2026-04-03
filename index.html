@@ -551,106 +551,8 @@
         </div>
     </section>
 
-    <section class="reviews-section">
-        <div class="container">
-            <h2>What Our Guests Say</h2>
-            <p class="section-subtitle">
-                Real experiences from guests who stayed with us in Southern Sri Lanka
-            </p>
 
-            <div class="reviews-grid">
-                <!-- birdsong -->
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">
-                        “Very familiar, all wishes are fulfilled if possible. Beautiful garden, very dear hosts.
-                        Delicious breakfast, have fun with Sarath. You are involved in the daily routine, so you learn a
-                        lot about the mentality. We were also invited to Sarath's birthday party. All family members and
-                        friends were very sweet and always kind.”
-                    </p>
-                    <div class="review-meta">
-                        <span class="guest-name">Bernd & Karin · Germany</span>
-                        <span class="platform">
-                            <a href="https://www.airbnb.com/rooms/765197841460579390?guests=1&adults=1&s=67&unique_share_id=c85e156e-bed3-48be-b685-7c7c7f16dc58"
-                                target="_blank" rel="noopener noreferrer">
-                                Airbnb
-                            </a>
-                        </span>
-                    </div>
-                </div>
 
-                <!-- sere luxe -->
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">
-                        “As the name suggests the place was indeed serene and peaceful. Located amidst lush green of
-                        Hikkaduwa this place is exactly as described. Mr. Kavindu took good care of us and welcomed us
-                        not with some sugary drink but traditional coconut water! The place is ideal for digital nomad
-                        work and the internet was good enough to do serious work. I also had a dialog sim as a backup
-                        and the signal was good as well at this particular place. The beach road is 5 minutes away with
-                        a Tuktuk. The garden is also well maintained and we enjoyed watering the plants. Overall I
-                        recommend this place if you’re looking to disconnect yet have access to the bustling Hikkaduwa
-                        beach.”
-                    </p>
-                    <div class="review-meta">
-                        <span class="guest-name">Braga · India</span>
-                        <span class="platform">
-                            <a href="https://www.airbnb.com/rooms/1536856378645031857?guests=1&adults=1&s=67&unique_share_id=830a5842-1b0f-4e68-b032-6268b820f750"
-                                target="_blank" rel="noopener noreferrer">
-                                Airbnb
-                            </a>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">
-                        "Magnificent villa, has everything you need. The owners of the villa are wonderful and helpful
-                        people😊They live nearby and can quickly help if you need it. I arrived at 11 pm, they checked
-                        me in without any problems and fed me scrambled eggs. There is a lake nearby, 2 minutes from the
-                        villa you can rent a kayak and have a wonderful time exploring the nature. The ocean is a
-                        40-minute walk away, as are all the shops. Secluded, quiet place, lots of birds in the garden. I
-                        was very pleased with the visit ❤️“
-                    </p>
-                    <div class="review-meta">
-                        <span class="guest-name">Mariia · Russia</span>
-                        <span class="platform">
-                            <a href="https://www.booking.com/Share-YIriYq" target="_blank" rel="noopener noreferrer">
-                                booking.com
-                            </a>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">
-                        "We stayed at the Birdsong Villa for a total of 6 weeks and decided to return at the end of
-                        our Sri Lanka trip. We felt at home from day one. Special thanks goes to the host family -
-                        it was the daily contact with them that made our stay truly special. The hospitality and
-                        support went far beyond the norm. We loved the activities organized by the hosts, such as a
-                        barbeque evening, kayaking in the lagoon, or a tour further inland, where we could swim in a
-                        freshwater spring. The villa itself has everything you need for a long term stay, is very
-                        private, surrounded by a beautiful green garden and located in a small village apart from
-                        the tourist crowds and busy areas. The option of renting a scooter at a reasonable price
-                        gave us a lot of flexibility to explore different places and beaches. In the end, we can
-                        definitely say that we will not only return to Birdsong Villa, but to friends. Tip: Be sure
-                        to book the Sri Lankan breakfast, which is freshly prepared by the mother and a daily
-                        treat!“
-                    </p>
-                    <div class="review-meta">
-                        <span class="guest-name">Lilia · Germany</span>
-                        <span class="platform">
-                            <a href="https://www.airbnb.com/rooms/765197841460579390?guests=1&adults=1&s=67&unique_share_id=c85e156e-bed3-48be-b685-7c7c7f16dc58"
-                                target="_blank" rel="noopener noreferrer">
-                                Airbnb
-                            </a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-    </section>
 
     <section class="experiences" id="experiences">
         <div class="container">
@@ -1096,6 +998,211 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="js/map.js"></script>
+
+    <!-- REVIEWS FLOATING BUTTON -->
+    <button class="reviews-float" onclick="openReviewsPopup()" aria-label="Read guest reviews">⭐</button>
+    <span class="reviews-float-label">Guest Reviews</span>
+
+    <!-- REVIEWS POPUP -->
+    <div class="reviews-popup-overlay" id="reviewsPopupOverlay" onclick="closeReviewsOnOverlay(event)">
+        <div class="reviews-popup" id="reviewsPopup">
+            <button class="reviews-popup-close" onclick="closeReviewsPopup()" aria-label="Close">×</button>
+            <div class="reviews-popup-header">
+                <h3>⭐ What Our Guests Say</h3>
+                <p>Real reviews from Airbnb &amp; Booking.com guests</p>
+            </div>
+
+            <div class="reviews-carousel-wrap">
+                <button class="carousel-arrow prev" onclick="reviewsCarousel(-1)" aria-label="Previous">&#8249;</button>
+                <div class="reviews-carousel">
+                    <div class="reviews-carousel-track" id="reviewsTrack">
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"Very familiar, all wishes are fulfilled if possible. Beautiful garden, very dear hosts. Delicious breakfast, have fun with Sarath. You are involved in the daily routine, so you learn a lot about the mentality. We were also invited to Sarath's birthday party. All family members and friends were very sweet and always kind."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Bernd &amp; Karin · Germany</span>
+                                    <span class="review-popup-villa">Birdsong</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/765197841460579390" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"We stayed at the Birdsong Villa for a total of 6 weeks and decided to return at the end of our Sri Lanka trip. We felt at home from day one. The hospitality and support went far beyond the norm. We loved the barbeque evening, kayaking in the lagoon, and tours inland. The villa has everything you need for a long term stay, is very private, surrounded by a beautiful green garden. We will not only return to Birdsong Villa, but to friends."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Lilia · Germany</span>
+                                    <span class="review-popup-villa">Birdsong</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/765197841460579390" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"The place is beautiful but what's even better is how much the family cares for you. They were constantly available and helped us with everything we needed. The parents gave us fruits fresh from their garden and meals over the weekend. I have been to so many bnbs across the world but the kind of personal attention that we received here was unmatched!"</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Leesha · February 2026</span>
+                                    <span class="review-popup-villa">Birdsong</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/765197841460579390" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"An incredible place away from the tourist bustle. The villa has a large fenced area with a covered terrace. The interior is tastefully decorated with many flowers, paintings and decorations. There are all the essentials — kitchen, hot water, washing machine, air conditioning. The hosts are friendly and kind, ready to help with anything. We had a wonderful dinner after checking in."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Anton · Belgrade, Serbia</span>
+                                    <span class="review-popup-villa">Birdsong</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/765197841460579390" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"Magnificent villa, has everything you need. The owners are wonderful. I arrived at 11 pm, they checked me in without any problems and fed me scrambled eggs. There is a lake nearby — 2 minutes from the villa you can rent a kayak. The ocean is a 40-minute walk away, as are all the shops. Secluded, quiet place, lots of birds in the garden. I was very pleased with the visit ❤️"</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Mariia · Russia</span>
+                                    <span class="review-popup-villa">Birdsong</span>
+                                    <span class="review-popup-platform"><a href="https://www.booking.com/Share-YIriYq" target="_blank" rel="noopener">Booking.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"As the name suggests the place was indeed serene and peaceful. Located amidst lush green of Hikkaduwa this place is exactly as described. Mr. Kavindu welcomed us with traditional coconut water! The place is ideal for digital nomad work and the internet was good enough to do serious work. The beach road is 5 minutes away with a Tuktuk. Overall I recommend this place if you're looking to disconnect yet have access to the bustling Hikkaduwa beach."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Braga · India</span>
+                                    <span class="review-popup-villa">Serene Luxe</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/1536856378645031857" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"Villa Serene Luxe is a beautiful property in a calm and peaceful locality. Kavindu is a great host, very responsive and proactive. The villa is very spacious, with all the listed amenities, a beautiful garden, barbeque area etc. Kavindu's father gave a warm welcome on arrival, and was of great help. We had a very peaceful and comfortable stay."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Anup · March 2026</span>
+                                    <span class="review-popup-villa">Serene Luxe</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/1536856378645031857" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"A detached villa with its own private area, terrace and barbecue area. Very convenient to work remotely — fiber optic internet, a dedicated work area and air conditioning. The host and his parents were always ready to help. It is very quiet here, away from the tourist area, but you can get to the beach inexpensively by tuk-tuk in a few minutes. All the conditions for long stays were created."</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Ivan · Warsaw, Poland</span>
+                                    <span class="review-popup-villa">Serene Luxe</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/1536856378645031857" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"Had a nice and relaxing month-long stay at this villa. The villas and the family house are located on a large property so there is plenty of space. On the inside the villa is well designed and very functional. Chathura went above and beyond to ensure I was comfortable throughout my stay. Highly recommend!"</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Ajay · Berkeley, California</span>
+                                    <span class="review-popup-villa">Coco Garden</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/53776181" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-popup-card">
+                            <div class="review-popup-inner">
+                                <div class="review-popup-stars">★★★★★</div>
+                                <p class="review-popup-text">"I was personally picked up by Chathura at the airport. The place was superbly located — within walking distance you can quickly get to the beach, restaurants, etc. The contact was super friendly and my messages were always answered quickly! Upon arrival, he recommended restaurants, supermarkets, etc. Overall, I had a very nice stay 😊 Thanks Chathura!"</p>
+                                <div class="review-popup-meta">
+                                    <span class="review-popup-name">Fiona · January 2026</span>
+                                    <span class="review-popup-villa">Coco Garden</span>
+                                    <span class="review-popup-platform"><a href="https://www.airbnb.com/rooms/53776181" target="_blank" rel="noopener">Airbnb</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button class="carousel-arrow next" onclick="reviewsCarousel(1)" aria-label="Next">&#8250;</button>
+            </div>
+
+            <div class="reviews-dots" id="reviewsDots"></div>
+            <p class="reviews-counter" id="reviewsCounter"></p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const TOTAL = 10;
+            let current = 0;
+
+            const track = document.getElementById('reviewsTrack');
+            const dotsWrap = document.getElementById('reviewsDots');
+            const counter = document.getElementById('reviewsCounter');
+            const overlay = document.getElementById('reviewsPopupOverlay');
+
+            if(!track) return;
+
+            // Build dots
+            for (let i = 0; i < TOTAL; i++) {
+                const d = document.createElement('button');
+                d.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+                d.setAttribute('aria-label', 'Review ' + (i + 1));
+                d.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(d);
+            }
+
+            function goTo(index) {
+                current = (index + TOTAL) % TOTAL;
+                track.style.transform = 'translateX(-' + (current * 100) + '%)';
+                dotsWrap.querySelectorAll('.reviews-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+                counter.textContent = (current + 1) + ' / ' + TOTAL;
+            }
+
+            goTo(0);
+
+            window.reviewsCarousel = function(dir) { goTo(current + dir); };
+
+            window.openReviewsPopup = function() {
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                goTo(0);
+            };
+
+            window.closeReviewsPopup = function() {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+
+            window.closeReviewsOnOverlay = function(e) {
+                if (e.target === overlay) closeReviewsPopup();
+            };
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!overlay.classList.contains('open')) return;
+                if (e.key === 'ArrowRight') reviewsCarousel(1);
+                if (e.key === 'ArrowLeft')  reviewsCarousel(-1);
+                if (e.key === 'Escape')     closeReviewsPopup();
+            });
+        })();
+    </script>
 </body>
 
 </html>
