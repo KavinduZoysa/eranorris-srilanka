@@ -2011,4 +2011,9 @@ p {
         bottom: 105px;
         right: 85px;
     }
+
+    /* Hide 3rd experience card on mobile — show on desktop only */
+    .exp-card-extra {
+        display: none;
+    }
 }
