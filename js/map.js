@@ -55,6 +55,18 @@ document.addEventListener("DOMContentLoaded", () => {
             priceEn: "USD 18",
             priceDe: "18 USD",
             priceRu: "USD 18"
+        },
+        {
+            id: 'sterrling',
+            name: "Sterrling Villa",
+            lat: 6.138000,
+            lng: 80.110500,
+            linkEn: "villas.html#sterrling",
+            linkDe: "villas-de.html#sterrling",
+            linkRu: "villas-ru.html#sterrling",
+            priceEn: "USD 30",
+            priceDe: "30 USD",
+            priceRu: "USD 30"
         }
     ];
 
@@ -82,11 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const marker = L.marker([prop.lat, prop.lng]).addTo(map);
         
+        let priceHtml = "";
+        if (price) {
+            priceHtml = `<p style="margin: 0 0 12px 0; font-size: 13px; color: #555;"><strong>${price}</strong> ${t.perNight}</p>`;
+        } else {
+            priceHtml = `<p style="margin: 0 0 12px 0; font-size: 13px; color: #555;"></p>`;
+        }
+        
         // Build interactive popups
         const popupContent = `
             <div style="font-family: 'Inter', sans-serif; text-align: center; color: #333; min-width: 140px;">
                 <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: 600; color: #2A4325;">${prop.name}</h4>
-                <p style="margin: 0 0 12px 0; font-size: 13px; color: #555;"><strong>${price}</strong> ${t.perNight}</p>
+                ${priceHtml}
                 <a href="${link}" style="display: block; background: #DDA15E; color: white; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 13px; font-weight: 500;">
                     ${t.view}
                 </a>
