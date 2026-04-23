@@ -67,6 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
             priceEn: "USD 30",
             priceDe: "30 USD",
             priceRu: "USD 30"
+        },
+        {
+            id: 'villa-one-64',
+            name: "Villa One 64 Beachfront",
+            lat: 6.107156,
+            lng: 80.125062,
+            linkEn: "villas.html#villa-one-64",
+            linkDe: "villas-de.html#villa-one-64",
+            linkRu: "villas-ru.html#villa-one-64",
+            priceEn: "",
+            priceDe: "",
+            priceRu: ""
         }
     ];
 
