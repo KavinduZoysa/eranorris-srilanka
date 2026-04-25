@@ -83,270 +83,433 @@
         </div>
     </header>
 
+    <style>
+        /* ── Gallery Filter Tabs ── */
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 24px 0 32px;
+        }
+        .gallery-filters .filter-group-label {
+            width: 100%;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #999;
+            margin: 12px 0 4px;
+        }
+        .gallery-filters .filter-group-label:first-child { margin-top: 0; }
+        .gf-btn {
+            padding: 7px 16px;
+            border: 1.5px solid #d4c9bc;
+            border-radius: 999px;
+            background: transparent;
+            color: #555;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background .18s, color .18s, border-color .18s;
+            white-space: nowrap;
+        }
+        .gf-btn:hover { background: #f5f0ea; border-color: #b5a898; color: #333; }
+        .gf-btn.active {
+            background: #2A4325;
+            border-color: #2A4325;
+            color: #fff;
+        }
+        /* Smooth hide/show */
+        .gallery img { transition: opacity .25s, transform .25s; }
+        .gallery img.gf-hidden {
+            display: none;
+        }
+    </style>
+
     <section class="gallery-section">
         <div class="container">
             <h2>Gallery</h2>
             <p>Moments from our villas and experiences in Galle, Sri Lanka.</p>
 
-            <div class="gallery">
+            <!-- Filter buttons -->
+            <div class="gallery-filters" id="galleryFilters">
+                <button class="gf-btn active" data-filter="all">All Photos</button>
+
+                <span class="filter-group-label">Villas</span>
+                <button class="gf-btn" data-filter="birdsong">Birdsong Villa</button>
+                <button class="gf-btn" data-filter="serene-luxe">Serene Luxe</button>
+                <button class="gf-btn" data-filter="coco-garden">Coco Garden</button>
+                <button class="gf-btn" data-filter="sterrling">Sterrling Villa</button>
+                <button class="gf-btn" data-filter="villa-one-64">Villa One 64 Beachfront</button>
+
+                <span class="filter-group-label">Experiences</span>
+                <button class="gf-btn" data-filter="cinnamon">Cinnamon Experience</button>
+                <button class="gf-btn" data-filter="one-night-stay">One Night Stay</button>
+                <button class="gf-btn" data-filter="kayak">Kayaking</button>
+                <button class="gf-btn" data-filter="yala">Yala Safari</button>
+                <button class="gf-btn" data-filter="around-hikkaduwa">Tour Around Hikkaduwa</button>
+                <button class="gf-btn" data-filter="madu-river">Madu River Safari</button>
+                <button class="gf-btn" data-filter="whale-watching">Whale Watching &amp; Galle</button>
+            </div>
+
+            <div class="gallery" id="galleryGrid">
                 <img src="assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp"
                     alt="Aerial view of Birdsong Villa with red-tiled roof and tropical garden, Rathgama Sri Lanka"
-                    loading="lazy">
+                    data-category="birdsong" loading="lazy">
                 <img src="assets/images/birdsong/webp/birdsong-villa-aerial-overview.webp"
-                    alt="Bird's-eye overview of Birdsong Villa surrounded by lush tropical greenery" loading="lazy">
+                    alt="Bird's-eye overview of Birdsong Villa surrounded by lush tropical greenery"
+                    data-category="birdsong" loading="lazy">
                 <img src="assets/images/birdsong/webp/birdsong-villa-terrace-clay-pots.webp"
-                    alt="Birdsong Villa side terrace with traditional clay pots and wooden furniture" loading="lazy">
+                    alt="Birdsong Villa side terrace with traditional clay pots and wooden furniture"
+                    data-category="birdsong" loading="lazy">
                 <img src="assets/images/birdsong/webp/birdsong-villa-garden-dining-area.webp"
                     alt="Birdsong Villa outdoor garden dining area with blue wooden table under a pergola"
-                    loading="lazy">
+                    data-category="birdsong" loading="lazy">
                 <img src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
                     alt="Aerial view of Birdsong Villa garden path lined with tropical plants, Rathgama Sri Lanka"
-                    loading="lazy">
+                    data-category="birdsong" loading="lazy">
 
                 <img src="assets/images/serene-luxe/webp/peaceful-living-room-dark-sofas-carved-wooden-doorway.webp"
                     alt="Peaceful spacious living room with dark grey sofas and carved wooden doorway at Serene Luxe Villa, Hikkaduwa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
                     alt="Private Serene Luxe Villa veranda with white pillars and quiet tropical garden at dusk, Hikkaduwa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/private-terrace-white-columns-warm-evening-glow.webp"
                     alt="Private Serene Luxe Villa terrace at dusk with white columns and warm evening light"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/lush-tropical-garden-alocasia-warmly-lit-veranda.webp"
                     alt="Lush private tropical garden with Alocasia plants and warmly lit veranda at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/quiet-tv-lounge-wall-screen-plant-shelves-wooden-desk.webp"
                     alt="Quiet TV lounge with wall-mounted screen, plant shelves and wooden desk at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/private-open-plan-living-kitchen-skylight.webp"
                     alt="Private open-plan living room and kitchen with dark sofas and round skylight at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/quiet-bedroom-four-poster-bed-mosquito-net-red-bedding.webp"
                     alt="Quiet elegant bedroom with four-poster bed, mosquito net and red bedding at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/peaceful-bedroom-garden-view-sliding-doors.webp"
                     alt="Peaceful bedroom with four-poster bed and private garden-view sliding doors at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/private-bathroom-wooden-towel-rack-orange-towels.webp"
                     alt="Private bathroom with wooden towel rack, orange towels and walk-in shower at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/open-air-outdoor-shower-river-stone-floor-natural-light.webp"
                     alt="Open-air outdoor shower with concrete walls, river stone floor and natural light at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/fully-equipped-kitchen-dark-cabinets-granite-breakfast-bar.webp"
                     alt="Fully equipped private kitchen with dark wood cabinets, granite breakfast bar and hanging jars at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/kitchen-gas-stove-steel-sink-carved-wooden-valance.webp"
                     alt="Kitchen countertop with built-in gas stove, steel sink and ornate carved wooden valance at Serene Luxe Villa"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
                 <img src="assets/images/serene-luxe/webp/peaceful-terrace-white-pillars-garden-beyond-evening.webp"
                     alt="Peaceful evening view along Serene Luxe Villa terrace with white pillars and private garden beyond"
-                    loading="lazy">
+                    data-category="serene-luxe" loading="lazy">
 
                 <img src="assets/images/cinnamon-experience/webp/local-guide-cinnamon-harvesting.webp"
-                    alt="Local Sri Lankan guide harvesting cinnamon from a tree trunk with a billhook" loading="lazy">
+                    alt="Local Sri Lankan guide harvesting cinnamon from a tree trunk with a billhook"
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/cinnamon-processing-tools.webp"
                     alt="Traditional cinnamon processing tools and freshly peeled cinnamon sticks on a table"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/tourists-cinnamon-peeling-workshop.webp"
                     alt="Tourists participating in a hands-on cinnamon peeling workshop on a tropical veranda"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp"
                     alt="Couple smiling and holding a large bundle of freshly processed cinnamon quills, Sri Lanka"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/traditional-sri-lankan-lunch.webp"
                     alt="Traditional Sri Lankan lunch with rice, curries, fried fish and fresh papaya on a checkered tablecloth"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/guest-scraping-cinnamon-bark.webp"
                     alt="Guest carefully scraping cinnamon bark with a traditional tool on a sunlit veranda"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/guest-holding-cinnamon-branches.webp"
-                    alt="Guest smiling while holding two freshly peeled cinnamon branches" loading="lazy">
+                    alt="Guest smiling while holding two freshly peeled cinnamon branches"
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/instructor-demonstrating-cinnamon.webp"
                     alt="Local instructor demonstrating cinnamon bark scraping technique vertically to participants"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/cinnamon-bark-burnishing-closeup.webp"
-                    alt="Close-up of hands burnishing a bright yellow-orange peeled cinnamon stick" loading="lazy">
+                    alt="Close-up of hands burnishing a bright yellow-orange peeled cinnamon stick"
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/guest-carving-cinnamon-stick.webp"
-                    alt="Guest carving a cinnamon stick with a precision knife on a tropical veranda" loading="lazy">
+                    alt="Guest carving a cinnamon stick with a precision knife on a tropical veranda"
+                    data-category="cinnamon" loading="lazy">
                 <img src="assets/images/cinnamon-experience/webp/guest-refining-cinnamon-stick.webp"
                     alt="Guest carefully refining a cinnamon stick with a small knife, cinnamon craft detail"
-                    loading="lazy">
+                    data-category="cinnamon" loading="lazy">
 
                 <img src="assets/images/one-night-stay/webp/outdoor-night-bbq-chicken-charcoal-grill-sri-lanka.webp"
                     alt="Outdoor night BBQ with chicken drumsticks grilling on charcoal in a private garden, Sri Lanka"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/evening-barbecue-chicken-stone-grill-private-garden.webp"
                     alt="Evening barbecue with chicken and grilled food on a stone grill in a private garden"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/charcoal-bbq-marinated-chicken-glowing-coals-night.webp"
                     alt="Charcoal BBQ with marinated chicken over glowing coals at night, quiet outdoor experience"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/guest-peeling-cinnamon-stick-quiet-village-tour.webp"
                     alt="Guest quietly peeling a long cinnamon stick during an authentic Sri Lanka village tour"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/local-guide-demonstrating-cinnamon-peeling-tourist.webp"
                     alt="Local guide demonstrating cinnamon peeling to a tourist in a peaceful village setting"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/artisan-tourist-cinnamon-peeling-together-table.webp"
                     alt="Artisan and tourist peeling cinnamon together on a table, quiet private experience"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/couple-holding-fresh-cinnamon-quills-private-experience.webp"
                     alt="Smiling couple holding fresh cinnamon quills after a private cinnamon village experience"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/aerial-birdsong-villa-red-rooftop-private-garden-paths.webp"
                     alt="Aerial view of Birdsong Villa with red-tiled rooftop and private tropical garden paths"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
                 <img src="assets/images/one-night-stay/webp/traditional-sri-lankan-lunch-peaceful-indoor-couple.webp"
                     alt="Couple enjoying a peaceful traditional Sri Lankan lunch with rice, fish and curries indoors"
-                    loading="lazy">
+                    data-category="one-night-stay" loading="lazy">
 
                 <img src="assets/images/kayak/webp/sunset-kayaking-rathgama-lagoon-cormorants-silhouette.webp"
                     alt="Peaceful sunset kayaking on Rathgama Lagoon with cormorants silhouetted on calm water"
-                    loading="lazy">
+                    data-category="kayak" loading="lazy">
                 <img src="assets/images/kayak/webp/serene-sunrise-calm-rathgama-lagoon-reflections.webp"
                     alt="Serene sunrise reflections on the calm peaceful waters of Rathgama Lagoon, Southern Sri Lanka"
-                    loading="lazy">
+                    data-category="kayak" loading="lazy">
                 <img src="assets/images/kayak/webp/kayaking-yellow-tandem-kayak-rathgama-lagoon.webp"
-                    alt="Kayaking in a yellow tandem kayak on the quiet Rathgama Lagoon, Sri Lanka" loading="lazy">
+                    alt="Kayaking in a yellow tandem kayak on the quiet Rathgama Lagoon, Sri Lanka"
+                    data-category="kayak" loading="lazy">
                 <img src="assets/images/kayak/webp/couple-kayaking-orange-lifejackets-peaceful-green-shore.webp"
                     alt="Couple kayaking in orange life jackets near the peaceful green shore of Rathgama Lagoon"
-                    loading="lazy">
+                    data-category="kayak" loading="lazy">
                 <img src="assets/images/kayak/webp/sunset-paddle-sparkling-calm-lagoon-water-closeup.webp"
                     alt="Close-up of a paddle in sparkling calm lagoon water at sunset, quiet Rathgama experience"
-                    loading="lazy">
+                    data-category="kayak" loading="lazy">
 
-                <!-- Coco Garden Villas -->
                 <img src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
-                    alt="Coco Garden Villas exterior view, Hikkaduwa Sri Lanka" loading="lazy">
+                    alt="Coco Garden Villas exterior view, Hikkaduwa Sri Lanka"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-garden-villas-living-room1.webp"
-                    alt="Coco Garden Villas bright living room area" loading="lazy">
+                    alt="Coco Garden Villas bright living room area"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villa-living-room2.webp"
-                    alt="Coco Garden Villas cozy living space" loading="lazy">
+                    alt="Coco Garden Villas cozy living space"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-bedroom1.webp"
-                    alt="Coco Garden Villas comfortable bedroom" loading="lazy">
+                    alt="Coco Garden Villas comfortable bedroom"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-bedroom2.webp"
-                    alt="Coco Garden Villas bedroom detail" loading="lazy">
+                    alt="Coco Garden Villas bedroom detail"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-kitchen1.webp"
-                    alt="Coco Garden Villas fully equipped kitchen" loading="lazy">
+                    alt="Coco Garden Villas fully equipped kitchen"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-kitchen2.webp"
-                    alt="Coco Garden Villas kitchen appliances" loading="lazy">
+                    alt="Coco Garden Villas kitchen appliances"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-kitchen3.webp"
-                    alt="Coco Garden Villas kitchen area" loading="lazy">
+                    alt="Coco Garden Villas kitchen area"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-dinind-area1.webp"
-                    alt="Coco Garden Villas indoor dining area" loading="lazy">
+                    alt="Coco Garden Villas indoor dining area"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-dining-area2.webp"
-                    alt="Coco Garden Villas dining space" loading="lazy">
+                    alt="Coco Garden Villas dining space"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-bathroom1.webp"
-                    alt="Coco Garden Villas clean bathroom" loading="lazy">
+                    alt="Coco Garden Villas clean bathroom"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-bathroom2.webp"
-                    alt="Coco Garden Villas bathroom with shower" loading="lazy">
+                    alt="Coco Garden Villas bathroom with shower"
+                    data-category="coco-garden" loading="lazy">
                 <img src="assets/images/coco-garden/webp/coco-villas-terrace1.webp"
-                    alt="Coco Garden Villas private terrace" loading="lazy">
+                    alt="Coco Garden Villas private terrace"
+                    data-category="coco-garden" loading="lazy">
 
-                <!-- Sterrling Villa -->
                 <img src="assets/images/sterrling/webp/entrance1.webp"
-                    alt="Entrance of Sterrling Villa with lush tropical surroundings in Hikkaduwa" loading="lazy">
+                    alt="Entrance of Sterrling Villa with lush tropical surroundings in Hikkaduwa"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/garden1.webp"
-                    alt="Sterrling Villa tropical garden with fruit trees and greenery" loading="lazy">
+                    alt="Sterrling Villa tropical garden with fruit trees and greenery"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/garden2.webp"
-                    alt="Lush back garden of Sterrling Villa featuring banana and rambutan trees" loading="lazy">
+                    alt="Lush back garden of Sterrling Villa featuring banana and rambutan trees"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/garden3.webp"
-                    alt="Sterrling Villa garden pathway surrounded by tropical plants" loading="lazy">
+                    alt="Sterrling Villa garden pathway surrounded by tropical plants"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/garden4.webp"
-                    alt="Sterrling Villa spacious back garden with outdoor seating area" loading="lazy">
+                    alt="Sterrling Villa spacious back garden with outdoor seating area"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/terrace1.webp"
-                    alt="Sterrling Villa covered terrace with outdoor dining area" loading="lazy">
+                    alt="Sterrling Villa covered terrace with outdoor dining area"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/livingroom1.webp"
-                    alt="Sterrling Villa bright and spacious living room" loading="lazy">
+                    alt="Sterrling Villa bright and spacious living room"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/bedroom1.webp"
-                    alt="Sterrling Villa comfortable bedroom with queen bed" loading="lazy">
+                    alt="Sterrling Villa comfortable bedroom with queen bed"
+                    data-category="sterrling" loading="lazy">
                 <img src="assets/images/sterrling/webp/bathroom1.webp"
-                    alt="Sterrling Villa clean private bathroom with hot water" loading="lazy">
+                    alt="Sterrling Villa clean private bathroom with hot water"
+                    data-category="sterrling" loading="lazy">
+
                 <img src="assets/images/yala/webp/elephant.webp"
-                    alt="Wild elephant in Yala National Park, Sri Lanka" loading="lazy">
+                    alt="Wild elephant in Yala National Park, Sri Lanka"
+                    data-category="yala" loading="lazy">
                 <img src="assets/images/yala/webp/elephant2.webp"
-                    alt="Herd of elephants in Yala National Park on a private safari" loading="lazy">
+                    alt="Herd of elephants in Yala National Park on a private safari"
+                    data-category="yala" loading="lazy">
                 <img src="assets/images/yala/webp/leapord.webp"
-                    alt="Leopard resting in the wild at Yala National Park, Sri Lanka" loading="lazy">
+                    alt="Leopard resting in the wild at Yala National Park, Sri Lanka"
+                    data-category="yala" loading="lazy">
                 <img src="assets/images/yala/webp/leapord2.webp"
-                    alt="Sri Lankan leopard spotted on an open-top jeep safari in Yala" loading="lazy">
+                    alt="Sri Lankan leopard spotted on an open-top jeep safari in Yala"
+                    data-category="yala" loading="lazy">
                 <img src="assets/images/yala/webp/bear.webp"
-                    alt="Sloth bear in its natural habitat at Yala National Park" loading="lazy">
+                    alt="Sloth bear in its natural habitat at Yala National Park"
+                    data-category="yala" loading="lazy">
                 <img src="assets/images/yala/webp/peacock.webp"
-                    alt="Wild peacock displaying its feathers in Yala National Park, Sri Lanka" loading="lazy">
+                    alt="Wild peacock displaying its feathers in Yala National Park, Sri Lanka"
+                    data-category="yala" loading="lazy">
 
-                <img src="assets/images/around-hikkaduwa/webp/turtle_4.webp" alt="Sea turtles at Hikkaduwa turtle hatchery and rescue centre" loading="lazy">
-                <img src="assets/images/around-hikkaduwa/webp/turtle_5.webp" alt="Baby sea turtle at the Hikkaduwa rescue centre" loading="lazy">
-                <img src="assets/images/around-hikkaduwa/webp/turtle_6.webp" alt="Sea turtle hatchery process in Hikkaduwa, Sri Lanka" loading="lazy">
-                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_1.webp" alt="Herbal cloth weaving factory demonstration in Hikkaduwa" loading="lazy">
-                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_2.webp" alt="Colourful herbal natural fabrics from plant materials, Sri Lanka" loading="lazy">
-                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_3.webp" alt="Herbal natural clothing manufacturing process" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/turtle_4.webp"
+                    alt="Sea turtles at Hikkaduwa turtle hatchery and rescue centre"
+                    data-category="around-hikkaduwa" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/turtle_5.webp"
+                    alt="Baby sea turtle at the Hikkaduwa rescue centre"
+                    data-category="around-hikkaduwa" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/turtle_6.webp"
+                    alt="Sea turtle hatchery process in Hikkaduwa, Sri Lanka"
+                    data-category="around-hikkaduwa" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_1.webp"
+                    alt="Herbal cloth weaving factory demonstration in Hikkaduwa"
+                    data-category="around-hikkaduwa" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_2.webp"
+                    alt="Colourful herbal natural fabrics from plant materials, Sri Lanka"
+                    data-category="around-hikkaduwa" loading="lazy">
+                <img src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_3.webp"
+                    alt="Herbal natural clothing manufacturing process"
+                    data-category="around-hikkaduwa" loading="lazy">
                 <img src="assets/images/around-hikkaduwa/webp/tsunami_museum_1.webp"
-                    alt="Tsunami Museum Hikkaduwa commemorating the 2004 Indian Ocean Tsunami" loading="lazy">
+                    alt="Tsunami Museum Hikkaduwa commemorating the 2004 Indian Ocean Tsunami"
+                    data-category="around-hikkaduwa" loading="lazy">
                 <img src="assets/images/around-hikkaduwa/webp/tsunami_museum_2.webp"
-                    alt="Tsunami Museum interior display, Hikkaduwa" loading="lazy">
+                    alt="Tsunami Museum interior display, Hikkaduwa"
+                    data-category="around-hikkaduwa" loading="lazy">
                 <img src="assets/images/around-hikkaduwa/webp/tsunami_museum_3.webp"
-                    alt="Tsunami memorial exhibits at the Tsunami Museum in Hikkaduwa" loading="lazy">
+                    alt="Tsunami memorial exhibits at the Tsunami Museum in Hikkaduwa"
+                    data-category="around-hikkaduwa" loading="lazy">
                 <img src="assets/images/around-hikkaduwa/webp/tsunami_museum_4.webp"
-                    alt="Exterior of the Tsunami Museum in Hikkaduwa" loading="lazy">
+                    alt="Exterior of the Tsunami Museum in Hikkaduwa"
+                    data-category="around-hikkaduwa" loading="lazy">
 
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_1.webp" alt="Boat safari on Madu River through mangrove forests, Sri Lanka" loading="lazy">
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_2.webp" alt="Madu River boat ride through mangrove canopy, Balapitiya" loading="lazy">
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_3.webp" alt="Mangrove forest canopy over Madu River, Sri Lanka" loading="lazy">
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_4.webp" alt="Scenic boat ride navigating the Madu River waterways" loading="lazy">
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_5.webp" alt="Fish therapy experience in Madu River, Sri Lanka" loading="lazy">
-                <img src="assets/images/madu-river/webp/madu_river_boat_safari_6.webp" alt="Crocodile encounter during Madu River boat safari" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_1.webp"
+                    alt="Boat safari on Madu River through mangrove forests, Sri Lanka"
+                    data-category="madu-river" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_2.webp"
+                    alt="Madu River boat ride through mangrove canopy, Balapitiya"
+                    data-category="madu-river" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_3.webp"
+                    alt="Mangrove forest canopy over Madu River, Sri Lanka"
+                    data-category="madu-river" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_4.webp"
+                    alt="Scenic boat ride navigating the Madu River waterways"
+                    data-category="madu-river" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_5.webp"
+                    alt="Fish therapy experience in Madu River, Sri Lanka"
+                    data-category="madu-river" loading="lazy">
+                <img src="assets/images/madu-river/webp/madu_river_boat_safari_6.webp"
+                    alt="Crocodile encounter during Madu River boat safari"
+                    data-category="madu-river" loading="lazy">
                 <img src="assets/images/madu-river/webp/traditional_masks_1.webp"
-                    alt="Traditional Sri Lankan masks at the Ambalangoda Mask Museum" loading="lazy">
+                    alt="Traditional Sri Lankan masks at the Ambalangoda Mask Museum"
+                    data-category="madu-river" loading="lazy">
                 <img src="assets/images/madu-river/webp/traditional_masks_2.webp"
-                    alt="Hand-painted traditional devil masks at Ambalangoda museum" loading="lazy">
+                    alt="Hand-painted traditional devil masks at Ambalangoda museum"
+                    data-category="madu-river" loading="lazy">
 
                 <img src="assets/images/whale-watching-and-galle/webp/whale_watching_1.webp"
-                    alt="Blue whale surfacing during whale watching in Mirissa, Sri Lanka" loading="lazy">
+                    alt="Blue whale surfacing during whale watching in Mirissa, Sri Lanka"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/whale_watching_3.webp"
-                    alt="Whale and dolphin watching in the deep sea off Mirissa" loading="lazy">
+                    alt="Whale and dolphin watching in the deep sea off Mirissa"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/whale_watching_4.webp"
-                    alt="Large whale watching boat departing Mirissa harbour" loading="lazy">
+                    alt="Large whale watching boat departing Mirissa harbour"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/coconut_tree_hill_1.webp"
-                    alt="Coconut Tree Hill Mirissa, scenic landmark overlooking the ocean" loading="lazy">
+                    alt="Coconut Tree Hill Mirissa, scenic landmark overlooking the ocean"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/coconut_tree_hill_2.webp"
-                    alt="Sweeping view from Coconut Tree Hill Mirissa with palm trees" loading="lazy">
+                    alt="Sweeping view from Coconut Tree Hill Mirissa with palm trees"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/stilt_fishing_1.webp"
-                    alt="Traditional stilt fishermen at sunset along Sri Lanka coast" loading="lazy">
+                    alt="Traditional stilt fishermen at sunset along Sri Lanka coast"
+                    data-category="whale-watching" loading="lazy">
                 <img src="assets/images/whale-watching-and-galle/webp/stilt_fishing_2.webp"
-                    alt="Silhouette of Sri Lankan stilt fishermen on wooden poles in the sea" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_1.webp" alt="Historic Galle Fort ramparts and lighthouse on the coast" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_2.webp" alt="Colonial streets and architecture inside Galle Fort" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/gall_fort_tour_3.webp" alt="Beautiful iconic streets of Galle Fort, UNESCO site" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_4.webp" alt="Galle Fort Lighthouse overlooking the ocean" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_1.webp" alt="Jungle Beach Unawatuna — secluded tropical beach near Galle" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_2.webp" alt="Clear crystal turquoise waters of Jungle Beach Unawatuna" loading="lazy">
-                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_3.webp" alt="Tropical palm trees shading Jungle Beach" loading="lazy">
+                    alt="Silhouette of Sri Lankan stilt fishermen on wooden poles in the sea"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_1.webp"
+                    alt="Historic Galle Fort ramparts and lighthouse on the coast"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_2.webp"
+                    alt="Colonial streets and architecture inside Galle Fort"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/gall_fort_tour_3.webp"
+                    alt="Beautiful iconic streets of Galle Fort, UNESCO site"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/galle_fort_tour_4.webp"
+                    alt="Galle Fort Lighthouse overlooking the ocean"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_1.webp"
+                    alt="Jungle Beach Unawatuna — secluded tropical beach near Galle"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_2.webp"
+                    alt="Clear crystal turquoise waters of Jungle Beach Unawatuna"
+                    data-category="whale-watching" loading="lazy">
+                <img src="assets/images/whale-watching-and-galle/webp/jungle_beach_tour_3.webp"
+                    alt="Tropical palm trees shading Jungle Beach"
+                    data-category="whale-watching" loading="lazy">
+
                 <img src="assets/images/villa-one-64/webp/beach_view_2.webp"
-                    alt="Stunning sunset sea view from Villa One 64 Beachfront private garden, Hikkaduwa" loading="lazy">
+                    alt="Stunning sunset sea view from Villa One 64 Beachfront private garden, Hikkaduwa"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/beach_view_1.webp"
-                    alt="Villa One 64 Beachfront — private beach access on pristine Hikkaduwa coast" loading="lazy">
+                    alt="Villa One 64 Beachfront — private beach access on pristine Hikkaduwa coast"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/villa_exterior_1.webp"
-                    alt="Villa One 64 Beachfront exterior facade with coconut palm and tropical garden" loading="lazy">
+                    alt="Villa One 64 Beachfront exterior facade with coconut palm and tropical garden"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/garden_1.webp"
-                    alt="Beachfront garden of Villa One 64 with sunbeds and ocean view" loading="lazy">
+                    alt="Beachfront garden of Villa One 64 with sunbeds and ocean view"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/garden_2.webp"
-                    alt="Villa One 64 garden with sunbeds and umbrellas overlooking the sea" loading="lazy">
+                    alt="Villa One 64 garden with sunbeds and umbrellas overlooking the sea"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/living_room_1.webp"
-                    alt="Spacious living room at Villa One 64 Beachfront with sea view" loading="lazy">
+                    alt="Spacious living room at Villa One 64 Beachfront with sea view"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/bedroom_1.webp"
-                    alt="Air-conditioned bedroom at Villa One 64 Beachfront with private bathroom" loading="lazy">
+                    alt="Air-conditioned bedroom at Villa One 64 Beachfront with private bathroom"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/bedroom_2.webp"
-                    alt="Villa One 64 Beachfront bedroom with sitting area and sea views" loading="lazy">
+                    alt="Villa One 64 Beachfront bedroom with sitting area and sea views"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/bedroom_3.webp"
-                    alt="Upper floor bedroom at Villa One 64 Beachfront with ocean-facing sitting area" loading="lazy">
+                    alt="Upper floor bedroom at Villa One 64 Beachfront with ocean-facing sitting area"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/bathroom_1.webp"
-                    alt="Private attached bathroom at Villa One 64 Beachfront" loading="lazy">
+                    alt="Private attached bathroom at Villa One 64 Beachfront"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/bathroom_2.webp"
-                    alt="Clean private bathroom with hot water at Villa One 64 Beachfront" loading="lazy">
+                    alt="Clean private bathroom with hot water at Villa One 64 Beachfront"
+                    data-category="villa-one-64" loading="lazy">
                 <img src="assets/images/villa-one-64/webp/kitchen_1.webp"
-                    alt="Fully equipped kitchen at Villa One 64 Beachfront with modern appliances" loading="lazy">
+                    alt="Fully equipped kitchen at Villa One 64 Beachfront with modern appliances"
+                    data-category="villa-one-64" loading="lazy">
             </div>
         </div>
     </section>
@@ -373,6 +536,30 @@
             document.getElementById('mobileOverlay').classList.remove('open');
             document.body.style.overflow = '';
         }
+
+        // ── Gallery Filter ──
+        document.addEventListener('DOMContentLoaded', () => {
+            const btns = document.querySelectorAll('#galleryFilters .gf-btn');
+            const imgs = document.querySelectorAll('#galleryGrid img');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+
+                    imgs.forEach(img => {
+                        if (filter === 'all' || img.dataset.category === filter) {
+                            img.classList.remove('gf-hidden');
+                        } else {
+                            img.classList.add('gf-hidden');
+                        }
+                    });
+                });
+            });
+        });
     </script>
 
 </body>
