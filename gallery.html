@@ -14,13 +14,15 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery | Eranorris Villas &amp; Experiences</title>
+    <title>Villa Photo Gallery — Hikkaduwa &amp; Southern Sri Lanka | Eranorris</title>
     <meta name="description"
-        content="Moments from our villas and experiences in Galle, Sri Lanka – Birdsong Villa, Serene Luxe, Cinnamon experience, kayaking, and more.">
+        content="Photos of our private villas and local experiences in Southern Sri Lanka — Birdsong Villa, Serene Luxe, Coco Garden, Villa One 64, Yala Safari, cinnamon experience, kayaking and more.">
     <link rel="stylesheet" href="css/style.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="icon" href="assets/images/favicon.png">
 
     <link rel="canonical" href="https://eranorrissrilanka.com/gallery.html">
@@ -33,24 +35,35 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Eranorris Villas &amp; Experiences">
-    <meta property="og:title" content="Gallery | Eranorris Villas &amp; Experiences">
-    <meta property="og:description" content="Moments from our villas and experiences in Galle, Sri Lanka – Birdsong Villa, Serene Luxe, cinnamon experience, kayaking and more.">
+    <meta property="og:title" content="Villa Photo Gallery — Hikkaduwa &amp; Southern Sri Lanka | Eranorris">
+    <meta property="og:description" content="Photos of our private villas and local experiences in Southern Sri Lanka — Birdsong Villa, Serene Luxe, cinnamon experience, kayaking, and more.">
     <meta property="og:url" content="https://eranorrissrilanka.com/gallery.html">
     <meta property="og:image" content="https://eranorrissrilanka.com/assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gallery | Eranorris Villas &amp; Experiences">
-    <meta name="twitter:description" content="Moments from our villas and experiences in Galle, Sri Lanka – Birdsong Villa, Serene Luxe, cinnamon experience, kayaking and more.">
+    <meta name="twitter:title" content="Villa Photo Gallery — Hikkaduwa &amp; Southern Sri Lanka | Eranorris">
+    <meta name="twitter:description" content="Photos of our private villas and local experiences in Southern Sri Lanka — Birdsong Villa, Serene Luxe, cinnamon experience, kayaking, and more.">
     <meta name="twitter:image" content="https://eranorrissrilanka.com/assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ImageGallery",
-      "name": "Eranorris Villas & Experiences Gallery",
+      "name": "Eranorris Villas & Experiences — Photo Gallery",
       "url": "https://eranorrissrilanka.com/gallery.html",
-      "description": "Moments from our villas and experiences in Galle, Sri Lanka – Birdsong Villa, Serene Luxe, cinnamon experience, kayaking and more.",
+      "description": "Photos of private villas and local experiences in Southern Sri Lanka — Birdsong Villa, Serene Luxe, Coco Garden, Villa One 64, Yala Safari, cinnamon experience, kayaking and more.",
       "inLanguage": "en"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://eranorrissrilanka.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Gallery", "item": "https://eranorrissrilanka.com/gallery.html"}
+      ]
     }
     </script>
 </head>
@@ -60,7 +73,7 @@
     <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
 
     <header class="navbar">
-        <div class="logo">Eranorris Experiences</div>
+        <div class="logo">Eranorris Villas &amp; Experiences</div>
 
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
             <span></span>
@@ -71,8 +84,8 @@
         <div class="nav-wrapper" id="navWrapper">
             <nav>
                 <a href="index.html" onclick="closeMobileNav()">Home</a>
-                <a href="index.html#villas" onclick="closeMobileNav()">Villas</a>
-                <a href="index.html#experiences" onclick="closeMobileNav()">Experiences</a>
+                <a href="villas.html" onclick="closeMobileNav()">Villas</a>
+                <a href="experiences.html" onclick="closeMobileNav()">Experiences</a>
                 <a href="about.html" onclick="closeMobileNav()">About</a>
                 <a href="gallery.html" class="active" onclick="closeMobileNav()">Gallery</a>
             </nav>
@@ -129,8 +142,8 @@
 
     <section class="gallery-section">
         <div class="container">
-            <h2>Gallery</h2>
-            <p>Moments from our villas and experiences in Galle, Sri Lanka.</p>
+            <h1>Photo Gallery — Private Villas &amp; Experiences in Southern Sri Lanka</h1>
+            <p>Explore Birdsong Villa, Serene Luxe, Coco Garden, Sterrling Villa, Villa One 64 Beachfront, plus cinnamon experiences, Yala safari, kayaking, and local tours in Hikkaduwa &amp; Galle.</p>
 
             <!-- Filter buttons -->
             <div class="gallery-filters" id="galleryFilters">

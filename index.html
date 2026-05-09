@@ -14,17 +14,25 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Private Villas Sri Lanka | Slow Travel &amp; Digital Nomads | Eranorris</title>
+    <title>Private Villas &amp; Local Experiences in Sri Lanka | Eranorris</title>
     <meta name="description"
-        content="Private tropical villas in Southern Sri Lanka for slow travelers and digital nomads. Calm gardens, reliable Wi-Fi, and private local experiences near Galle, Hikkaduwa, and Rathgama. Weekly &amp; monthly stays.">
+        content="Private villas and authentic local experiences in Southern Sri Lanka. Stay in Hikkaduwa or Rathgama from USD 18/night — and book a cinnamon tour, Yala safari, or lagoon kayaking. Direct booking, best price, personal hosting.">
     <link rel="stylesheet" href="css/style.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="icon" href="assets/images/favicon.png">
     
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet CSS — loaded non-blocking to avoid render delay -->
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        as="style" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    </noscript>
 
     <link rel="canonical" href="https://eranorrissrilanka.com/">
     <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/">
@@ -40,17 +48,17 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Eranorris Villas &amp; Experiences">
-    <meta property="og:title" content="Private Villas Sri Lanka | Slow Travel &amp; Digital Nomads | Eranorris">
+    <meta property="og:title" content="Private Villas &amp; Local Experiences in Sri Lanka | Eranorris">
     <meta property="og:description"
-        content="Private tropical villas for slow travelers and digital nomads seeking calm, nature, and authentic Sri Lankan experiences.">
+        content="Private villas in Hikkaduwa and Rathgama, plus authentic local experiences — cinnamon tour, Yala safari, and lagoon kayaking. Book directly for the best price.">
     <meta property="og:url" content="https://eranorrissrilanka.com/">
     <meta property="og:image"
         content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Private Villas Sri Lanka | Slow Travel &amp; Digital Nomads | Eranorris">
+    <meta name="twitter:title" content="Private Villas &amp; Local Experiences in Sri Lanka | Eranorris">
     <meta name="twitter:description"
-        content="Private tropical villas for slow travelers and digital nomads seeking calm, nature, and authentic Sri Lankan experiences.">
+        content="Private villas in Hikkaduwa and Rathgama, plus authentic local experiences — cinnamon tour, Yala safari, and lagoon kayaking. Book directly for the best price.">
     <meta name="twitter:image"
         content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
 
@@ -62,7 +70,7 @@
         "name": "Eranorris Villas & Experiences",
         "url": "https://eranorrissrilanka.com/",
         "image": "https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp",
-        "description": "Private tropical villa stays for slow travelers and digital nomads, plus private local experiences in Southern Sri Lanka.",
+        "description": "Family-run private villas in Hikkaduwa and Rathgama, Southern Sri Lanka. Ideal for couples, digital nomads, and long-stay guests. Book directly for the best price.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Hikkaduwa",
@@ -75,7 +83,7 @@
           "longitude": 80.1059
         },
         "telephone": "+94710630867",
-        "priceRange": "USD 29–85",
+        "priceRange": "USD 18–85",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -83,6 +91,27 @@
         "sameAs": [
           "https://www.airbnb.com/users/show/610763596",
           "https://wa.me/94710630867"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "10",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {"@type": "Person", "name": "Lilia"},
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "reviewBody": "We stayed at the Birdsong Villa for a total of 6 weeks and decided to return at the end of our Sri Lanka trip. We felt at home from day one. We will not only return to Birdsong Villa, but to friends."
+          },
+          {
+            "@type": "Review",
+            "author": {"@type": "Person", "name": "Ivan"},
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "reviewBody": "Very convenient to work remotely — fiber optic internet, a dedicated work area and air conditioning. All the conditions for long stays were created."
+          }
         ]
       },
       {
@@ -180,9 +209,9 @@
         </div>
 
         <div class="hero-content">
-            <h1>Private tropical villas for slow travelers and digital nomads</h1>
-            <p>Seeking calm, nature, and authentic Sri Lankan experiences? Stay in peaceful boutique villas with
-                reliable Wi-Fi, work-friendly comfort, and personal local hosting.</p>
+            <h1>Private Villas &amp; Local Experiences in Southern Sri Lanka</h1>
+            <p>For slow travelers, digital nomads, and long-stay guests — peaceful boutique villas in Hikkaduwa
+                and Rathgama with reliable Wi-Fi, fully equipped kitchens, and personal local hosting.</p>
             <p class="tagline">
                 <span class="highlight">You will come back.</span>
             </p>
@@ -253,6 +282,43 @@
                     href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20a%20weekly%20or%20monthly%20stay."
                     target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
                     Ask About Monthly Rates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Book Direct Section -->
+    <section class="why-direct-section" id="why-direct">
+        <div class="container">
+            <h2 class="section-title">Why Book Directly With Us?</h2>
+            <p class="section-subtitle">
+                Skip the platform fees. Talk to your hosts directly. Get the best price — guaranteed.
+            </p>
+            <div class="direct-benefits">
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">💰</div>
+                    <h3>Best Price</h3>
+                    <p>No Airbnb or Booking.com fees. Booking directly saves you 10–15% on every stay.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">💬</div>
+                    <h3>Personal Host</h3>
+                    <p>Chat directly with us on WhatsApp. Fast replies, flexible arrangements, real people.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">🗓</div>
+                    <h3>Flexible Stays</h3>
+                    <p>Early check-in, late check-out, custom long-stay rates — we accommodate what OTAs cannot.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">🥥</div>
+                    <h3>Welcome Extras</h3>
+                    <p>Fresh king coconuts and local tips on arrival — always. A warm welcome, every time.</p>
+                </div>
+            </div>
+            <div class="direct-cta">
+                <a class="btn-primary" href="https://wa.me/94710630867?text=Hello%2C%20I%20would%20like%20to%20book%20a%20villa%20directly.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                    💬 Book Direct on WhatsApp
                 </a>
             </div>
         </div>
@@ -368,9 +434,9 @@
                     </div> -->
 
                     <div class="villa-actions">
-                        <a href="https://wa.me/94710630867" class="btn-primary"
+                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Serene%20Luxe%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank"
                             onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
-                            Book Direct on WhatsApp
+                            💬 Book Serene Luxe Direct
                         </a>
                         <a href="villas.html#serene-luxe" class="btn-secondary">View Villa →</a>
                     </div>
@@ -457,9 +523,9 @@
                     </div> -->
 
                     <div class="villa-actions">
-                        <a href="https://wa.me/94710630867" class="btn-primary"
+                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Birdsong%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank"
                             onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
-                            Book Direct on WhatsApp
+                            💬 Book Birdsong Direct
                         </a>
                         <a href="villas.html#birdsong" class="btn-secondary">View Villa →</a>
                     </div>
@@ -511,7 +577,7 @@
                         </div>
 
                         <div class="meta-price">
-                            <span class="price">18</span>
+                            <span class="price">USD 18</span>
                             <span class="per-night">/night</span>
                         </div>
                     </div>
@@ -765,6 +831,59 @@
         </div>
     </section>
 
+    <!-- Inline Reviews Section -->
+    <section class="reviews-inline-section">
+        <div class="container">
+            <h2 class="section-title">⭐ What Our Guests Say</h2>
+            <p class="section-subtitle">Real reviews from Airbnb &amp; Booking.com guests</p>
+
+            <div class="reviews-inline-grid">
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "We stayed at the Birdsong Villa for 6 weeks and decided to return at the end of our Sri Lanka trip.
+                        We felt at home from day one. We will not only return to Birdsong Villa, but to friends."
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Lilia · Germany</span>
+                        <span class="review-inline-villa">Birdsong Villa</span>
+                    </div>
+                </div>
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "Very convenient to work remotely — fiber optic internet, a dedicated work area and air conditioning.
+                        Very quiet, away from the tourist area, but you can get to the beach in a few minutes by tuk-tuk."
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Ivan · Warsaw, Poland</span>
+                        <span class="review-inline-villa">Serene Luxe</span>
+                    </div>
+                </div>
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "The place is beautiful but what's even better is how much the family cares for you.
+                        I have been to so many bnbs across the world but the kind of personal attention here was unmatched!"
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Leesha · February 2026</span>
+                        <span class="review-inline-villa">Birdsong Villa</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="reviews-inline-cta">
+                <button class="btn-secondary" onclick="openReviewsPopup()">Read All 10 Guest Reviews →</button>
+            </div>
+        </div>
+    </section>
+
+
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-brand">
@@ -951,7 +1070,9 @@
     <!-- WhatsApp Floating Button -->
     <div class="wa-float" id="waToggle">
         <span class="wa-badge">1</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25d366" width="30" height="30" aria-label="WhatsApp">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
     </div>
 
     <!-- WhatsApp Chat Window -->

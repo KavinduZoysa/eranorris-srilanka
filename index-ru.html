@@ -14,17 +14,25 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Частные виллы в Шри-Ланке | Медленные путешествия и удаленная работа | Eranorris</title>
+    <title>Аренда частных вилл в Хиккадуве и Ратгама, Шри-Ланка | Eranorris</title>
     <meta name="description"
-        content="Частные тропические виллы на юге Шри-Ланки для медленных путешествий и цифровых кочевников. Тихие сады, надежный Wi-Fi и частные местные впечатления рядом с Галле, Хиккадувой и Ратгама. Недели и месяцы.">
+        content="Выберите одну из 4 частных вилл рядом с пляжем Хиккадувы и лагуной Ратгама на юге Шри-Ланки. Бронируйте напрямую по лучшей цене — без комиссий платформ. Идеально для пар, цифровых кочевников и длительного проживания. От 18 USD/ночь.">
     <link rel="stylesheet" href="css/style.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="icon" href="assets/images/favicon.png">
     
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet CSS — loaded non-blocking to avoid render delay -->
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        as="style" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    </noscript>
 
     <link rel="canonical" href="https://eranorrissrilanka.com/index-ru.html">
     <link rel="alternate" hreflang="ru" href="https://eranorrissrilanka.com/index-ru.html">
@@ -32,42 +40,121 @@
     <link rel="alternate" hreflang="de" href="https://eranorrissrilanka.com/index-de.html">
     <link rel="alternate" hreflang="x-default" href="https://eranorrissrilanka.com/">
 
+    <meta name="geo.region" content="LK-3">
+    <meta name="geo.placename" content="Hikkaduwa, Southern Province, Sri Lanka">
+    <meta name="geo.position" content="6.1395;80.1059">
+    <meta name="ICBM" content="6.1395, 80.1059">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Eranorris Виллы и впечатления">
     <meta property="og:title"
-        content="Частные виллы в Шри-Ланке | Медленные путешествия и удаленная работа | Eranorris">
+        content="Аренда частных вилл в Хиккадуве и Ратгама, Шри-Ланка | Eranorris">
     <meta property="og:description"
-        content="Частные тропические виллы для медленных путешествий и цифровых кочевников: тишина, природа и аутентичная Шри-Ланка.">
+        content="4 частные виллы рядом с пляжем Хиккадувы и лагуной Ратгама. Бронируйте напрямую — без комиссий платформ. От 18 USD/ночь.">
     <meta property="og:url" content="https://eranorrissrilanka.com/index-ru.html">
     <meta property="og:image"
         content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title"
-        content="Частные виллы в Шри-Ланке | Медленные путешествия и удаленная работа | Eranorris">
+        content="Аренда частных вилл в Хиккадуве и Ратгама, Шри-Ланка | Eranorris">
     <meta name="twitter:description"
-        content="Частные тропические виллы для медленных путешествий и цифровых кочевников: тишина, природа и аутентичная Шри-Ланка.">
+        content="4 частные виллы рядом с пляжем Хиккадувы и лагуной Ратгама. Бронируйте напрямую — без комиссий платформ. От 18 USD/ночь.">
     <meta name="twitter:image"
         content="https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "Eranorris Виллы и впечатления",
-      "url": "https://eranorrissrilanka.com/index-ru.html",
-      "image": "https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp",
-      "description": "Частные тропические виллы для медленных путешествий и цифровых кочевников, а также частные местные впечатления на юге Шри-Ланки.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hikkaduwa",
-        "addressRegion": "Southern Province",
-        "addressCountry": "LK"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "Eranorris Виллы и впечатления",
+        "url": "https://eranorrissrilanka.com/index-ru.html",
+        "image": "https://eranorrissrilanka.com/assets/images/hero/webp/serene-luxe-living-room-interior.webp",
+        "description": "Частные тропические виллы для медленных путешествий и цифровых кочевников, а также частные местные впечатления на юге Шри-Ланки.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hikkaduwa",
+          "addressRegion": "Southern Province",
+          "addressCountry": "LK"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 6.1395,
+          "longitude": 80.1059
+        },
+        "telephone": "+94710630867",
+        "priceRange": "USD 18–85",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        },
+        "sameAs": [
+          "https://www.airbnb.com/users/show/610763596",
+          "https://wa.me/94710630867"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "10",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {"@type": "Person", "name": "Lilia"},
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "reviewBody": "Мы останавливались на вилле Birdsong в общей сложности на 6 недель и решили вернуться в конце нашей поездки по Шри-Ланке. Мы чувствовали себя как дома с первого дня."
+          },
+          {
+            "@type": "Review",
+            "author": {"@type": "Person", "name": "Ivan"},
+            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+            "reviewBody": "Очень удобно для удаленной работы — оптоволоконный интернет, выделенная рабочая зона и кондиционер. Созданы все условия для длительного проживания."
+          }
+        ]
       },
-      "priceRange": "USD 29+"
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Могу ли я забронировать виллу напрямую без Airbnb?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Прямое бронирование через WhatsApp всегда гарантирует лучшую цену без комиссий платформ и посредников."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Подходят ли виллы для удаленной работы и длительного проживания?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. На обеих виллах есть быстрый и надежный Wi-Fi, выделенные рабочие места, полностью оборудованные кухни. Они идеально подходят для проживания на недели и месяцы."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Где расположены виллы?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Наши виллы расположены на юге Шри-Ланки — Serene Luxe находится рядом с пляжем Хиккадувы, а Birdsong Villa в тихой деревне Ратгама, в 50 м от лагуны и в 3 км от пляжа."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Какие местные впечатления вы предлагаете?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Мы предлагаем практическое знакомство с корицей под руководством местных ремесленников, частное сафари в национальном парке Яла и каякинг по лагуне Ратгама."
+            }
+          }
+        ]
+      }
+    ]
     </script>
 
     <!-- Preload first hero image for much faster loading -->
@@ -121,9 +208,8 @@
         </div>
 
         <div class="hero-content">
-            <h1>Частные тропические виллы для медленных путешествий и цифровых кочевников</h1>
-            <p>Ищете тишину, природу и аутентичные впечатления Шри-Ланки? Остановитесь на частных бутик-виллах с
-                надежным Wi-Fi, удобными местами для работы и личным гостеприимством от хозяев.</p>
+            <h1>Частные виллы и местные впечатления на юге Шри-Ланки</h1>
+            <p>Для медленных путешественников, цифровых кочевников и гостей, проживающих длительное время — тихие бутик-виллы в Хиккадуве и Ратгама с надежным Wi-Fi, полностью оборудованными кухнями и личным местным гостеприимством.</p>
             <p class="tagline">
                 <span class="highlight">Вы захотите вернуться.</span>
             </p>
@@ -195,6 +281,43 @@
                     href="https://wa.me/94710630867?text=Здравствуйте,%20я%20интересуюсь%20недельным%20или%20месячным%20проживанием."
                     target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
                     Узнать месячные цены
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Book Direct Section -->
+    <section class="why-direct-section" id="why-direct">
+        <div class="container">
+            <h2 class="section-title">Почему стоит бронировать напрямую у нас?</h2>
+            <p class="section-subtitle">
+                Избегайте комиссий платформ. Общайтесь напрямую с хозяевами. Получите лучшую цену — гарантированно.
+            </p>
+            <div class="direct-benefits">
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">💰</div>
+                    <h3>Лучшая цена</h3>
+                    <p>Никаких комиссий Airbnb или Booking.com. Прямое бронирование экономит вам 10–15% на каждом проживании.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">💬</div>
+                    <h3>Личный хозяин</h3>
+                    <p>Общайтесь с нами напрямую в WhatsApp. Быстрые ответы, гибкие договоренности, реальные люди.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">🗓</div>
+                    <h3>Гибкие условия</h3>
+                    <p>Ранний заезд, поздний выезд, индивидуальные цены для долгого проживания — мы делаем то, что платформы не могут.</p>
+                </div>
+                <div class="benefit-card">
+                    <div style="font-size:2rem; margin-bottom:10px;">🥥</div>
+                    <h3>Приветственные бонусы</h3>
+                    <p>Свежие королевские кокосы и местные советы по прибытии — всегда. Теплый прием каждый раз.</p>
+                </div>
+            </div>
+            <div class="direct-cta">
+                <a class="btn-primary" href="https://wa.me/94710630867?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B2%D0%B8%D0%BB%D0%BB%D1%83%20%D0%BD%D0%B0%D0%BF%D1%80%D1%8F%D0%BC%D1%83%D1%8E.%20%D0%9C%D0%BE%D0%B8%20%D0%B4%D0%B0%D1%82%D1%8B%3A%20____%20%D0%B4%D0%BE%20____.%20%D0%93%D0%BE%D1%81%D1%82%D0%B8%3A%20____." target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                    💬 Забронировать напрямую в WhatsApp
                 </a>
             </div>
         </div>
@@ -447,7 +570,7 @@
                         </div>
 
                         <div class="meta-price">
-                            <span class="price">18</span>
+                            <span class="price">USD 18</span>
                             <span class="per-night">/ночь</span>
                         </div>
                     </div>
@@ -490,55 +613,6 @@
             <div id="global-map" style="height: 500px; width: 100%; border-radius: 12px; z-index: 1;"></div>
         </div>
     </section>
-
-
-
-        <div class="container">
-            <h2>Warum direkt bei Eranorris buchen</h2>
-            <p class="section-subtitle">
-                Persönlicher, flexibler und lohnender Weg, Sri Lanka zu erleben
-            </p>
-
-            <div class="direct-benefits">
-                <div class="benefit-card">
-                    <h3>Bestpreisgarantie</h3>
-                    <p>
-                        Keine Plattformprovisionen. Sie erhalten den besten verfügbaren Preis,
-                        wenn Sie direkt bei uns buchen.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <h3>Direkte Kommunikation</h3>
-                    <p>
-                        Chatten Sie direkt per WhatsApp mit uns für schnelle Antworten,
-                        lokale Tipps und persönliche Absprachen.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <h3>Flexible Regelungen</h3>
-                    <p>
-                        Früher Check-in, später Check-out, Sonderwünsche und
-                        individuelle Arrangements, wann immer möglich.
-                    </p>
-                </div>
-
-                <div class="benefit-card">
-                    <h3>Lokale Впечатления</h3>
-                    <p>
-                        Von Zimt-Ernte bis Lagunen-Kajakfahren – genießen Sie authentische Впечатления, kuratiert von Einheimischen.
-                    </p>
-                </div>
-            </div>
-
-            <div class="direct-cta">
-                <a href="https://wa.me/94710630867" class="btn-primary">
-                    Direkt per WhatsApp buchen
-                </a>
-            </div>
-        </div>
-    </section> -->
 
     <section class="experiences" id="experiences">
         <div class="container">
@@ -723,6 +797,55 @@
             </div>
             <div class="view-all-wrapper" style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
                 <a href="experiences-ru.html" class="btn-primary" style="display: inline-block;">Смотреть все впечатления →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inline Reviews Section -->
+    <section class="reviews-inline-section">
+        <div class="container">
+            <h2 class="section-title">⭐ Что говорят наши гости</h2>
+            <p class="section-subtitle">Реальные отзывы гостей с Airbnb и Booking.com</p>
+
+            <div class="reviews-inline-grid">
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "Мы останавливались на вилле Birdsong на 6 недель и решили вернуться в конце нашей поездки по Шри-Ланке. Мы чувствовали себя как дома с первого дня. Мы вернемся не только на виллу Birdsong, но и к друзьям."
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Лилия · Германия</span>
+                        <span class="review-inline-villa">Birdsong Villa</span>
+                    </div>
+                </div>
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "Очень удобно для удаленной работы — оптоволоконный интернет, выделенная рабочая зона и кондиционер. Очень тихо, вдали от туристической зоны, но до пляжа можно добраться за несколько минут на тук-туке."
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Иван · Варшава, Польша</span>
+                        <span class="review-inline-villa">Serene Luxe</span>
+                    </div>
+                </div>
+
+                <div class="review-inline-card">
+                    <div class="review-inline-stars">★★★★★</div>
+                    <p class="review-inline-text">
+                        "Место прекрасное, но что еще лучше, так это то, как сильно семья заботится о вас. Я был во многих BnB по всему миру, но такое личное внимание я встретил впервые!"
+                    </p>
+                    <div class="review-inline-meta">
+                        <span class="review-inline-author">Лиша · Февраль 2026</span>
+                        <span class="review-inline-villa">Birdsong Villa</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="reviews-inline-cta">
+                <button class="btn-secondary" onclick="openReviewsPopup()">Читать все 10 отзывов гостей →</button>
             </div>
         </div>
     </section>
