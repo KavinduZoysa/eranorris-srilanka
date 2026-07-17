@@ -1197,22 +1197,55 @@ p {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .about-section p {
-    margin-bottom: 18px;
+    margin: 0 auto 18px;
     line-height: 1.7;
     max-width: 800px;
 }
 
 .about-section ul {
-    margin: 20px 0;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: left;
 }
 
 .about-highlight {
     margin-top: 30px;
     font-weight: 600;
     font-style: italic;
+    text-align: center;
+}
+
+/* About page — inline figures, section spacing & content links */
+.about-section h2 {
+    margin-top: 46px;
+    text-align: center;
+}
+
+.about-section h3 {
+    margin: 22px 0 4px;
+    text-align: center;
+}
+
+.about-section figure {
+    margin: 32px auto;
+    max-width: 800px;
+}
+
+.about-section figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(11, 60, 93, 0.12);
+}
+
+.about-section a:not(.btn-primary):not(.btn-secondary) {
+    color: #0b3c5d;
+    font-weight: 500;
 }
 
 .contact-modal {
