@@ -1248,6 +1248,27 @@ p {
     font-weight: 500;
 }
 
+/* Guide page — paired figures side by side */
+.about-section .fig-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+    max-width: 800px;
+    margin: 32px auto;
+}
+
+.about-section .fig-pair figure {
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .about-section .fig-pair {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 .contact-modal {
     display: none;
     position: fixed;
@@ -1435,8 +1456,10 @@ p {
     box-shadow: 0 0 30px rgba(11, 60, 93, 0.7);
 }
 
-.wa-float img {
+.wa-float img,
+.wa-float svg {
     width: 30px;
+    height: 30px;
 }
 
 @keyframes pulse {
@@ -2118,8 +2141,10 @@ p {
         right: 20px;
     }
     
-    .wa-float img {
+    .wa-float img,
+    .wa-float svg {
         width: 25px;
+        height: 25px;
     }
     
     .reviews-float {
