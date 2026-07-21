@@ -290,6 +290,16 @@
         .vcf-header {
             grid-area: header;
             padding: 36px 48px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .vcf-header-main {
+            flex: 1 1 320px;
+            min-width: 0;
         }
 
         .vcf-header h2 {
@@ -326,16 +336,51 @@
                 "body gallery";
         }
 
+        /* Single-image carousel — used on mobile only (hidden on desktop) */
         .vcf-slides {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .vcf-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .vcf-slide.active {
+            opacity: 1;
+        }
+
+        /* Desktop photo mosaic — dedicated images (never reuse .vcf-slide) */
+        .vcf-mosaic {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .vcf-cover {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .vcf-thumbs {
             position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            width: 100%;
         }
 
-        /* Thumbnails — square, rows sized by the squares (never stretched) */
-        .vcf-slide {
+        .vcf-thumb {
             width: 100%;
             height: auto;
             aspect-ratio: 1 / 1;
@@ -343,23 +388,9 @@
             border-radius: 8px;
             display: block;
             cursor: pointer;
-            opacity: 1;
         }
 
-        /* Cover photo — spans full width, keeps ~4:3 */
-        .vcf-slide:first-child {
-            grid-column: 1 / -1;
-            aspect-ratio: 4 / 3;
-            height: auto;
-            border-radius: 0;
-        }
-
-        /* Show cover + 3 thumbnails; the rest open in the lightbox / mobile carousel */
-        .vcf-slide:nth-child(n+5) {
-            display: none;
-        }
-
-        /* "+N photos" overlay on the last visible thumbnail (bottom-right) */
+        /* "+N photos" overlay on the last thumbnail (bottom-right) */
         .vcf-more {
             position: absolute;
             right: 0;
@@ -512,7 +543,8 @@
         }
 
         .vcf-price-block {
-            text-align: left;
+            text-align: right;
+            flex: 0 0 auto;
         }
 
         .vcf-price {
@@ -659,40 +691,13 @@
                 aspect-ratio: 4 / 3;
             }
 
-            /* Revert to single-image swipeable carousel */
+            /* Show the single-image carousel, hide the desktop mosaic */
+            .vcf-mosaic {
+                display: none;
+            }
+
             .vcf-slides {
                 display: block;
-                position: relative;
-                height: 100%;
-                gap: 0;
-            }
-
-            .vcf-slide {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                aspect-ratio: auto;
-                border-radius: 0;
-                opacity: 0;
-                transition: opacity 0.5s ease;
-                cursor: default;
-            }
-
-            .vcf-slide:first-child {
-                aspect-ratio: auto;
-            }
-
-            .vcf-slide.active {
-                opacity: 1;
-            }
-
-            .vcf-slide:nth-child(n+5) {
-                display: block;
-            }
-
-            .vcf-more {
-                display: none;
             }
 
             .vcf-nav,
@@ -889,6 +894,7 @@
             <!-- ── Villa 1: Serene Luxe ── -->
             <div class="villa-card-full" id="serene-luxe">
                 <div class="vcf-header">
+                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌟 Premium Villa</div>
                     <h2>Villa Serene Luxe — Boutique Villa Near Hikkaduwa Beach for Remote Work</h2>
                     <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the Hikkaduwa beach</p>
@@ -897,11 +903,36 @@
                             <div class="vcf-meta-item">🛏 1 bedroom</div>
                             <div class="vcf-meta-item">🛁 1 bathroom</div>
                     </div>
+                
+                    </div>
+                    <div class="vcf-price-block">
+                                <div class="vcf-price">USD 32</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                 </div>
 
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
+                                        <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
+                            alt="Private Serene Luxe Villa veranda with white pillars and quiet tropical garden at dusk" width="2400" height="1600" loading="eager" fetchpriority="high">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/serene-luxe/webp/lush-tropical-garden-alocasia-warmly-lit-veranda.webp"
+                                alt="Lush private tropical garden with Alocasia plants and warmly lit villa veranda at Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/serene-luxe/webp/peaceful-living-room-dark-sofas-carved-wooden-doorway.webp"
+                                alt="Peaceful spacious living room with dark grey sofas and carved wooden doorway at Serene Luxe Villa" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/serene-luxe/webp/quiet-tv-lounge-wall-screen-plant-shelves-wooden-desk.webp"
+                                alt="Quiet TV lounge with wall-mounted screen, plant shelves and wooden desk at Serene Luxe Villa" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/serene-luxe/webp/private-open-plan-living-kitchen-skylight.webp"
+                                alt="Private open-plan living room and kitchen with dark sofas and round skylight at Serene Luxe Villa" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/serene-luxe/webp/quiet-bedroom-four-poster-bed-mosquito-net-red-bedding.webp"
+                                alt="Quiet elegant bedroom with four-poster bed, mosquito net and red bedding at Serene Luxe Villa" width="2400" height="1601" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/serene-luxe/webp/peaceful-bedroom-garden-view-sliding-doors.webp"
+                                alt="Peaceful bedroom with four-poster bed and private garden-view sliding doors at Serene Luxe Villa" width="2400" height="1600" loading="lazy" decoding="async">
+                            <div class="vcf-more">+3 photos</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-serene">
                         <img src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
                             alt="Private Serene Luxe Villa veranda with white pillars and quiet tropical garden at dusk"
@@ -933,7 +964,6 @@
                         <img src="assets/images/serene-luxe/webp/fully-equipped-kitchen-dark-cabinets-granite-breakfast-bar.webp"
                             alt="Fully equipped private kitchen with dark wood cabinets, granite breakfast bar at Serene Luxe Villa"
                             class="vcf-slide" width="2400" height="1601" loading="lazy" decoding="async">
-                        <div class="vcf-more">+6 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('serene', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -988,10 +1018,6 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
-                        <div class="vcf-price-block">
-                                <div class="vcf-price">USD 32</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
                     </div>
 
                     <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
@@ -1001,6 +1027,7 @@
             <!-- ── Villa 2: Birdsong ── -->
             <div class="villa-card-full vcf-reverse" id="birdsong">
                 <div class="vcf-header">
+                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌴 Nature Retreat</div>
                     <h2>Birdsong Villa — Quiet Rathgama Lagoon Retreat for Long Stays</h2>
                     <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the Rathgama beach</p>
@@ -1009,11 +1036,36 @@
                             <div class="vcf-meta-item">🛏 1 bedroom</div>
                             <div class="vcf-meta-item">🛁 1 bathroom</div>
                     </div>
+                
+                    </div>
+                    <div class="vcf-price-block">
+                                <div class="vcf-price">USD 18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                 </div>
 
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
+                                        <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
+                            alt="Aerial drone view of Birdsong Villa with red-tiled roof and stone garden paths, Rathgama" width="1600" height="1200" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/birdsong/webp/birdsong-villa-aerial-overview.webp"
+                                alt="Bird's-eye view of Birdsong Villa surrounded by lush tropical greenery, Rathgama" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/birdsong/webp/birdsong-villa-terrace-clay-pots.webp"
+                                alt="Birdsong Villa side terrace with traditional clay pots and wooden furniture" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/birdsong/webp/birdsong-villa-garden-dining-area.webp"
+                                alt="Birdsong Villa outdoor garden dining area with blue table and tropical plants" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp"
+                                alt="Aerial view of Birdsong Villa rooftop and tropical garden canopy, Rathgama" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/birdsong/webp/birdsong-villa-exterior-veranda-tropical-garden.webp"
+                                alt="Birdsong Villa exterior with grey walls, red-tiled roof and lush tropical garden, Rathgama" width="1200" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/birdsong/webp/birdsong-villa-veranda-columns-palm-garden.webp"
+                                alt="Side view of Birdsong Villa veranda with columns and coconut palms above the garden" width="1200" height="1600" loading="lazy" decoding="async">
+                            <div class="vcf-more">+29 photos</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-birdsong">
                         <img src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
                             alt="Aerial drone view of Birdsong Villa with red-tiled roof and stone garden paths, Rathgama"
@@ -1123,7 +1175,6 @@
                         <img src="assets/images/birdsong/webp/birdsong-villa-dining-table-minimal-interior.webp"
                             alt="Simple dining table for two in a bright minimalist interior at Birdsong Villa"
                             class="vcf-slide" loading="lazy" width="1200" height="1600" decoding="async">
-                        <div class="vcf-more">+32 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('birdsong', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1182,10 +1233,6 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
-                        <div class="vcf-price-block">
-                                <div class="vcf-price">USD 18</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
                     </div>
 
                     <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
@@ -1195,6 +1242,7 @@
             <!-- ── Villa 3: Coco Garden ── -->
             <div class="villa-card-full" id="coco-garden">
                 <div class="vcf-header">
+                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌴 Tropical Getaway</div>
                     <h2>Coco Garden Villas — Quiet 1-Bedroom Villa Near Hikkaduwa Beach</h2>
                     <p class="vcf-location">📍 Hikkaduwa, Galle District · 1 km to the Hikkaduwa beach</p>
@@ -1203,11 +1251,36 @@
                             <div class="vcf-meta-item">🛏 1 bedroom</div>
                             <div class="vcf-meta-item">🛁 1 bathroom</div>
                     </div>
+                
+                    </div>
+                    <div class="vcf-price-block">
+                                <div class="vcf-price">18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                 </div>
 
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
+                                        <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
+                            alt="Coco Garden Villas exterior — quiet 1-bedroom villa near Hikkaduwa beach" width="720" height="540" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/coco-garden/webp/coco-garden-villas-living-room1.webp"
+                                alt="Coco Garden Villas living room area" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/coco-garden/webp/coco-villa-living-room2.webp"
+                                alt="Coco Garden Villas cozy living space" width="720" height="540" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/coco-garden/webp/coco-villas-bedroom1.webp"
+                                alt="Coco Garden Villas comfortable bedroom" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/coco-garden/webp/coco-villas-bedroom2.webp"
+                                alt="Coco Garden Villas bedroom detail" width="720" height="540" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/coco-garden/webp/coco-villas-kitchen1.webp"
+                                alt="Coco Garden Villas fully equipped kitchen" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/coco-garden/webp/coco-villas-kitchen2.webp"
+                                alt="Coco Garden Villas kitchen appliances" width="720" height="540" loading="lazy" decoding="async">
+                            <div class="vcf-more">+6 photos</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-coco">
                         <img src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
                             alt="Coco Garden Villas exterior — quiet 1-bedroom villa near Hikkaduwa beach" class="vcf-slide active" width="720" height="540" loading="lazy" decoding="async">
@@ -1235,7 +1308,6 @@
                             alt="Coco Garden Villas bathroom shower" class="vcf-slide" width="720" height="960" loading="lazy" decoding="async">
                         <img src="assets/images/coco-garden/webp/coco-villas-terrace1.webp"
                             alt="Coco Garden Villas private terrace" class="vcf-slide" width="720" height="540" loading="lazy" decoding="async">
-                        <div class="vcf-more">+9 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('coco', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1282,10 +1354,6 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
-                        <div class="vcf-price-block">
-                                <div class="vcf-price">18</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
                     </div>
 
                     <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
@@ -1295,6 +1363,7 @@
             <!-- ── Villa 4: Sterrling Villa ── -->
             <div class="villa-card-full vcf-reverse" id="sterrling">
                 <div class="vcf-header">
+                    <div class="vcf-header-main">
                     <div class="vcf-badge">🏡 Garden Villa</div>
                     <h2>Sterrling Villa — Spacious 3-Bedroom Garden Villa for Families in Hikkaduwa</h2>
                     <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to Hikkaduwa Beach</p>
@@ -1303,11 +1372,36 @@
                             <div class="vcf-meta-item">🛏 3 bedrooms</div>
                             <div class="vcf-meta-item">🛁 3 bathrooms</div>
                     </div>
+                
+                    </div>
+                    <div class="vcf-price-block">
+                                <div class="vcf-price">30</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                 </div>
 
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
+                                        <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/sterrling/webp/entrance1.webp"
+                            alt="Entrance of Sterrling Villa with lush tropical surroundings in Hikkaduwa" width="960" height="1280" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/sterrling/webp/garden1.webp"
+                                alt="Sterrling Villa tropical garden with fruit trees and greenery" width="960" height="1280" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/sterrling/webp/garden2.webp"
+                                alt="Lush back garden of Sterrling Villa featuring banana and rambutan trees" width="960" height="1280" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/sterrling/webp/garden3.webp"
+                                alt="Sterrling Villa garden pathway surrounded by tropical plants" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/sterrling/webp/garden4.webp"
+                                alt="Sterrling Villa spacious back garden with outdoor seating area" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/sterrling/webp/terrace1.webp"
+                                alt="Sterrling Villa covered terrace with outdoor dining area" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/sterrling/webp/livingroom1.webp"
+                                alt="Sterrling Villa bright and spacious living room" width="1280" height="960" loading="lazy" decoding="async">
+                            <div class="vcf-more">+2 photos</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-sterrling">
                         <img src="assets/images/sterrling/webp/entrance1.webp"
                             alt="Entrance of Sterrling Villa with lush tropical surroundings in Hikkaduwa"
@@ -1336,7 +1430,6 @@
                         <img src="assets/images/sterrling/webp/bathroom1.webp"
                             alt="Sterrling Villa clean private bathroom with hot water"
                             class="vcf-slide" width="960" height="1280" loading="lazy" decoding="async">
-                        <div class="vcf-more">+5 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('sterrling', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1387,10 +1480,6 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
-                        <div class="vcf-price-block">
-                                <div class="vcf-price">30</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
                     </div>
 
                     <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
@@ -1399,6 +1488,7 @@
 
             <div class="villa-card-full" id="villa-one-64">
                 <div class="vcf-header">
+                    <div class="vcf-header-main">
                     <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Beachfront Villa</div>
                     <h2>Villa One 64 Beachfront — 5-Bedroom Beach House for Large Groups in Hikkaduwa</h2>
                     <p class="vcf-location">📍 Hikkaduwa, Galle District · Direct Beach Access</p>
@@ -1407,11 +1497,32 @@
                             <div class="vcf-meta-item">🛏 5 bedrooms</div>
                             <div class="vcf-meta-item">🛁 5 bathrooms</div>
                     </div>
+                
+                    </div>
                 </div>
 
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
+                                        <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/villa-one-64/webp/beach_view_2.webp"
+                            alt="Stunning sunset sea view and beachfront garden at Villa One 64 Beachfront, Hikkaduwa" width="1600" height="1200" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/villa-one-64/webp/beach_view_1.webp"
+                                alt="Villa One 64 Beachfront — private beach access with pristine coastline in Hikkaduwa" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/villa-one-64/webp/villa_exterior_1.webp"
+                                alt="Villa One 64 Beachfront exterior with tropical garden and direct beach access" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/villa-one-64/webp/garden_1.webp"
+                                alt="Villa One 64 garden with coconut trees, sunbeds, and ocean view" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/villa-one-64/webp/garden_2.webp"
+                                alt="Beachfront garden with sunbeds and umbrellas at Villa One 64" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/villa-one-64/webp/living_room_1.webp"
+                                alt="Villa One 64 spacious living room with sea view" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/villa-one-64/webp/bedroom_1.webp"
+                                alt="Villa One 64 air-conditioned bedroom with private bathroom" width="1600" height="1200" loading="lazy" decoding="async">
+                            <div class="vcf-more">+5 photos</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-villa-one-64">
                         <img src="assets/images/villa-one-64/webp/beach_view_2.webp"
                             alt="Stunning sunset sea view and beachfront garden at Villa One 64 Beachfront, Hikkaduwa"
@@ -1449,7 +1560,6 @@
                         <img src="assets/images/villa-one-64/webp/kitchen_1.webp"
                             alt="Villa One 64 fully equipped kitchen with modern appliances"
                             class="vcf-slide" width="1280" height="960" loading="lazy" decoding="async">
-                        <div class="vcf-more">+8 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('villa-one-64', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1709,17 +1819,18 @@
             lb.addEventListener('click', (e) => { if (e.target === lb) lbCloseFn(); });
         }
 
-        // Desktop mosaic: clicking any photo (cover, thumbnail, or "+N") opens the lightbox at that image
-        document.querySelectorAll('.vcf-slides').forEach(slidesEl => {
-            const imgs = [...slidesEl.querySelectorAll('.vcf-slide')];
-            const photos = imgs.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
-            slidesEl.addEventListener('click', (e) => {
-                if (!mqDesktop.matches) return; // mosaic is desktop-only; mobile uses the carousel
-                const slide = e.target.closest('.vcf-slide');
-                if (!slide) return;
-                const index = imgs.indexOf(slide);
-                if (index === -1) return;
-                lbOpen(photos, index, slide);
+        // Desktop mosaic: clicking the cover, a thumbnail, or the "+N" overlay opens the
+        // lightbox at that image. The full photo list comes from the (hidden) carousel slides.
+        document.querySelectorAll('.villa-card-full').forEach(card => {
+            const slides = [...card.querySelectorAll('.vcf-slides .vcf-slide')];
+            const photos = slides.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
+            const mosaic = card.querySelector('.vcf-mosaic');
+            if (!mosaic || !photos.length) return;
+            mosaic.addEventListener('click', (e) => {
+                const el = e.target.closest('.vcf-cover, .vcf-thumb');
+                if (!el) return;
+                const index = parseInt(el.dataset.i || '0', 10);
+                lbOpen(photos, index, el);
             });
         });
 
