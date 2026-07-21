@@ -24,6 +24,15 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="icon" href="assets/images/favicon.png">
 
+    <!-- Leaflet CSS — loaded non-blocking to avoid render delay -->
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        as="style" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    </noscript>
+
     <link rel="canonical" href="https://eranorrissrilanka.com/villas.html">
     <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/villas.html">
     <link rel="alternate" hreflang="de" href="https://eranorrissrilanka.com/villas-de.html">
@@ -267,11 +276,28 @@
             box-shadow: 0 8px 40px rgba(11, 60, 93, 0.09);
             overflow: hidden;
             margin-bottom: 56px;
-            display: flex;
-            flex-direction: row;
-            min-height: 480px;
+            display: grid;
+            grid-template-columns: 52% 1fr;
+            grid-template-areas:
+                "header header"
+                "gallery body";
+            align-items: start;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             scroll-margin-top: 80px;
+        }
+
+        /* Full-width title bar on top of both columns */
+        .vcf-header {
+            grid-area: header;
+            padding: 36px 48px 0;
+        }
+
+        .vcf-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin: 0 0 6px;
+            line-height: 1.15;
         }
 
         .villa-card-full:hover {
@@ -283,39 +309,73 @@
             margin-bottom: 0;
         }
 
-        /* Image side */
+        /* Image side — Airbnb-style photo mosaic (desktop) */
         .vcf-gallery {
-            width: 52%;
+            grid-area: gallery;
+            height: auto;
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
             background: #e8edf2;
-            min-height: 440px;
         }
 
         /* Alternate layout — image on right (desktop only) */
         .vcf-reverse {
-            flex-direction: row-reverse;
+            grid-template-columns: 1fr 52%;
+            grid-template-areas:
+                "header header"
+                "body gallery";
         }
 
         .vcf-slides {
-            width: 100%;
-            height: 100%;
             position: relative;
-        }
-
-        .vcf-slide {
-            position: absolute;
-            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease;
         }
 
-        .vcf-slide.active {
+        /* Thumbnails — square, rows sized by the squares (never stretched) */
+        .vcf-slide {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            cursor: pointer;
             opacity: 1;
+        }
+
+        /* Cover photo — spans full width, keeps ~4:3 */
+        .vcf-slide:first-child {
+            grid-column: 1 / -1;
+            aspect-ratio: 4 / 3;
+            height: auto;
+            border-radius: 0;
+        }
+
+        /* Show cover + 3 thumbnails; the rest open in the lightbox / mobile carousel */
+        .vcf-slide:nth-child(n+5) {
+            display: none;
+        }
+
+        /* "+N photos" overlay on the last visible thumbnail (bottom-right) */
+        .vcf-more {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: calc((100% - 16px) / 3);
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 60, 93, 0.55);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            pointer-events: none;
+            z-index: 2;
         }
 
         /* Gallery arrow nav */
@@ -386,10 +446,18 @@
             z-index: 2;
         }
 
+        /* Carousel arrows / dots / counter are used only on the mobile view */
+        .vcf-nav,
+        .vcf-dots,
+        .vcf-count {
+            display: none;
+        }
+
         /* Content side */
         .vcf-body {
-            flex: 1;
-            padding: 44px 48px;
+            grid-area: body;
+            align-self: stretch;
+            padding: 0 48px 44px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -408,14 +476,6 @@
             margin-bottom: 14px;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-        }
-
-        .vcf-body h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: #0f172a;
-            margin: 0 0 6px;
-            line-height: 1.15;
         }
 
         .vcf-location {
@@ -452,8 +512,7 @@
         }
 
         .vcf-price-block {
-            margin-left: auto;
-            text-align: right;
+            text-align: left;
         }
 
         .vcf-price {
@@ -466,27 +525,6 @@
         .vcf-price-sub {
             font-size: 0.8rem;
             color: #94a3b8;
-        }
-
-        /* Amenities grid */
-        .vcf-amenities {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 16px;
-            margin-bottom: 22px;
-        }
-
-        .vcf-amenity {
-            font-size: 0.85rem;
-            color: #374151;
-            display: flex;
-            align-items: flex-start;
-            gap: 7px;
-        }
-
-        .vcf-amenity-icon {
-            font-size: 1rem;
-            flex-shrink: 0;
         }
 
         /* Pills */
@@ -507,7 +545,7 @@
             font-weight: 500;
             color: #334155;
             background: #f8fafc;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         /* Action buttons */
@@ -515,6 +553,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .vcf-btn-primary {
@@ -561,6 +600,7 @@
         .villas-maps {
             background: white;
             padding: 60px 0 80px;
+            scroll-margin-top: 80px;
         }
 
         .villas-maps h2 {
@@ -573,33 +613,105 @@
             margin-bottom: 40px;
         }
 
+        /* Link from each card down to the shared map */
+        .vcf-maplink {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0b3c5d;
+            text-decoration: none;
+        }
+
+        .vcf-maplink:hover {
+            text-decoration: underline;
+        }
+
+        /* Shared Leaflet map */
+        #villas-map {
+            width: 100%;
+            height: 460px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .villa-card-full {
-                flex-direction: column;
-                min-height: auto;
+            .villa-card-full,
+            .vcf-reverse {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "gallery"
+                    "body";
+            }
+
+            .vcf-header {
+                padding: 28px 24px 0;
             }
 
             .vcf-gallery {
                 width: 100%;
-                height: 280px;
+                aspect-ratio: 4 / 3;
+            }
+
+            /* Revert to single-image swipeable carousel */
+            .vcf-slides {
+                display: block;
+                position: relative;
+                height: 100%;
+                gap: 0;
+            }
+
+            .vcf-slide {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                aspect-ratio: auto;
+                border-radius: 0;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                cursor: default;
+            }
+
+            .vcf-slide:first-child {
+                aspect-ratio: auto;
+            }
+
+            .vcf-slide.active {
+                opacity: 1;
+            }
+
+            .vcf-slide:nth-child(n+5) {
+                display: block;
+            }
+
+            .vcf-more {
+                display: none;
+            }
+
+            .vcf-nav,
+            .vcf-dots,
+            .vcf-count {
+                display: flex;
             }
 
             .vcf-body {
                 padding: 28px 24px;
             }
 
-            .vcf-body h2 {
+            .vcf-header h2 {
                 font-size: 1.8rem;
             }
 
             .vcf-price-block {
                 margin-left: 0;
                 text-align: left;
-            }
-
-            .vcf-amenities {
-                grid-template-columns: 1fr;
             }
 
             .page-hero h1 {
@@ -618,19 +730,116 @@
                 justify-content: center;
             }
         }
-        .vcf-map {
-            margin-top: 30px;
-            width: 100%;
-            height: 320px;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+        /* Cover opens the lightbox */
+        .vcf-slide:first-child {
+            cursor: zoom-in;
         }
-        .vcf-map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
+
+        /* ── Shared photo lightbox ── */
+        .vcf-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .vcf-lightbox[hidden] {
+            display: none;
+        }
+
+        .vcf-lb-stage {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vcf-lb-stage img {
+            max-width: 92vw;
+            max-height: 82vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .vcf-lb-count {
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .vcf-lb-close,
+        .vcf-lb-nav {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .vcf-lb-close:hover,
+        .vcf-lb-nav:hover {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        .vcf-lb-close:focus-visible,
+        .vcf-lb-nav:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .vcf-lb-close {
+            top: 18px;
+            right: 22px;
+            width: 44px;
+            height: 44px;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .vcf-lb-nav {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+        }
+
+        .vcf-lb-nav.prev {
+            left: 20px;
+        }
+
+        .vcf-lb-nav.next {
+            right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vcf-lb-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .vcf-lb-nav.prev {
+                left: 8px;
+            }
+
+            .vcf-lb-nav.next {
+                right: 8px;
+            }
         }
     </style>
 </head>
@@ -679,6 +888,17 @@
 
             <!-- ── Villa 1: Serene Luxe ── -->
             <div class="villa-card-full" id="serene-luxe">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌟 Premium Villa</div>
+                    <h2>Villa Serene Luxe — Boutique Villa Near Hikkaduwa Beach for Remote Work</h2>
+                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the Hikkaduwa beach</p>
+                    <div class="vcf-meta">
+                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                    </div>
+                </div>
+
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
@@ -713,6 +933,7 @@
                         <img src="assets/images/serene-luxe/webp/fully-equipped-kitchen-dark-cabinets-granite-breakfast-bar.webp"
                             alt="Fully equipped private kitchen with dark wood cabinets, granite breakfast bar at Serene Luxe Villa"
                             class="vcf-slide" width="2400" height="1601" loading="lazy" decoding="async">
+                        <div class="vcf-more">+6 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('serene', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -730,19 +951,7 @@
                 <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌟 Premium Villa</div>
-                        <h2>Villa Serene Luxe — Boutique Villa Near Hikkaduwa Beach for Remote Work</h2>
-                        <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the Hikkaduwa beach</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">USD 32</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
-                        </div>
+                        
 
                         <p class="vcf-desc">
                             A private boutique villa tucked away close to Hikkaduwa's beaches and attractions.
@@ -753,29 +962,17 @@
                             Ideal for long stays, digital nomads, remote work, and slow travel.
                         </p>
 
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen
-                                (gas, fridge, microwave)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Dedicated workspace &
-                                high-speed Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning & ceiling
-                                fans</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Four-poster bed with
-                                mosquito net</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Open-air outdoor shower
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV & washing machine
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private tropical garden
-                                with veranda</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Cinnamon experience nearby
-                            </div>
-                        </div>
-
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Fully equipped kitchen (gas, fridge, microwave)</span>
+                            <span class="vcf-pill">✓ Dedicated workspace &amp; high-speed Wi-Fi</span>
+                            <span class="vcf-pill">✓ Air conditioning &amp; ceiling fans</span>
+                            <span class="vcf-pill">✓ Four-poster bed with mosquito net</span>
+                            <span class="vcf-pill">✓ Open-air outdoor shower</span>
+                            <span class="vcf-pill">✓ Smart TV &amp; washing machine</span>
+                            <span class="vcf-pill">✓ Private tropical garden with veranda</span>
+                            <span class="vcf-pill">✓ Cinnamon experience nearby</span>
                             <span class="vcf-pill">🌿 Quiet &amp; Private</span>
                             <span class="vcf-pill">🏖 3 km to Hikkaduwa Beach</span>
-                            <span class="vcf-pill">💻 Remote Work Ready</span>
                             <span class="vcf-pill">🧘 Long Stay Friendly</span>
                             <span class="vcf-pill">✨ Elegant &amp; Peaceful</span>
                         </div>
@@ -791,18 +988,29 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">USD 32</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                     </div>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
                 </div>
             </div>
 
             <!-- ── Villa 2: Birdsong ── -->
             <div class="villa-card-full vcf-reverse" id="birdsong">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌴 Nature Retreat</div>
+                    <h2>Birdsong Villa — Quiet Rathgama Lagoon Retreat for Long Stays</h2>
+                    <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the Rathgama beach</p>
+                    <div class="vcf-meta">
+                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                    </div>
+                </div>
+
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
@@ -915,6 +1123,7 @@
                         <img src="assets/images/birdsong/webp/birdsong-villa-dining-table-minimal-interior.webp"
                             alt="Simple dining table for two in a bright minimalist interior at Birdsong Villa"
                             class="vcf-slide" loading="lazy" width="1200" height="1600" decoding="async">
+                        <div class="vcf-more">+32 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('birdsong', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -937,19 +1146,7 @@
                 <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌴 Nature Retreat</div>
-                        <h2>Birdsong Villa — Quiet Rathgama Lagoon Retreat for Long Stays</h2>
-                        <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the Rathgama beach</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">USD 18</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
-                        </div>
+                        
 
                         <p class="vcf-desc">
                             A peaceful private villa surrounded by nature, perfect for relaxation and slow living.
@@ -960,30 +1157,17 @@
                             and feel at home from day one. Ideal for couples, long stays, and remote work.
                         </p>
 
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen (gas
-                                cooker, fridge)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Dedicated workspace &
-                                high-speed Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning & ceiling
-                                fans</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV & washing machine
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private lush tropical
-                                garden</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fresh garden fruits
-                                included</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Kayaking 50m from villa
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Scooter rental available
-                            </div>
-                        </div>
-
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Fully equipped kitchen (gas cooker, fridge)</span>
+                            <span class="vcf-pill">✓ Dedicated workspace &amp; high-speed Wi-Fi</span>
+                            <span class="vcf-pill">✓ Air conditioning &amp; ceiling fans</span>
+                            <span class="vcf-pill">✓ Smart TV &amp; washing machine</span>
+                            <span class="vcf-pill">✓ Private lush tropical garden</span>
+                            <span class="vcf-pill">✓ Fresh garden fruits included</span>
+                            <span class="vcf-pill">✓ Kayaking 50m from villa</span>
+                            <span class="vcf-pill">✓ Scooter rental available</span>
                             <span class="vcf-pill">🌴 Surrounded by Nature</span>
                             <span class="vcf-pill">🏖 3 km to Beach</span>
-                            <span class="vcf-pill">🚣 Kayaking 50m Away</span>
-                            <span class="vcf-pill">🍍 Fresh Garden Fruits</span>
                             <span class="vcf-pill">🧘 Long Stay Friendly</span>
                         </div>
                     </div>
@@ -998,18 +1182,29 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">USD 18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                     </div>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.175237450766!2d80.1432864!3d6.1070918999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1772780de384b%3A0x392f3891df8dd850!2sBirdsong%20Villa!5e0!3m2!1sen!2slk!4v1768661044389!5m2!1sen!2slk"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
                 </div>
             </div>
 
             <!-- ── Villa 3: Coco Garden ── -->
             <div class="villa-card-full" id="coco-garden">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌴 Tropical Getaway</div>
+                    <h2>Coco Garden Villas — Quiet 1-Bedroom Villa Near Hikkaduwa Beach</h2>
+                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 1 km to the Hikkaduwa beach</p>
+                    <div class="vcf-meta">
+                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                            <div class="vcf-meta-item">🛏 1 bedroom</div>
+                            <div class="vcf-meta-item">🛁 1 bathroom</div>
+                    </div>
+                </div>
+
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
@@ -1040,6 +1235,7 @@
                             alt="Coco Garden Villas bathroom shower" class="vcf-slide" width="720" height="960" loading="lazy" decoding="async">
                         <img src="assets/images/coco-garden/webp/coco-villas-terrace1.webp"
                             alt="Coco Garden Villas private terrace" class="vcf-slide" width="720" height="540" loading="lazy" decoding="async">
+                        <div class="vcf-more">+9 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('coco', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1058,33 +1254,18 @@
                 <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌴 Tropical Getaway</div>
-                        <h2>Coco Garden Villas — Quiet 1-Bedroom Villa Near Hikkaduwa Beach</h2>
-                        <p class="vcf-location">📍 Hikkaduwa, Galle District · 1 km to the Hikkaduwa beach</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">18</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
-                        </div>
+                        
 
                         <p class="vcf-desc">
                             A peaceful private 1-bedroom villa near Hikkaduwa beach, perfect for a relaxing tropical stay. Coco Garden Villas offers a comfortable retreat for couples or solo travelers, featuring standard amenities including a fully equipped kitchen, fast Wi-Fi, and air conditioning to ensure a restful long or short stay.
                         </p>
 
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fast Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private garden</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Close to local attractions</div>
-                        </div>
-
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Fully equipped kitchen</span>
+                            <span class="vcf-pill">✓ Fast Wi-Fi</span>
+                            <span class="vcf-pill">✓ Air conditioning</span>
+                            <span class="vcf-pill">✓ Private garden</span>
+                            <span class="vcf-pill">✓ Close to local attractions</span>
                             <span class="vcf-pill">🌿 Quiet &amp; Private</span>
                             <span class="vcf-pill">🏡 Entire Villa</span>
                             <span class="vcf-pill">💻 Remote Work Ready</span>
@@ -1101,18 +1282,29 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">18</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                     </div>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Coco+Garden+Villas,+Hikkaduwa&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
                 </div>
             </div>
 
             <!-- ── Villa 4: Sterrling Villa ── -->
             <div class="villa-card-full vcf-reverse" id="sterrling">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🏡 Garden Villa</div>
+                    <h2>Sterrling Villa — Spacious 3-Bedroom Garden Villa for Families in Hikkaduwa</h2>
+                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to Hikkaduwa Beach</p>
+                    <div class="vcf-meta">
+                        <div class="vcf-meta-item">👥 Up to 6 guests</div>
+                            <div class="vcf-meta-item">🛏 3 bedrooms</div>
+                            <div class="vcf-meta-item">🛁 3 bathrooms</div>
+                    </div>
+                </div>
+
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
@@ -1144,6 +1336,7 @@
                         <img src="assets/images/sterrling/webp/bathroom1.webp"
                             alt="Sterrling Villa clean private bathroom with hot water"
                             class="vcf-slide" width="960" height="1280" loading="lazy" decoding="async">
+                        <div class="vcf-more">+5 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('sterrling', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1160,19 +1353,7 @@
                 <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🏡 Garden Villa</div>
-                        <h2>Sterrling Villa — Spacious 3-Bedroom Garden Villa for Families in Hikkaduwa</h2>
-                        <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to Hikkaduwa Beach</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 Up to 6 guests</div>
-                            <div class="vcf-meta-item">🛏 3 bedrooms</div>
-                            <div class="vcf-meta-item">🛁 3 bathrooms</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">30</div>
-                                <div class="vcf-price-sub">per night</div>
-                            </div>
-                        </div>
+                        
 
                         <p class="vcf-desc">
                             A spacious 3-bedroom villa immersed in a lush tropical garden in Hikkaduwa, perfect for
@@ -1182,23 +1363,16 @@
                             3.2 km from Hikkaduwa Beach.
                         </p>
 
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Fully equipped kitchen (gas, fridge, microwave)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Optic fiber high-speed Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning &amp; ceiling fans</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> BBQ grill &amp; outdoor dining area</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Private massage room (use free)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Tropical garden with fruit trees</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Dedicated caretaker on site</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Sri Lankan breakfast &amp; meals available</div>
-                        </div>
-
                         <div class="vcf-pills">
-                            <span class="vcf-pill">🌿 Tropical Garden</span>
+                            <span class="vcf-pill">✓ Fully equipped kitchen (gas, fridge, microwave)</span>
+                            <span class="vcf-pill">✓ Optic fiber high-speed Wi-Fi</span>
+                            <span class="vcf-pill">✓ Air conditioning &amp; ceiling fans</span>
+                            <span class="vcf-pill">✓ BBQ grill &amp; outdoor dining area</span>
+                            <span class="vcf-pill">✓ Private massage room (use free)</span>
+                            <span class="vcf-pill">✓ Tropical garden with fruit trees</span>
+                            <span class="vcf-pill">✓ Dedicated caretaker on site</span>
+                            <span class="vcf-pill">✓ Sri Lankan breakfast &amp; meals available</span>
                             <span class="vcf-pill">🏖 3.2 km to Beach</span>
-                            <span class="vcf-pill">🍍 Fruit Trees</span>
-                            <span class="vcf-pill">🔥 BBQ Grill</span>
-                            <span class="vcf-pill">💆 Massage Room</span>
                             <span class="vcf-pill">👨‍👩‍👧 Family Friendly</span>
                         </div>
                     </div>
@@ -1213,17 +1387,28 @@
                             target="_blank" rel="noopener noreferrer">
                             View on Airbnb
                         </a>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">30</div>
+                                <div class="vcf-price-sub">per night</div>
+                            </div>
                     </div>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Sterrling+Villa,+Hikkaduwa,+Sri+Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
                 </div>
             </div>
 
             <div class="villa-card-full" id="villa-one-64">
+                <div class="vcf-header">
+                    <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Beachfront Villa</div>
+                    <h2>Villa One 64 Beachfront — 5-Bedroom Beach House for Large Groups in Hikkaduwa</h2>
+                    <p class="vcf-location">📍 Hikkaduwa, Galle District · Direct Beach Access</p>
+                    <div class="vcf-meta">
+                        <div class="vcf-meta-item">👥 Up to 10 guests</div>
+                            <div class="vcf-meta-item">🛏 5 bedrooms</div>
+                            <div class="vcf-meta-item">🛁 5 bathrooms</div>
+                    </div>
+                </div>
+
 
                 <!-- Gallery -->
                 <div class="vcf-gallery">
@@ -1264,6 +1449,7 @@
                         <img src="assets/images/villa-one-64/webp/kitchen_1.webp"
                             alt="Villa One 64 fully equipped kitchen with modern appliances"
                             class="vcf-slide" width="1280" height="960" loading="lazy" decoding="async">
+                        <div class="vcf-more">+8 photos</div>
                     </div>
                     <button class="vcf-nav prev" onclick="changeVcfSlide('villa-one-64', -1)"
                         aria-label="Previous image">&#10094;</button>
@@ -1281,15 +1467,7 @@
                 <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Beachfront Villa</div>
-                        <h2>Villa One 64 Beachfront — 5-Bedroom Beach House for Large Groups in Hikkaduwa</h2>
-                        <p class="vcf-location">📍 Hikkaduwa, Galle District · Direct Beach Access</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 Up to 10 guests</div>
-                            <div class="vcf-meta-item">🛏 5 bedrooms</div>
-                            <div class="vcf-meta-item">🛁 5 bathrooms</div>
-                        </div>
+                        
 
                         <p class="vcf-desc">
                             A stunning 5-bedroom beachfront villa sitting directly on a pristine, private stretch of beach in
@@ -1300,21 +1478,16 @@
                             picturesque fishing harbour visible from the garden.
                         </p>
 
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Direct private beach access</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> 2 fully equipped kitchens (one per floor)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Air conditioning &amp; ceiling fans in all rooms</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> BBQ grill &amp; outdoor dining area</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Sunbeds &amp; umbrellas in beachfront garden</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> High-speed Wi-Fi throughout</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> 5 private attached bathrooms</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Sri Lankan breakfast available on request</div>
-                        </div>
-
                         <div class="vcf-pills">
-                            <span class="vcf-pill">🌊 Beachfront</span>
+                            <span class="vcf-pill">✓ Direct private beach access</span>
+                            <span class="vcf-pill">✓ 2 fully equipped kitchens (one per floor)</span>
+                            <span class="vcf-pill">✓ Air conditioning &amp; ceiling fans in all rooms</span>
+                            <span class="vcf-pill">✓ BBQ grill &amp; outdoor dining area</span>
+                            <span class="vcf-pill">✓ Sunbeds &amp; umbrellas in beachfront garden</span>
+                            <span class="vcf-pill">✓ High-speed Wi-Fi throughout</span>
+                            <span class="vcf-pill">✓ 5 private attached bathrooms</span>
+                            <span class="vcf-pill">✓ Sri Lankan breakfast available on request</span>
                             <span class="vcf-pill">🌅 Sunset Views</span>
-                            <span class="vcf-pill">🔥 BBQ Grill</span>
                             <span class="vcf-pill">🏄 Near Surfing</span>
                             <span class="vcf-pill">👨‍👩‍👧 Family Friendly</span>
                             <span class="vcf-pill">⭐ 5.0 Rated</span>
@@ -1333,18 +1506,21 @@
                         </a>
                     </div>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=6.107156,80.125062&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">View location on map ↓</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-
+    <!-- Shared villa locations map -->
+    <section class="villas-maps" id="villas-locations">
+        <div class="container">
+            <h2>Where our villas are</h2>
+            <p class="section-subtitle">All five villas sit close to the beaches and lagoons of Hikkaduwa and Rathgama.</p>
+            <div id="villas-map"></div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -1410,6 +1586,17 @@
         </div>
     </div>
 
+    <!-- Shared photo lightbox (one instance for all villa cards) -->
+    <div class="vcf-lightbox" id="vcfLightbox" role="dialog" aria-modal="true" aria-label="Villa photo gallery" hidden>
+        <button class="vcf-lb-close" id="vcfLbClose" type="button" aria-label="Close gallery">&times;</button>
+        <button class="vcf-lb-nav prev" id="vcfLbPrev" type="button" aria-label="Previous photo">&#10094;</button>
+        <figure class="vcf-lb-stage">
+            <img id="vcfLbImg" src="" alt="">
+            <figcaption class="vcf-lb-count" id="vcfLbCount"></figcaption>
+        </figure>
+        <button class="vcf-lb-nav next" id="vcfLbNext" type="button" aria-label="Next photo">&#10095;</button>
+    </div>
+
     <script>
         function toggleMobileNav() {
             const nav = document.getElementById('navWrapper');
@@ -1460,6 +1647,82 @@
             });
         });
 
+        // ── Shared photo lightbox ──
+        const mqDesktop = window.matchMedia('(min-width: 901px)');
+        const lb = document.getElementById('vcfLightbox');
+        const lbImg = document.getElementById('vcfLbImg');
+        const lbCount = document.getElementById('vcfLbCount');
+        const lbClose = document.getElementById('vcfLbClose');
+        const lbPrev = document.getElementById('vcfLbPrev');
+        const lbNext = document.getElementById('vcfLbNext');
+        let lbPhotos = [];
+        let lbIndex = 0;
+        let lbLastFocus = null;
+
+        function lbRender() {
+            const p = lbPhotos[lbIndex];
+            if (!p) return;
+            lbImg.src = p.src;
+            lbImg.alt = p.alt || '';
+            lbCount.textContent = `${lbIndex + 1} / ${lbPhotos.length}`;
+        }
+        function lbOpen(photos, start, trigger) {
+            if (!photos.length) return;
+            lbPhotos = photos;
+            lbIndex = start;
+            lbLastFocus = trigger || document.activeElement;
+            lb.hidden = false;
+            document.body.style.overflow = 'hidden';
+            lbRender();
+            lbClose.focus();
+            document.addEventListener('keydown', lbOnKey);
+        }
+        function lbCloseFn() {
+            lb.hidden = true;
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', lbOnKey);
+            if (lbLastFocus && typeof lbLastFocus.focus === 'function') lbLastFocus.focus();
+        }
+        function lbGo(dir) {
+            lbIndex = (lbIndex + dir + lbPhotos.length) % lbPhotos.length;
+            lbRender();
+        }
+        function lbOnKey(e) {
+            if (e.key === 'Escape') { lbCloseFn(); }
+            else if (e.key === 'ArrowRight') { lbGo(1); }
+            else if (e.key === 'ArrowLeft') { lbGo(-1); }
+            else if (e.key === 'Tab') {
+                // Trap focus within the dialog's controls
+                const f = [lbClose, lbPrev, lbNext];
+                const i = f.indexOf(document.activeElement);
+                if (e.shiftKey) {
+                    if (i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+                } else {
+                    if (i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+                }
+            }
+        }
+        if (lb) {
+            lbClose.addEventListener('click', lbCloseFn);
+            lbNext.addEventListener('click', () => lbGo(1));
+            lbPrev.addEventListener('click', () => lbGo(-1));
+            lb.addEventListener('click', (e) => { if (e.target === lb) lbCloseFn(); });
+        }
+
+        // Desktop mosaic: clicking any photo (cover, thumbnail, or "+N") opens the lightbox at that image
+        document.querySelectorAll('.vcf-slides').forEach(slidesEl => {
+            const imgs = [...slidesEl.querySelectorAll('.vcf-slide')];
+            const photos = imgs.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
+            slidesEl.addEventListener('click', (e) => {
+                if (!mqDesktop.matches) return; // mosaic is desktop-only; mobile uses the carousel
+                const slide = e.target.closest('.vcf-slide');
+                if (!slide) return;
+                const index = imgs.indexOf(slide);
+                if (index === -1) return;
+                lbOpen(photos, index, slide);
+            });
+        });
+
         // WA float
         const waToggle = document.getElementById('waToggle');
         const waChat = document.getElementById('waChat');
@@ -1468,6 +1731,10 @@
         waToggle.addEventListener('click', () => { waChat.style.display = 'flex'; waBadge.style.display = 'none'; });
         waClose.addEventListener('click', () => { waChat.style.display = 'none'; });
     </script>
+
+    <!-- Shared villas map (Leaflet) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="js/villas-map.js" defer></script>
 
 </body>
 
