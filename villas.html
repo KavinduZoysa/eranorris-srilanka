@@ -277,7 +277,7 @@
             overflow: hidden;
             margin-bottom: 56px;
             display: grid;
-            grid-template-columns: 52% 1fr;
+            grid-template-columns: 44% 1fr;
             grid-template-areas:
                 "header header"
                 "gallery body";
@@ -330,7 +330,7 @@
 
         /* Alternate layout — image on right (desktop only) */
         .vcf-reverse {
-            grid-template-columns: 1fr 52%;
+            grid-template-columns: 1fr 44%;
             grid-template-areas:
                 "header header"
                 "body gallery";
@@ -367,7 +367,8 @@
 
         .vcf-cover {
             width: 100%;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 16 / 10;
+            max-height: 340px;
             object-fit: cover;
             display: block;
             cursor: zoom-in;
