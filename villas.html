@@ -290,6 +290,10 @@
         .vcf-header {
             grid-area: header;
             padding: 36px 48px 0;
+        }
+
+        /* Name block + price sit on one row so the price aligns with the villa name */
+        .vcf-header-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -546,6 +550,9 @@
         .vcf-price-block {
             text-align: right;
             flex: 0 0 auto;
+            background: #eef5fa;
+            padding: 8px 14px;
+            border-radius: 12px;
         }
 
         .vcf-price {
@@ -557,7 +564,7 @@
 
         .vcf-price-sub {
             font-size: 0.8rem;
-            color: #94a3b8;
+            color: #5b6b7a;
         }
 
         /* Pills */
@@ -895,24 +902,23 @@
             <!-- ── Villa 1: Serene Luxe ── -->
             <div class="villa-card-full" id="serene-luxe">
                 <div class="vcf-header">
-                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌟 Premium Villa</div>
-                    <h2>Villa Serene Luxe — Boutique Villa Near Hikkaduwa Beach for Remote Work</h2>
-                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the Hikkaduwa beach</p>
-                    <div class="vcf-meta">
-                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                    </div>
-                
-                    </div>
-                    <div class="vcf-price-block">
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Villa Serene Luxe — Boutique Villa Near Hikkaduwa Beach for Remote Work</h2>
+                            <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to the Hikkaduwa beach</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                                <div class="vcf-meta-item">🛏 1 bedroom</div>
+                                <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block">
                                 <div class="vcf-price">USD 32</div>
                                 <div class="vcf-price-sub">per night</div>
                             </div>
+                    </div>
                 </div>
-
-
                 <!-- Gallery -->
                 <div class="vcf-gallery">
                                         <div class="vcf-mosaic">
@@ -1028,24 +1034,23 @@
             <!-- ── Villa 2: Birdsong ── -->
             <div class="villa-card-full vcf-reverse" id="birdsong">
                 <div class="vcf-header">
-                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌴 Nature Retreat</div>
-                    <h2>Birdsong Villa — Quiet Rathgama Lagoon Retreat for Long Stays</h2>
-                    <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the Rathgama beach</p>
-                    <div class="vcf-meta">
-                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                    </div>
-                
-                    </div>
-                    <div class="vcf-price-block">
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Birdsong Villa — Quiet Rathgama Lagoon Retreat for Long Stays</h2>
+                            <p class="vcf-location">📍 Rathgama, Galle District · 3 km to the Rathgama beach</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                                <div class="vcf-meta-item">🛏 1 bedroom</div>
+                                <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block">
                                 <div class="vcf-price">USD 18</div>
                                 <div class="vcf-price-sub">per night</div>
                             </div>
+                    </div>
                 </div>
-
-
                 <!-- Gallery -->
                 <div class="vcf-gallery">
                                         <div class="vcf-mosaic">
@@ -1243,24 +1248,23 @@
             <!-- ── Villa 3: Coco Garden ── -->
             <div class="villa-card-full" id="coco-garden">
                 <div class="vcf-header">
-                    <div class="vcf-header-main">
                     <div class="vcf-badge">🌴 Tropical Getaway</div>
-                    <h2>Coco Garden Villas — Quiet 1-Bedroom Villa Near Hikkaduwa Beach</h2>
-                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 1 km to the Hikkaduwa beach</p>
-                    <div class="vcf-meta">
-                        <div class="vcf-meta-item">👥 Up to 2 guests</div>
-                            <div class="vcf-meta-item">🛏 1 bedroom</div>
-                            <div class="vcf-meta-item">🛁 1 bathroom</div>
-                    </div>
-                
-                    </div>
-                    <div class="vcf-price-block">
-                                <div class="vcf-price">18</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Coco Garden Villas — Quiet 1-Bedroom Villa Near Hikkaduwa Beach</h2>
+                            <p class="vcf-location">📍 Hikkaduwa, Galle District · 1 km to the Hikkaduwa beach</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 Up to 2 guests</div>
+                                <div class="vcf-meta-item">🛏 1 bedroom</div>
+                                <div class="vcf-meta-item">🛁 1 bathroom</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">USD 18</div>
                                 <div class="vcf-price-sub">per night</div>
                             </div>
+                    </div>
                 </div>
-
-
                 <!-- Gallery -->
                 <div class="vcf-gallery">
                                         <div class="vcf-mosaic">
@@ -1364,24 +1368,23 @@
             <!-- ── Villa 4: Sterrling Villa ── -->
             <div class="villa-card-full vcf-reverse" id="sterrling">
                 <div class="vcf-header">
-                    <div class="vcf-header-main">
                     <div class="vcf-badge">🏡 Garden Villa</div>
-                    <h2>Sterrling Villa — Spacious 3-Bedroom Garden Villa for Families in Hikkaduwa</h2>
-                    <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to Hikkaduwa Beach</p>
-                    <div class="vcf-meta">
-                        <div class="vcf-meta-item">👥 Up to 6 guests</div>
-                            <div class="vcf-meta-item">🛏 3 bedrooms</div>
-                            <div class="vcf-meta-item">🛁 3 bathrooms</div>
-                    </div>
-                
-                    </div>
-                    <div class="vcf-price-block">
-                                <div class="vcf-price">30</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Sterrling Villa — Spacious 3-Bedroom Garden Villa for Families in Hikkaduwa</h2>
+                            <p class="vcf-location">📍 Hikkaduwa, Galle District · 3 km to Hikkaduwa Beach</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 Up to 6 guests</div>
+                                <div class="vcf-meta-item">🛏 3 bedrooms</div>
+                                <div class="vcf-meta-item">🛁 3 bathrooms</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block">
+                                <div class="vcf-price">USD 30</div>
                                 <div class="vcf-price-sub">per night</div>
                             </div>
+                    </div>
                 </div>
-
-
                 <!-- Gallery -->
                 <div class="vcf-gallery">
                                         <div class="vcf-mosaic">
@@ -1489,20 +1492,19 @@
 
             <div class="villa-card-full" id="villa-one-64">
                 <div class="vcf-header">
-                    <div class="vcf-header-main">
                     <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Beachfront Villa</div>
-                    <h2>Villa One 64 Beachfront — 5-Bedroom Beach House for Large Groups in Hikkaduwa</h2>
-                    <p class="vcf-location">📍 Hikkaduwa, Galle District · Direct Beach Access</p>
-                    <div class="vcf-meta">
-                        <div class="vcf-meta-item">👥 Up to 10 guests</div>
-                            <div class="vcf-meta-item">🛏 5 bedrooms</div>
-                            <div class="vcf-meta-item">🛁 5 bathrooms</div>
-                    </div>
-                
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Villa One 64 Beachfront — 5-Bedroom Beach House for Large Groups in Hikkaduwa</h2>
+                            <p class="vcf-location">📍 Hikkaduwa, Galle District · Direct Beach Access</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 Up to 10 guests</div>
+                                <div class="vcf-meta-item">🛏 5 bedrooms</div>
+                                <div class="vcf-meta-item">🛁 5 bathrooms</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
                 <!-- Gallery -->
                 <div class="vcf-gallery">
                                         <div class="vcf-mosaic">
