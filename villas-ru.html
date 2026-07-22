@@ -24,6 +24,15 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="icon" href="assets/images/favicon.png">
 
+    <!-- Leaflet CSS — loaded non-blocking to avoid render delay -->
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        as="style" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    </noscript>
+
     <link rel="canonical" href="https://eranorrissrilanka.com/villas-ru.html">
     <link rel="alternate" hreflang="ru" href="https://eranorrissrilanka.com/villas-ru.html">
     <link rel="alternate" hreflang="en" href="https://eranorrissrilanka.com/villas.html">
@@ -256,11 +265,42 @@
             box-shadow: 0 8px 40px rgba(11, 60, 93, 0.09);
             overflow: hidden;
             margin-bottom: 56px;
-            display: flex;
-            flex-direction: row;
-            min-height: 480px;
+            display: grid;
+            grid-template-columns: 44% 1fr;
+            grid-template-areas:
+                "header header"
+                "gallery body";
+            align-items: start;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             scroll-margin-top: 80px;
+        }
+
+        /* Full-width title bar on top of both columns */
+        .vcf-header {
+            grid-area: header;
+            padding: 36px 48px 0;
+        }
+
+        /* Name block + price sit on one row so the price aligns with the villa name */
+        .vcf-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .vcf-header-main {
+            flex: 1 1 320px;
+            min-width: 0;
+        }
+
+        .vcf-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin: 0 0 6px;
+            line-height: 1.15;
         }
 
         .villa-card-full:hover {
@@ -272,25 +312,29 @@
             margin-bottom: 0;
         }
 
-        /* Image side */
+        /* Image side — Airbnb-style photo mosaic (desktop) */
         .vcf-gallery {
-            width: 52%;
+            grid-area: gallery;
+            height: auto;
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
             background: #e8edf2;
-            min-height: 440px;
         }
 
         /* Alternate layout — image on right (desktop only) */
         .vcf-reverse {
-            flex-direction: row-reverse;
+            grid-template-columns: 1fr 44%;
+            grid-template-areas:
+                "header header"
+                "body gallery";
         }
 
+        /* Single-image carousel — used on mobile only (hidden on desktop) */
         .vcf-slides {
+            display: none;
+            position: relative;
             width: 100%;
             height: 100%;
-            position: relative;
         }
 
         .vcf-slide {
@@ -305,6 +349,58 @@
 
         .vcf-slide.active {
             opacity: 1;
+        }
+
+        /* Desktop photo mosaic — dedicated images (never reuse .vcf-slide) */
+        .vcf-mosaic {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .vcf-cover {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            max-height: 340px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .vcf-thumbs {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .vcf-thumb {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            cursor: pointer;
+        }
+
+        /* "+N photos" overlay on the last thumbnail (bottom-right) */
+        .vcf-more {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: calc((100% - 16px) / 3);
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 60, 93, 0.55);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            pointer-events: none;
+            z-index: 2;
         }
 
         /* Gallery arrow nav */
@@ -375,10 +471,18 @@
             z-index: 2;
         }
 
+        /* Carousel arrows / dots / counter are used only on the mobile view */
+        .vcf-nav,
+        .vcf-dots,
+        .vcf-count {
+            display: none;
+        }
+
         /* Content side */
         .vcf-body {
-            flex: 1;
-            padding: 44px 48px;
+            grid-area: body;
+            align-self: stretch;
+            padding: 0 48px 44px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -397,14 +501,6 @@
             margin-bottom: 14px;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-        }
-
-        .vcf-body h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: #0f172a;
-            margin: 0 0 6px;
-            line-height: 1.15;
         }
 
         .vcf-location {
@@ -441,8 +537,11 @@
         }
 
         .vcf-price-block {
-            margin-left: auto;
             text-align: right;
+            flex: 0 0 auto;
+            background: #eef5fa;
+            padding: 8px 14px;
+            border-radius: 12px;
         }
 
         .vcf-price {
@@ -454,28 +553,7 @@
 
         .vcf-price-sub {
             font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        /* Amenities grid */
-        .vcf-amenities {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 16px;
-            margin-bottom: 22px;
-        }
-
-        .vcf-amenity {
-            font-size: 0.85rem;
-            color: #374151;
-            display: flex;
-            align-items: flex-start;
-            gap: 7px;
-        }
-
-        .vcf-amenity-icon {
-            font-size: 1rem;
-            flex-shrink: 0;
+            color: #5b6b7a;
         }
 
         /* Pills */
@@ -496,7 +574,7 @@
             font-weight: 500;
             color: #334155;
             background: #f8fafc;
-            white-space: nowrap;
+            white-space: normal;
         }
 
         /* Action buttons */
@@ -504,6 +582,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .vcf-btn-primary {
@@ -550,6 +629,7 @@
         .villas-maps {
             background: white;
             padding: 60px 0 80px;
+            scroll-margin-top: 80px;
         }
 
         .villas-maps h2 {
@@ -562,33 +642,78 @@
             margin-bottom: 40px;
         }
 
+        /* Link from each card down to the shared map */
+        .vcf-maplink {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0b3c5d;
+            text-decoration: none;
+        }
+
+        .vcf-maplink:hover {
+            text-decoration: underline;
+        }
+
+        /* Shared Leaflet map */
+        #villas-map {
+            width: 100%;
+            height: 460px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .villa-card-full {
-                flex-direction: column;
-                min-height: auto;
+            .villa-card-full,
+            .vcf-reverse {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "gallery"
+                    "body";
+            }
+
+            .vcf-header {
+                padding: 28px 24px 0;
             }
 
             .vcf-gallery {
                 width: 100%;
-                height: 280px;
+                aspect-ratio: 4 / 3;
+            }
+
+            /* Show the single-image carousel, hide the desktop mosaic */
+            .vcf-mosaic {
+                display: none;
+            }
+
+            .vcf-slides {
+                display: block;
+            }
+
+            .vcf-nav,
+            .vcf-dots,
+            .vcf-count {
+                display: flex;
             }
 
             .vcf-body {
                 padding: 28px 24px;
             }
 
-            .vcf-body h2 {
+            .vcf-header h2 {
                 font-size: 1.8rem;
             }
 
             .vcf-price-block {
                 margin-left: 0;
                 text-align: left;
-            }
-
-            .vcf-amenities {
-                grid-template-columns: 1fr;
             }
 
             .page-hero h1 {
@@ -607,19 +732,116 @@
                 justify-content: center;
             }
         }
-        .vcf-map {
-            margin-top: 30px;
-            width: 100%;
-            height: 320px;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+        /* Cover opens the lightbox */
+        .vcf-slide:first-child {
+            cursor: zoom-in;
         }
-        .vcf-map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
+
+        /* ── Shared photo lightbox ── */
+        .vcf-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .vcf-lightbox[hidden] {
+            display: none;
+        }
+
+        .vcf-lb-stage {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vcf-lb-stage img {
+            max-width: 92vw;
+            max-height: 82vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .vcf-lb-count {
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .vcf-lb-close,
+        .vcf-lb-nav {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .vcf-lb-close:hover,
+        .vcf-lb-nav:hover {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        .vcf-lb-close:focus-visible,
+        .vcf-lb-nav:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .vcf-lb-close {
+            top: 18px;
+            right: 22px;
+            width: 44px;
+            height: 44px;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .vcf-lb-nav {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+        }
+
+        .vcf-lb-nav.prev {
+            left: 20px;
+        }
+
+        .vcf-lb-nav.next {
+            right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vcf-lb-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .vcf-lb-nav.prev {
+                left: 8px;
+            }
+
+            .vcf-lb-nav.next {
+                right: 8px;
+            }
         }
     </style>
 </head>
@@ -667,10 +889,42 @@
         <div class="container">
 
             <!-- ── Villa 1: Serene Luxe ── -->
-            <div class="villa-card-full" id="serene-luxe">
-
-                <!-- Gallery -->
+                        <div class="villa-card-full" id="serene-luxe">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌟 Премиум Вилла</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Villa Serene Luxe — Бутик-вилла рядом с пляжем Хиккадувы для удаленной работы</h2>
+                            <p class="vcf-location">📍 Hikkaduwa, Округ Галле · 3 км до Hikkaduwa пляжа</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 До 2 гостей</div>
+                                <div class="vcf-meta-item">🛏 1 спальня</div>
+                                <div class="vcf-meta-item">🛁 1 ванная комната</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block"> <div class="vcf-price">USD 32</div> <div class="vcf-price-sub">за ночь</div> </div>
+                    </div>
+                </div>
                 <div class="vcf-gallery">
+                    <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
+                            alt="Веранда Serene Luxe с белыми колоннами и тропическим садом на закате" width="2400" height="1600" loading="eager" fetchpriority="high">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/serene-luxe/webp/lush-tropical-garden-alocasia-warmly-lit-veranda.webp"
+                                alt="Частный тропический сад и подсвеченная веранда, Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/serene-luxe/webp/peaceful-living-room-dark-sofas-carved-wooden-doorway.webp"
+                                alt="Гостиная с темными диванами и резной деревянной аркой, Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/serene-luxe/webp/quiet-tv-lounge-wall-screen-plant-shelves-wooden-desk.webp"
+                                alt="ТВ-зона с экраном, полками для растений и столом, Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/serene-luxe/webp/private-open-plan-living-kitchen-skylight.webp"
+                                alt="Открытая гостиная и кухня с верхним светом, Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/serene-luxe/webp/quiet-bedroom-four-poster-bed-mosquito-net-red-bedding.webp"
+                                alt="Спальня с кроватью с балдахином и москитной сеткой, Serene Luxe" width="2400" height="1601" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/serene-luxe/webp/peaceful-bedroom-garden-view-sliding-doors.webp"
+                                alt="Спальня с видом на сад и раздвижными дверями, Serene Luxe" width="2400" height="1600" loading="lazy" decoding="async">
+                            <div class="vcf-more">+3 фото</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-serene">
                         <img src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
                             alt="Веранда Serene Luxe с белыми колоннами и тропическим садом на закате"
@@ -715,54 +969,24 @@
                     </div>
                     <div class="vcf-count" id="count-serene">1 / 10</div>
                 </div>
-
-                <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌟 Премиум Вилла</div>
-                        <h2>Villa Serene Luxe — Бутик-вилла рядом с пляжем Хиккадувы для удаленной работы</h2>
-                        <p class="vcf-location">📍 Hikkaduwa, Округ Галле · 3 км до Hikkaduwa пляжа</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 До 2 гостей</div>
-                            <div class="vcf-meta-item">🛏 1 спальня</div>
-                            <div class="vcf-meta-item">🛁 1 ванная комната</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">USD 32</div>
-                                <div class="vcf-price-sub">за ночь</div>
-                            </div>
-                        </div>
-
-                        <p class="vcf-desc">
-                            Частная бутик-вилла рядом с пляжем Хиккадувы, спрятанная в спокойном тропическом саду.
-                            Идеально для пар и длительного проживания: полностью оборудованная кухня, рабочее место с быстрым Wi-Fi,
-                            тихая веранда и душ на открытом воздухе.
-                            Подходит для цифровых кочевников, удаленной работы и медленных путешествий.
-                        </p>
-
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Полностью оборудованная кухня (газ, холодильник, микроволновка)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Специальное рабочее место и высокоскоростной Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кондиционер и потолочные вентиляторы</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кровать с балдахином и москитной сеткой</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Душ на открытом воздухе
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV и стиральная машина
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Частный тропический сад с верандой</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Опыт добычи корицы поблизости
-                            </div>
-                        </div>
-
+                        <p class="vcf-desc"> Частная бутик-вилла рядом с пляжем Хиккадувы, спрятанная в спокойном тропическом саду. Идеально для пар и длительного проживания: полностью оборудованная кухня, рабочее место с быстрым Wi-Fi, тихая веранда и душ на открытом воздухе. Подходит для цифровых кочевников, удаленной работы и медленных путешествий. </p>
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Полностью оборудованная кухня (газ, холодильник, микроволновка)</span>
+                            <span class="vcf-pill">✓ Специальное рабочее место и высокоскоростной Wi-Fi</span>
+                            <span class="vcf-pill">✓ Кондиционер и потолочные вентиляторы</span>
+                            <span class="vcf-pill">✓ Кровать с балдахином и москитной сеткой</span>
+                            <span class="vcf-pill">✓ Душ на открытом воздухе</span>
+                            <span class="vcf-pill">✓ Smart TV и стиральная машина</span>
+                            <span class="vcf-pill">✓ Частный тропический сад с верандой</span>
+                            <span class="vcf-pill">✓ Опыт добычи корицы поблизости</span>
                             <span class="vcf-pill">🌿 Тихо и приватно</span>
                             <span class="vcf-pill">🏖 3 км до пляжа Хиккадува</span>
-                            <span class="vcf-pill">💻 Готово для удаленной работы</span>
                             <span class="vcf-pill">🧘 Удобно для длительного проживания</span>
                             <span class="vcf-pill">✨ Элегантность и спокойствие</span>
                         </div>
                     </div>
-
                     <div class="vcf-actions">
                         <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хочу%20забронировать%20виллу%20Serene%20Luxe."
                             class="vcf-btn-primary" target="_blank"
@@ -774,20 +998,47 @@
                             Посмотреть на Airbnb
                         </a>
                     </div>
-
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0053415242924!2d80.12357627589104!3d6.129982293856842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae17782876e48b9%3A0x2781b0154593cdc2!2sVilla%20Serene%20Luxe%20-%20Hikkaduwa!5e0!3m2!1sen!2slk!4v1768661184822!5m2!1sen!2slk"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">Посмотреть на карте ↓</a>
                 </div>
-            </div>
+            </div>>
 
             <!-- ── Villa 2: Birdsong ── -->
-            <div class="villa-card-full vcf-reverse" id="birdsong">
-
-                <!-- Gallery -->
+                        <div class="villa-card-full vcf-reverse" id="birdsong">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌴 Уединение на природе</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Birdsong Villa — Тихое убежище у лагуны Ратгама для длительного проживания</h2>
+                            <p class="vcf-location">📍 Rathgama, Округ Галле · 3 км до Rathgama пляжа</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 До 2 гостей</div>
+                                <div class="vcf-meta-item">🛏 1 спальня</div>
+                                <div class="vcf-meta-item">🛁 1 ванная комната</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block"> <div class="vcf-price">USD 18</div> <div class="vcf-price-sub">за ночь</div> </div>
+                    </div>
+                </div>
                 <div class="vcf-gallery">
+                    <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
+                            alt="Вид сверху на Birdsong Villa с красной крышей и дорожками в саду, Ратгама" width="1600" height="1200" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/birdsong/webp/birdsong-villa-aerial-overview.webp"
+                                alt="Birdsong Villa среди тропической зелени, вид с высоты, Ратгама" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/birdsong/webp/birdsong-villa-terrace-clay-pots.webp"
+                                alt="Терраса Birdsong Villa с глиняными горшками и деревянной мебелью" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/birdsong/webp/birdsong-villa-garden-dining-area.webp"
+                                alt="Обеденная зона в саду Birdsong Villa с тропическими растениями" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/birdsong/webp/birdsong-villa-aerial-rooftop.webp"
+                                alt="Крыша Birdsong Villa и кроны тропического сада, вид сверху, Ратгама" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/birdsong/webp/birdsong-villa-exterior-veranda-tropical-garden.webp"
+                                alt="Внешний вид виллы Birdsong с серыми стенами, красной черепичной крышей и пышным тропическим садом, Ратгама" width="1200" height="1600" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/birdsong/webp/birdsong-villa-veranda-columns-palm-garden.webp"
+                                alt="Вид сбоку на веранду виллы Birdsong с колоннами и кокосовыми пальмами над садом" width="1200" height="1600" loading="lazy" decoding="async">
+                            <div class="vcf-more">+29 фото</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-birdsong">
                         <img src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
                             alt="Вид сверху на Birdsong Villa с красной крышей и дорожками в саду, Ратгама"
@@ -915,53 +1166,23 @@
                     </div>
                     <div class="vcf-count" id="count-birdsong">1 / 36</div>
                 </div>
-
-                <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌴 Уединение на природе</div>
-                        <h2>Birdsong Villa — Тихое убежище у лагуны Ратгама для длительного проживания</h2>
-                        <p class="vcf-location">📍 Rathgama, Округ Галле · 3 км до Rathgama пляжа</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 До 2 гостей</div>
-                            <div class="vcf-meta-item">🛏 1 спальня</div>
-                            <div class="vcf-meta-item">🛁 1 ванная комната</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">USD 18</div>
-                                <div class="vcf-price-sub">за ночь</div>
-                            </div>
-                        </div>
-
-                        <p class="vcf-desc">
-                            Безмятежная вилла в окружении природы, идеальная для отдыха и неспешной жизни.
-                            Расположенная в пышном тропическом саду в тихой деревне Ратгама, вилла Birdsong предлагает поистине аутентичный опыт Шри-Ланки. До лагуны Ратгама, где можно покататься на каяках, всего 50 метров, а до прекрасного пляжа всего 3 км. Просыпайтесь под пение птиц, наслаждайтесь свежими фруктами из сада и чувствуйте себя как дома с первого дня.
-                            Отлично подходит для пар, длительного проживания и удаленной работы.
-                        </p>
-
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Полностью оборудованная кухня (газовая плита, холодильник)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Специальное рабочее место и высокоскоростной Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кондиционер и потолочные вентиляторы</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Smart TV и стиральная машина
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Частный пышный тропический сад</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Свежие фрукты из сада включены</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Каякинг в 50 м от виллы
-                            </div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Доступна аренда скутеров
-                            </div>
-                        </div>
-
+                        <p class="vcf-desc"> Безмятежная вилла в окружении природы, идеальная для отдыха и неспешной жизни. Расположенная в пышном тропическом саду в тихой деревне Ратгама, вилла Birdsong предлагает поистине аутентичный опыт Шри-Ланки. До лагуны Ратгама, где можно покататься на каяках, всего 50 метров, а до прекрасного пляжа всего 3 км. Просыпайтесь под пение птиц, наслаждайтесь свежими фруктами из сада и чувствуйте себя как дома с первого дня. Отлично подходит для пар, длительного проживания и удаленной работы. </p>
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Полностью оборудованная кухня (газовая плита, холодильник)</span>
+                            <span class="vcf-pill">✓ Специальное рабочее место и высокоскоростной Wi-Fi</span>
+                            <span class="vcf-pill">✓ Кондиционер и потолочные вентиляторы</span>
+                            <span class="vcf-pill">✓ Smart TV и стиральная машина</span>
+                            <span class="vcf-pill">✓ Частный пышный тропический сад</span>
+                            <span class="vcf-pill">✓ Свежие фрукты из сада включены</span>
+                            <span class="vcf-pill">✓ Каякинг в 50 м от виллы</span>
+                            <span class="vcf-pill">✓ Доступна аренда скутеров</span>
                             <span class="vcf-pill">🌴 В окружении природы</span>
                             <span class="vcf-pill">🏖 3 км до пляжа</span>
-                            <span class="vcf-pill">🚣 Каякинг в 50м</span>
-                            <span class="vcf-pill">🍍 Свежие садовые фрукты</span>
                             <span class="vcf-pill">🧘 Удобно для длительного проживания</span>
                         </div>
                     </div>
-
                     <div class="vcf-actions">
                         <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хочу%20забронировать%20Birdsong%20Villa."
                             class="vcf-btn-primary" target="_blank"
@@ -973,20 +1194,47 @@
                             Посмотреть на Airbnb
                         </a>
                     </div>
-
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.175237450766!2d80.1432864!3d6.1070918999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1772780de384b%3A0x392f3891df8dd850!2sBirdsong%20Villa!5e0!3m2!1sen!2slk!4v1768661044389!5m2!1sen!2slk"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">Посмотреть на карте ↓</a>
                 </div>
-            </div>
+            </div>>
 
             <!-- ── Villa 3: Coco Garden ── -->
-            <div class="villa-card-full" id="coco-garden">
-
-                <!-- Gallery -->
+                        <div class="villa-card-full" id="coco-garden">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🌴 Тропический отдых</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Coco Garden Villas — Тихая вилла с 1 спальней рядом с пляжем Хиккадувы</h2>
+                            <p class="vcf-location">📍 Хиккадува, Округ Галле · 1 км до Hikkaduwa пляжа</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 До 2 гостей</div>
+                                <div class="vcf-meta-item">🛏 1 спальня</div>
+                                <div class="vcf-meta-item">🛁 1 ванная комната</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block"> <div class="vcf-price">USD 18</div> <div class="vcf-price-sub">за ночь</div> </div>
+                    </div>
+                </div>
                 <div class="vcf-gallery">
+                    <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
+                            alt="Внешний вид Coco Garden Villas — тихая вилла с 1 спальней рядом с пляжем Хиккадувы" width="720" height="540" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/coco-garden/webp/coco-garden-villas-living-room1.webp"
+                                alt="Гостиная зона Coco Garden Villas" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/coco-garden/webp/coco-villa-living-room2.webp"
+                                alt="Уютная гостиная Coco Garden Villas" width="720" height="540" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/coco-garden/webp/coco-villas-bedroom1.webp"
+                                alt="Комфортабельная спальня Coco Garden Villas" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/coco-garden/webp/coco-villas-bedroom2.webp"
+                                alt="Детали спальни Coco Garden Villas" width="720" height="540" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/coco-garden/webp/coco-villas-kitchen1.webp"
+                                alt="Полностью оборудованная кухня Coco Garden Villas" width="1200" height="900" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/coco-garden/webp/coco-villas-kitchen2.webp"
+                                alt="Кухонная техника Coco Garden Villas" width="720" height="540" loading="lazy" decoding="async">
+                            <div class="vcf-more">+6 фото</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-coco">
                         <img src="assets/images/coco-garden/webp/coco-garden-villas-exterior.webp"
                             alt="Внешний вид Coco Garden Villas — тихая вилла с 1 спальней рядом с пляжем Хиккадувы" class="vcf-slide active" width="720" height="540" loading="lazy" decoding="async">
@@ -1028,43 +1276,20 @@
                     </div>
                     <div class="vcf-count" id="count-coco">1 / 13</div>
                 </div>
-
-                <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🌴 Тропический отдых</div>
-                        <h2>Coco Garden Villas — Тихая вилла с 1 спальней рядом с пляжем Хиккадувы</h2>
-                        <p class="vcf-location">📍 Хиккадува, Округ Галле · 1 км до Hikkaduwa пляжа</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 До 2 гостей</div>
-                            <div class="vcf-meta-item">🛏 1 спальня</div>
-                            <div class="vcf-meta-item">🛁 1 ванная комната</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">18</div>
-                                <div class="vcf-price-sub">за ночь</div>
-                            </div>
-                        </div>
-
-                        <p class="vcf-desc">
-                            Спокойная частная вилла с 1 спальней рядом с пляжем Хиккадувы, идеально подходящая для расслабляющего тропического отдыха. Coco Garden Villas предлагает комфортное убежище для пар или соло-путешественников, оснащенное стандартными удобствами, включая полностью оборудованную кухню, быстрый Wi-Fi и кондиционер, чтобы обеспечить спокойный отдых на любой срок.
-                        </p>
-
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Полностью оборудованная кухня</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Быстрый Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кондиционер</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Частный сад</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Близко к местным достопримечательностям</div>
-                        </div>
-
+                        <p class="vcf-desc"> Спокойная частная вилла с 1 спальней рядом с пляжем Хиккадувы, идеально подходящая для расслабляющего тропического отдыха. Coco Garden Villas предлагает комфортное убежище для пар или соло-путешественников, оснащенное стандартными удобствами, включая полностью оборудованную кухню, быстрый Wi-Fi и кондиционер, чтобы обеспечить спокойный отдых на любой срок. </p>
                         <div class="vcf-pills">
+                            <span class="vcf-pill">✓ Полностью оборудованная кухня</span>
+                            <span class="vcf-pill">✓ Быстрый Wi-Fi</span>
+                            <span class="vcf-pill">✓ Кондиционер</span>
+                            <span class="vcf-pill">✓ Частный сад</span>
+                            <span class="vcf-pill">✓ Близко к местным достопримечательностям</span>
                             <span class="vcf-pill">🌿 Тихо и приватно</span>
                             <span class="vcf-pill">🏡 Вся вилла целиком</span>
                             <span class="vcf-pill">💻 Готово для удаленной работы</span>
                         </div>
                     </div>
-
                     <div class="vcf-actions">
                         <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хочу%20забронировать%20Coco%20Garden%20Villas."
                             class="vcf-btn-primary" target="_blank"
@@ -1076,20 +1301,47 @@
                             Посмотреть на Airbnb
                         </a>
                     </div>
-
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Coco+Garden+Villas,+Hikkaduwa&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">Посмотреть на карте ↓</a>
                 </div>
-            </div>
+            </div>>
 
             <!-- ── Villa 4: Sterrling Villa ── -->
-            <div class="villa-card-full vcf-reverse" id="sterrling">
-
-                <!-- Gallery -->
+                        <div class="villa-card-full vcf-reverse" id="sterrling">
+                <div class="vcf-header">
+                    <div class="vcf-badge">🏡 Садовая вилла</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Sterrling Villa — Просторная вилла с 3 спальнями для семей в Хиккадуве</h2>
+                            <p class="vcf-location">📍 Хиккадува, Округ Галле · 3 км до Hikkaduwa пляжа</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 До 6 гостей</div>
+                                <div class="vcf-meta-item">🛏 3 спальни</div>
+                                <div class="vcf-meta-item">🛁 3 ванные комнаты</div>
+                            </div>
+                        </div>
+                        <div class="vcf-price-block"> <div class="vcf-price">USD 30</div> <div class="vcf-price-sub">за ночь</div> </div>
+                    </div>
+                </div>
                 <div class="vcf-gallery">
+                    <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/sterrling/webp/entrance1.webp"
+                            alt="Вход в Sterrling Villa с пышной тропической растительностью в Хиккадуве" width="960" height="1280" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/sterrling/webp/garden1.webp"
+                                alt="Тропический сад Sterrling Villa с фруктовыми деревьями и зеленью" width="960" height="1280" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/sterrling/webp/garden2.webp"
+                                alt="Пышный сад Sterrling Villa с банановыми и рамбутановыми деревьями" width="960" height="1280" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/sterrling/webp/garden3.webp"
+                                alt="Садовая дорожка Sterrling Villa среди тропических растений" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/sterrling/webp/garden4.webp"
+                                alt="Просторный сад Sterrling Villa с зоной отдыха на открытом воздухе" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/sterrling/webp/terrace1.webp"
+                                alt="Крытая терраса Sterrling Villa с обеденной зоной" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/sterrling/webp/livingroom1.webp"
+                                alt="Светлая и просторная гостиная Sterrling Villa" width="1280" height="960" loading="lazy" decoding="async">
+                            <div class="vcf-more">+2 фото</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-sterrling">
                         <img src="assets/images/sterrling/webp/entrance1.webp"
                             alt="Вход в Sterrling Villa с пышной тропической растительностью в Хиккадуве"
@@ -1130,54 +1382,22 @@
                     </div>
                     <div class="vcf-count" id="count-sterrling">1 / 9</div>
                 </div>
-
-                <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge">🏡 Садовая вилла</div>
-                        <h2>Sterrling Villa — Просторная вилла с 3 спальнями для семей в Хиккадуве</h2>
-                        <p class="vcf-location">📍 Хиккадува, Округ Галле · 3 км до Hikkaduwa пляжа</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 До 6 гостей</div>
-                            <div class="vcf-meta-item">🛏 3 спальни</div>
-                            <div class="vcf-meta-item">🛁 3 ванные комнаты</div>
-                            <div class="vcf-price-block">
-                                <div class="vcf-price">30</div>
-                                <div class="vcf-price-sub">за ночь</div>
-                            </div>
-                        </div>
-
-                        <p class="vcf-desc">
-                            Просторная вилла с 3 спальнями, утопающая в пышном тропическом саду в Хиккадуве,
-                            идеально подходящая для семей, групп и длительного проживания. В огромном заднем саду
-                            растут авокадо, водяное яблоко, банановые и рамбутановые деревья, по территории свободно
-                            гуляют павлины, птицы и белки. Наслаждайтесь зоной барбекю, обедами на свежем воздухе,
-                            личным массажным кабинетом и услугами дежурного смотрителя — и всё это всего в 3,2 км
-                            от пляжа Hikkaduwa Beach.
-                        </p>
-
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Полностью оборудованная кухня (газ, холодильник, микроволновка)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Оптоволоконный высокоскоростной Wi-Fi</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кондиционер и потолочные вентиляторы</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> BBQ-гриль и обеденная зона на свежем воздухе</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Массажный кабинет (бесплатное использование)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Тропический сад с фруктовыми деревьями</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Дежурный смотритель на территории</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Ланкийский завтрак и блюда по запросу</div>
-                        </div>
-
+                        <p class="vcf-desc"> Просторная вилла с 3 спальнями, утопающая в пышном тропическом саду в Хиккадуве, идеально подходящая для семей, групп и длительного проживания. В огромном заднем саду растут авокадо, водяное яблоко, банановые и рамбутановые деревья, по территории свободно гуляют павлины, птицы и белки. Наслаждайтесь зоной барбекю, обедами на свежем воздухе, личным массажным кабинетом и услугами дежурного смотрителя — и всё это всего в 3,2 км от пляжа Hikkaduwa Beach. </p>
                         <div class="vcf-pills">
-                            <span class="vcf-pill">🌿 Тропический сад</span>
+                            <span class="vcf-pill">✓ Полностью оборудованная кухня (газ, холодильник, микроволновка)</span>
+                            <span class="vcf-pill">✓ Оптоволоконный высокоскоростной Wi-Fi</span>
+                            <span class="vcf-pill">✓ Кондиционер и потолочные вентиляторы</span>
+                            <span class="vcf-pill">✓ BBQ-гриль и обеденная зона на свежем воздухе</span>
+                            <span class="vcf-pill">✓ Массажный кабинет (бесплатное использование)</span>
+                            <span class="vcf-pill">✓ Тропический сад с фруктовыми деревьями</span>
+                            <span class="vcf-pill">✓ Дежурный смотритель на территории</span>
+                            <span class="vcf-pill">✓ Ланкийский завтрак и блюда по запросу</span>
                             <span class="vcf-pill">🏖 3,2 км до пляжа</span>
-                            <span class="vcf-pill">🍍 Фруктовые деревья</span>
-                            <span class="vcf-pill">🔥 BBQ-гриль</span>
-                            <span class="vcf-pill">💆 Массажный кабинет</span>
                             <span class="vcf-pill">👨‍👩‍👧 Семейный отдых</span>
                         </div>
                     </div>
-
                     <div class="vcf-actions">
                         <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хочу%20забронировать%20Sterrling%20Villa."
                             class="vcf-btn-primary" target="_blank"
@@ -1189,19 +1409,45 @@
                             Посмотреть на Airbnb
                         </a>
                     </div>
+                    <a class="vcf-maplink" href="#villas-locations">Посмотреть на карте ↓</a>
+                </div>
+            </div>>
 
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Sterrling+Villa,+Hikkaduwa,+Sri+Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="villa-card-full" id="villa-one-64">
+                <div class="vcf-header">
+                    <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Пляжная вилла</div>
+                    <div class="vcf-header-row">
+                        <div class="vcf-header-main">
+                            <h2>Villa One 64 Beachfront — Пляжный дом с 5 спальнями для больших групп в Хиккадуве</h2>
+                            <p class="vcf-location">📍 Хиккадува, район Галле · Прямой выход к пляжу</p>
+                            <div class="vcf-meta">
+                                <div class="vcf-meta-item">👥 До 10 гостей</div>
+                                <div class="vcf-meta-item">🛏 5 спален</div>
+                                <div class="vcf-meta-item">🛁 5 ванных комнат</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="villa-card-full" id="villa-one-64">
-
-                <!-- Gallery -->
                 <div class="vcf-gallery">
+                    <div class="vcf-mosaic">
+                        <img class="vcf-cover" data-i="0" src="assets/images/villa-one-64/webp/beach_view_2.webp"
+                            alt="Потрясающий закат над морем и пляжный сад виллы One 64 Beachfront" width="1600" height="1200" loading="lazy" decoding="async">
+                        <div class="vcf-thumbs">
+                            <img class="vcf-thumb" data-i="1" src="assets/images/villa-one-64/webp/beach_view_1.webp"
+                                alt="Villa One 64 Beachfront — частный выход к нетронутому пляжу в Хиккадуве" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="2" src="assets/images/villa-one-64/webp/villa_exterior_1.webp"
+                                alt="Внешний вид виллы One 64 Beachfront с тропическим садом и прямым выходом к пляжу" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="3" src="assets/images/villa-one-64/webp/garden_1.webp"
+                                alt="Сад виллы One 64 с кокосовыми пальмами, шезлонгами и видом на океан" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="4" src="assets/images/villa-one-64/webp/garden_2.webp"
+                                alt="Пляжный сад с шезлонгами и зонтиками на вилле One 64" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="5" src="assets/images/villa-one-64/webp/living_room_1.webp"
+                                alt="Просторная гостиная виллы One 64 с видом на море" width="1600" height="1200" loading="lazy" decoding="async">
+                            <img class="vcf-thumb" data-i="6" src="assets/images/villa-one-64/webp/bedroom_1.webp"
+                                alt="Кондиционированный номер виллы One 64 с частной ванной" width="1600" height="1200" loading="lazy" decoding="async">
+                            <div class="vcf-more">+5 фото</div>
+                        </div>
+                    </div>
                     <div class="vcf-slides" id="slides-villa-one-64">
                         <img src="assets/images/villa-one-64/webp/beach_view_2.webp"
                             alt="Потрясающий закат над морем и пляжный сад виллы One 64 Beachfront"
@@ -1252,50 +1498,24 @@
                     </div>
                     <div class="vcf-count" id="count-villa-one-64">1 / 12</div>
                 </div>
-
-                <!-- Body -->
                 <div class="vcf-body">
                     <div>
-                        <div class="vcf-badge" style="background:#e0f7fa;color:#006064;">🌊 Пляжная вилла</div>
-                        <h2>Villa One 64 Beachfront — Пляжный дом с 5 спальнями для больших групп в Хиккадуве</h2>
-                        <p class="vcf-location">📍 Хиккадува, район Галле · Прямой выход к пляжу</p>
-
-                        <div class="vcf-meta">
-                            <div class="vcf-meta-item">👥 До 10 гостей</div>
-                            <div class="vcf-meta-item">🛏 5 спален</div>
-                            <div class="vcf-meta-item">🛁 5 ванных комнат</div>
-                        </div>
-
-                        <p class="vcf-desc">
-                            Потрясающая пляжная вилла с 5 спальнями, расположенная прямо у нетронутого частного пляжа в
-                            Хиккадуве. На двух этажах все 5 кондиционированных номеров имеют частные ванные комнаты, а
-                            большинство из них предлагают зоны отдыха с видом на море. С двумя полностью оснащёнными
-                            кухнями, мангалом, шезлонгами и садом с кокосовыми пальмами у океана — идеально для семей
-                            и больших групп, ищущих роскошный пляжный отдых. Любуйтесь захватывающими закатами с
-                            собственного частного пляжа, с живописным рыболовным портом, видимым из сада.
-                        </p>
-
-                        <div class="vcf-amenities">
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Прямой частный выход к пляжу</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> 2 полностью оснащённые кухни (по одной на каждом этаже)</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Кондиционер и потолочные вентиляторы во всех номерах</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Мангал и площадка для обедов на свежем воздухе</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Шезлонги и зонтики в пляжном саду</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Высокоскоростной Wi-Fi по всей вилле</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> 5 частных ванных комнат</div>
-                            <div class="vcf-amenity"><span class="vcf-amenity-icon">✔</span> Шри-ланкийский завтрак по запросу</div>
-                        </div>
-
+                        <p class="vcf-desc"> Потрясающая пляжная вилла с 5 спальнями, расположенная прямо у нетронутого частного пляжа в Хиккадуве. На двух этажах все 5 кондиционированных номеров имеют частные ванные комнаты, а большинство из них предлагают зоны отдыха с видом на море. С двумя полностью оснащёнными кухнями, мангалом, шезлонгами и садом с кокосовыми пальмами у океана — идеально для семей и больших групп, ищущих роскошный пляжный отдых. Любуйтесь захватывающими закатами с собственного частного пляжа, с живописным рыболовным портом, видимым из сада. </p>
                         <div class="vcf-pills">
-                            <span class="vcf-pill">🌊 Пляжная локация</span>
+                            <span class="vcf-pill">✓ Прямой частный выход к пляжу</span>
+                            <span class="vcf-pill">✓ 2 полностью оснащённые кухни (по одной на каждом этаже)</span>
+                            <span class="vcf-pill">✓ Кондиционер и потолочные вентиляторы во всех номерах</span>
+                            <span class="vcf-pill">✓ Мангал и площадка для обедов на свежем воздухе</span>
+                            <span class="vcf-pill">✓ Шезлонги и зонтики в пляжном саду</span>
+                            <span class="vcf-pill">✓ Высокоскоростной Wi-Fi по всей вилле</span>
+                            <span class="vcf-pill">✓ 5 частных ванных комнат</span>
+                            <span class="vcf-pill">✓ Шри-ланкийский завтрак по запросу</span>
                             <span class="vcf-pill">🌅 Закаты</span>
-                            <span class="vcf-pill">🔥 Мангал</span>
                             <span class="vcf-pill">🏄 Близко к серфингу</span>
                             <span class="vcf-pill">👨‍👩‍👧 Семейный отдых</span>
                             <span class="vcf-pill">⭐ Оценка 5,0</span>
                         </div>
                     </div>
-
                     <div class="vcf-actions">
                         <a href="https://wa.me/94710630867?text=Здравствуйте,%20я%20хотел%20бы%20забронировать%20Villa%20One%2064."
                             class="vcf-btn-primary" target="_blank"
@@ -1307,19 +1527,23 @@
                             Посмотреть на Airbnb
                         </a>
                     </div>
-
-                    <div class="vcf-map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=6.107156,80.125062&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    <a class="vcf-maplink" href="#villas-locations">Посмотреть на карте ↓</a>
                 </div>
-            </div>
+            </div>>
 
         </div>
     </section>
 
 
+
+    <!-- Shared villa locations map -->
+    <section class="villas-maps" id="villas-locations">
+        <div class="container">
+            <h2>Где находятся наши виллы</h2>
+            <p class="section-subtitle">Все пять вилл расположены рядом с пляжами и лагунами Хиккадувы и Ратгамы.</p>
+            <div id="villas-map"></div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -1385,6 +1609,17 @@
         </div>
     </div>
 
+    <!-- Shared photo lightbox (one instance for all villa cards) -->
+    <div class="vcf-lightbox" id="vcfLightbox" role="dialog" aria-modal="true" aria-label="Фотогалерея виллы" hidden>
+        <button class="vcf-lb-close" id="vcfLbClose" type="button" aria-label="Закрыть галерею">&times;</button>
+        <button class="vcf-lb-nav prev" id="vcfLbPrev" type="button" aria-label="Предыдущее фото">&#10094;</button>
+        <figure class="vcf-lb-stage">
+            <img id="vcfLbImg" src="" alt="">
+            <figcaption class="vcf-lb-count" id="vcfLbCount"></figcaption>
+        </figure>
+        <button class="vcf-lb-nav next" id="vcfLbNext" type="button" aria-label="Следующее фото">&#10095;</button>
+    </div>
+
     <script>
         function toggleMobileNav() {
             const nav = document.getElementById('navWrapper');
@@ -1435,6 +1670,83 @@
             });
         });
 
+        // ── Shared photo lightbox ──
+        const mqDesktop = window.matchMedia('(min-width: 901px)');
+        const lb = document.getElementById('vcfLightbox');
+        const lbImg = document.getElementById('vcfLbImg');
+        const lbCount = document.getElementById('vcfLbCount');
+        const lbClose = document.getElementById('vcfLbClose');
+        const lbPrev = document.getElementById('vcfLbPrev');
+        const lbNext = document.getElementById('vcfLbNext');
+        let lbPhotos = [];
+        let lbIndex = 0;
+        let lbLastFocus = null;
+
+        function lbRender() {
+            const p = lbPhotos[lbIndex];
+            if (!p) return;
+            lbImg.src = p.src;
+            lbImg.alt = p.alt || '';
+            lbCount.textContent = `${lbIndex + 1} / ${lbPhotos.length}`;
+        }
+        function lbOpen(photos, start, trigger) {
+            if (!photos.length) return;
+            lbPhotos = photos;
+            lbIndex = start;
+            lbLastFocus = trigger || document.activeElement;
+            lb.hidden = false;
+            document.body.style.overflow = 'hidden';
+            lbRender();
+            lbClose.focus();
+            document.addEventListener('keydown', lbOnKey);
+        }
+        function lbCloseFn() {
+            lb.hidden = true;
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', lbOnKey);
+            if (lbLastFocus && typeof lbLastFocus.focus === 'function') lbLastFocus.focus();
+        }
+        function lbGo(dir) {
+            lbIndex = (lbIndex + dir + lbPhotos.length) % lbPhotos.length;
+            lbRender();
+        }
+        function lbOnKey(e) {
+            if (e.key === 'Escape') { lbCloseFn(); }
+            else if (e.key === 'ArrowRight') { lbGo(1); }
+            else if (e.key === 'ArrowLeft') { lbGo(-1); }
+            else if (e.key === 'Tab') {
+                // Trap focus within the dialog's controls
+                const f = [lbClose, lbPrev, lbNext];
+                const i = f.indexOf(document.activeElement);
+                if (e.shiftKey) {
+                    if (i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+                } else {
+                    if (i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+                }
+            }
+        }
+        if (lb) {
+            lbClose.addEventListener('click', lbCloseFn);
+            lbNext.addEventListener('click', () => lbGo(1));
+            lbPrev.addEventListener('click', () => lbGo(-1));
+            lb.addEventListener('click', (e) => { if (e.target === lb) lbCloseFn(); });
+        }
+
+        // Desktop mosaic: clicking the cover, a thumbnail, or the "+N" overlay opens the
+        // lightbox at that image. The full photo list comes from the (hidden) carousel slides.
+        document.querySelectorAll('.villa-card-full').forEach(card => {
+            const slides = [...card.querySelectorAll('.vcf-slides .vcf-slide')];
+            const photos = slides.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
+            const mosaic = card.querySelector('.vcf-mosaic');
+            if (!mosaic || !photos.length) return;
+            mosaic.addEventListener('click', (e) => {
+                const el = e.target.closest('.vcf-cover, .vcf-thumb');
+                if (!el) return;
+                const index = parseInt(el.dataset.i || '0', 10);
+                lbOpen(photos, index, el);
+            });
+        });
+
         // WA float
         const waToggle = document.getElementById('waToggle');
         const waChat = document.getElementById('waChat');
@@ -1443,6 +1755,10 @@
         waToggle.addEventListener('click', () => { waChat.style.display = 'flex'; waBadge.style.display = 'none'; });
         waClose.addEventListener('click', () => { waChat.style.display = 'none'; });
     </script>
+
+    <!-- Shared villas map (Leaflet) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="js/villas-map.js" defer></script>
 
 </body>
 
