@@ -74,7 +74,7 @@
           "item": {
             "@type": "Offer",
             "name": "Long-Stay Benefits — 28+ Nights",
-            "description": "Monthly accommodation discount on stays of 28 nights or more at our Hikkaduwa and Rathgama villas, plus one complimentary guided experience for up to 2 guests and 10% off one airport shuttle. From 42 nights, also 10% off one cinnamon experience.",
+            "description": "Monthly accommodation discount on stays of 28 nights or more at our Hikkaduwa and Rathgama villas, plus complimentary guided kayaking on Rathgama Lagoon for up to 2 guests and 10% off one airport shuttle. From 42 nights, also 10% off one cinnamon experience.",
             "url": "https://eranorrissrilanka.com/offers.html#long-stay",
             "category": "Long-stay monthly discount",
             "eligibleDuration": {"@type": "QuantitativeValue", "minValue": 28, "unitCode": "DAY"},
@@ -149,6 +149,75 @@
     <link rel="preload" as="image" href="assets/images/hero/webp/serene-luxe-villa-veranda-evening.webp">
 
     <style>
+        /* ── Programme overview cards — scannable summary above the detail sections ── */
+        .offer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 36px auto 0;
+        }
+
+        .offer-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #e8edf2;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 30px rgba(11, 60, 93, 0.07);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(11, 60, 93, 0.14);
+        }
+
+        /* Small square accent, not a cover image */
+        .offer-card img {
+            width: 72px;
+            height: 72px;
+            flex: 0 0 auto;
+            border-radius: 12px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .offer-card-body {
+            min-width: 0;
+        }
+
+        .offer-card h3 {
+            margin: 0 0 5px;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            line-height: 1.25;
+            color: #0f172a;
+        }
+
+        .offer-card p {
+            margin: 0 0 10px;
+            max-width: none;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: #5b6b7a;
+        }
+
+        .offer-card-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #0b3c5d;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .offer-card-link:hover {
+            text-decoration: underline;
+        }
+
         /* ── Offers page — governing rule box ── */
         .offers-rule {
             max-width: 800px;
@@ -310,6 +379,49 @@
                     width="1600" height="1067" loading="eager" fetchpriority="high">
             </figure>
 
+            <div class="offer-cards">
+                <div class="offer-card">
+                    <img src="assets/images/kayak/webp/couple-kayaking-orange-lifejackets-peaceful-green-shore.webp"
+                        alt="Two guests kayaking on Rathgama Lagoon, the complimentary experience for long stays"
+                        width="1280" height="960" loading="lazy" decoding="async">
+                    <div class="offer-card-body">
+                        <h3>Long-Stay Benefits</h3>
+                        <p>28+ nights: monthly rate, a free guided experience and 10% off an airport shuttle.</p>
+                        <a class="offer-card-link" href="#long-stay">See details →</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="assets/images/hero/webp/king-coconuts-welcome-drink.webp"
+                        alt="King coconut welcome drinks prepared for arriving guests"
+                        width="1600" height="1147" loading="lazy" decoding="async">
+                    <div class="offer-card-body">
+                        <h3>Referral Programme</h3>
+                        <p>5% off for the friend you send us, and 5% off a future stay for you.</p>
+                        <a class="offer-card-link" href="#referral">See details →</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="assets/images/kayak/webp/golden-sunset-rathgama-lagoon-calm-reflections.webp"
+                        alt="Golden sunset over the calm water of Rathgama Lagoon in the off-season"
+                        width="960" height="1280" loading="lazy" decoding="async">
+                    <div class="offer-card-body">
+                        <h3>Seasonal Loyalty Reward</h3>
+                        <p>A long off-season stay earns 10% off a shorter peak-season visit.</p>
+                        <a class="offer-card-link" href="#seasonal">See details →</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="assets/images/hero/webp/birdsong-villa-garden-blue-seating.webp"
+                        alt="Blue garden seating in the shade at Birdsong Villa, waiting for returning guests"
+                        width="1600" height="1200" loading="lazy" decoding="async">
+                    <div class="offer-card-body">
+                        <h3>Return-Guest Discount</h3>
+                        <p>5% off whenever you come back — the one discount that stacks with any other.</p>
+                        <a class="offer-card-link" href="#return-guest">See details →</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="offers-rule">
                 <h2>How our discounts combine</h2>
                 <p style="max-width:none; margin-bottom:0;">
@@ -346,10 +458,10 @@
                     <ul>
                         <li>Our standard <strong>monthly accommodation discount</strong> on the nightly rate.</li>
                         <li>
-                            <strong>One complimentary guided experience.</strong> At Birdsong Villa, guided
-                            kayaking on Rathgama Lagoon for up to 2 guests. At Villa Serene Luxe, guided
-                            kayaking on Rathgama Lagoon for up to 2 guests
-                            <em>[TODO: confirm Serene Luxe experience]</em>.
+                            <strong>One complimentary guided experience.</strong> At both Birdsong Villa and
+                            Villa Serene Luxe, this is guided kayaking on Rathgama Lagoon for up to 2 guests —
+                            a 50 m walk from Birdsong, and with transport to the lagoon included from Serene
+                            Luxe. See <a href="experiences.html#kayaking">lagoon kayaking</a>.
                         </li>
                         <li><strong>10% off one airport shuttle</strong> — arrival or departure, your choice.</li>
                     </ul>

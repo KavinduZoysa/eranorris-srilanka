@@ -1,0 +1,5 @@
+# macOS Finder metadata
+.DS_Store
+
+# Oversized intermediate exports — publish webp under <album>/webp/ instead
+size_reduced_images/
