@@ -711,6 +711,10 @@
                 font-size: 1.8rem;
             }
 
+            .vcf-price-col {
+                align-items: flex-start;
+            }
+
             .vcf-price-block {
                 margin-left: 0;
                 text-align: left;
@@ -843,6 +847,174 @@
                 right: 8px;
             }
         }
+
+        /* Price tag + optional offer button, stacked so the button never crowds the price */
+        .vcf-price-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        /* Secondary CTA — same button family as the booking buttons, deliberately quieter */
+        .vcf-btn-offer {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border: 1.5px solid #e0cb95;
+            border-radius: 999px;
+            background: #fdf8ed;
+            color: #6d5312;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background 0.25s, border-color 0.25s, transform 0.2s;
+        }
+
+        .vcf-btn-offer span {
+            color: #C89B3C;
+        }
+
+        .vcf-btn-offer:hover {
+            background: #f8eed5;
+            border-color: #C89B3C;
+            transform: translateY(-1px);
+        }
+
+        .vcf-btn-offer:focus-visible {
+            outline: 2px solid #0b3c5d;
+            outline-offset: 2px;
+        }
+
+        /* ── Shared offer modal — same overlay/close mechanics as the photo lightbox ── */
+        .villa-offer-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 60, 93, 0.72);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .villa-offer-modal[hidden] {
+            display: none;
+        }
+
+        .vom-panel {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            max-height: 85vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 28px 26px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .vom-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background: #eef5fa;
+            color: #0b3c5d;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .vom-close:hover {
+            background: #d9e8f3;
+        }
+
+        .vom-close:focus-visible,
+        .vom-link:focus-visible {
+            outline: 2px solid #0b3c5d;
+            outline-offset: 2px;
+        }
+
+        .vom-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            line-height: 1.25;
+            color: #0f172a;
+            margin: 0 30px 14px 0;
+        }
+
+        .vom-hook {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0b3c5d;
+            margin: 0 0 14px;
+        }
+
+        .vom-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .vom-list li {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: #374151;
+            margin-bottom: 9px;
+        }
+
+        .vom-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .vom-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e8edf2;
+            width: 100%;
+            font-size: 0.87rem;
+            font-weight: 600;
+            color: #0b3c5d;
+            text-decoration: none;
+        }
+
+        .vom-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .villa-offer-modal {
+                padding: 14px;
+            }
+
+            .vom-panel {
+                max-height: 88vh;
+                padding: 26px 20px 22px;
+            }
+
+            .vom-title {
+                font-size: 1.15rem;
+            }
+
+            /* Long localised labels may wrap rather than overflow the card */
+            .vcf-btn-offer {
+                white-space: normal;
+                text-align: left;
+            }
+        }
     </style>
 </head>
 
@@ -862,6 +1034,7 @@
                 <a href="index-ru.html" onclick="closeMobileNav()">Главная</a>
                 <a href="villas-ru.html" class="active" onclick="closeMobileNav()">Виллы</a>
                 <a href="experiences-ru.html" onclick="closeMobileNav()">Впечатления</a>
+                <a href="offers-ru.html" onclick="closeMobileNav()">Акции</a>
                 <a href="guide-ru.html" onclick="closeMobileNav()">Путеводитель</a>
                 <a href="about-ru.html" onclick="closeMobileNav()">О нас</a>
                 <a href="gallery-ru.html" onclick="closeMobileNav()">Галерея</a>
@@ -902,9 +1075,26 @@
                                 <div class="vcf-meta-item">🛁 1 ванная комната</div>
                             </div>
                         </div>
-                        <div class="vcf-price-block"> <div class="vcf-price">USD 32</div> <div class="vcf-price-sub">за ночь</div> </div>
+                        <div class="vcf-price-col">
+                            <div class="vcf-price-block"> <div class="vcf-price">USD 32</div> <div class="vcf-price-sub">за ночь</div> </div>
+                            <button class="vcf-btn-offer" type="button"
+                                data-offer-title="Villa Serene Luxe — скидки за длительное проживание">
+                                <span aria-hidden="true">✦</span> Скидки от 28 ночей
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Offer summary shown in the shared offer modal -->
+                <template class="villa-offer-tpl">
+                    <p class="vom-hook">От 28 ночей стоимость ночи снижается до месячной цены.</p>
+                    <ul class="vom-list">
+                        <li>Бесплатный <strong>каякинг по лагуне Ратгама</strong> с гидом для двух гостей —
+                            трансфер до лагуны включён.</li>
+                        <li><strong>Скидка 10% на трансфер из аэропорта</strong> — по прилёте или перед вылетом.</li>
+                        <li>От 42 ночей — дополнительно <strong>скидка 10% на экскурсию с корицей</strong>.</li>
+                    </ul>
+                </template>
                 <div class="vcf-gallery">
                     <div class="vcf-mosaic">
                         <img class="vcf-cover" data-i="0" src="assets/images/serene-luxe/webp/private-villa-veranda-white-pillars-tropical-garden-dusk.webp"
@@ -1016,9 +1206,26 @@
                                 <div class="vcf-meta-item">🛁 1 ванная комната</div>
                             </div>
                         </div>
-                        <div class="vcf-price-block"> <div class="vcf-price">USD 18</div> <div class="vcf-price-sub">за ночь</div> </div>
+                        <div class="vcf-price-col">
+                            <div class="vcf-price-block"> <div class="vcf-price">USD 18</div> <div class="vcf-price-sub">за ночь</div> </div>
+                            <button class="vcf-btn-offer" type="button"
+                                data-offer-title="Birdsong Villa — скидки за длительное проживание">
+                                <span aria-hidden="true">✦</span> Скидки от 28 ночей
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Offer summary shown in the shared offer modal -->
+                <template class="villa-offer-tpl">
+                    <p class="vom-hook">От 28 ночей стоимость ночи снижается до месячной цены.</p>
+                    <ul class="vom-list">
+                        <li>Бесплатный <strong>каякинг по лагуне Ратгама</strong> с гидом для двух гостей —
+                            до лагуны 50 м пешком.</li>
+                        <li><strong>Скидка 10% на трансфер из аэропорта</strong> — по прилёте или перед вылетом.</li>
+                        <li>От 42 ночей — дополнительно <strong>скидка 10% на экскурсию с корицей</strong>.</li>
+                    </ul>
+                </template>
                 <div class="vcf-gallery">
                     <div class="vcf-mosaic">
                         <img class="vcf-cover" data-i="0" src="assets/images/birdsong/webp/birdsong-villa-aerial-garden-path.webp"
@@ -1426,6 +1633,7 @@
                                 <div class="vcf-meta-item">🛁 5 ванных комнат</div>
                             </div>
                         </div>
+                        <div class="vcf-price-block"> <div class="vcf-price">USD 90</div> <div class="vcf-price-sub">за ночь</div> </div>
                     </div>
                 </div>
                 <div class="vcf-gallery">
@@ -1557,6 +1765,7 @@
                 <h4>Исследовать</h4>
                 <a href="villas-ru.html">Виллы</a>
                 <a href="experiences-ru.html">Впечатления</a>
+                <a href="offers-ru.html">Акции</a>
                 <a href="guide-ru.html">Путеводитель</a>
                 <a href="about-ru.html">О нас</a>
                 <a href="gallery-ru.html">Галерея</a>
@@ -1618,6 +1827,17 @@
             <figcaption class="vcf-lb-count" id="vcfLbCount"></figcaption>
         </figure>
         <button class="vcf-lb-nav next" id="vcfLbNext" type="button" aria-label="Следующее фото">&#10095;</button>
+    </div>
+
+    <!-- Shared offer modal (one instance; content comes from each card's template) -->
+    <div class="villa-offer-modal" id="villaOfferModal" role="dialog" aria-modal="true"
+        aria-labelledby="villaOfferTitle" hidden>
+        <div class="vom-panel">
+            <button class="vom-close" id="villaOfferClose" type="button" aria-label="Закрыть акции">&times;</button>
+            <h3 class="vom-title" id="villaOfferTitle"></h3>
+            <div id="villaOfferBody"></div>
+            <a class="vom-link" id="villaOfferLink" href="offers-ru.html">Все условия и акции →</a>
+        </div>
     </div>
 
     <script>
@@ -1746,6 +1966,63 @@
                 lbOpen(photos, index, el);
             });
         });
+
+        // ── Shared offer modal — mirrors the lightbox open/close, Esc and focus handling ──
+        const om = document.getElementById('villaOfferModal');
+        const omTitle = document.getElementById('villaOfferTitle');
+        const omBody = document.getElementById('villaOfferBody');
+        const omClose = document.getElementById('villaOfferClose');
+        const omLink = document.getElementById('villaOfferLink');
+        let omLastFocus = null;
+
+        function omFocusable() {
+            // Close button, any link in the injected summary, then the offers-page link
+            return [omClose, ...omBody.querySelectorAll('a[href]'), omLink];
+        }
+        function omOpen(title, html, trigger) {
+            omTitle.textContent = title;
+            omBody.innerHTML = html;
+            omLastFocus = trigger || document.activeElement;
+            om.hidden = false;
+            document.body.style.overflow = 'hidden';
+            omClose.focus();
+            document.addEventListener('keydown', omOnKey);
+        }
+        function omCloseFn() {
+            om.hidden = true;
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', omOnKey);
+            if (omLastFocus && typeof omLastFocus.focus === 'function') omLastFocus.focus();
+        }
+        function omOnKey(e) {
+            if (e.key === 'Escape') { omCloseFn(); return; }
+            if (e.key !== 'Tab') return;
+            // Trap focus within the dialog
+            const f = omFocusable();
+            const i = f.indexOf(document.activeElement);
+            if (e.shiftKey) {
+                if (i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+            } else {
+                if (i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+            }
+        }
+        if (om) {
+            omClose.addEventListener('click', omCloseFn);
+            om.addEventListener('click', (e) => { if (e.target === om) omCloseFn(); });
+
+            document.querySelectorAll('.vcf-btn-offer').forEach(btn => {
+                const card = btn.closest('.villa-card-full');
+                const tpl = card && card.querySelector('.villa-offer-tpl');
+                if (!tpl) return;
+                btn.addEventListener('click', () => {
+                    omOpen(btn.dataset.offerTitle || 'Offers', tpl.innerHTML, btn);
+                    gtag('event', 'offer_modal_open', {
+                        'event_category': 'engagement',
+                        'event_label': card.id
+                    });
+                });
+            });
+        }
 
         // WA float
         const waToggle = document.getElementById('waToggle');
