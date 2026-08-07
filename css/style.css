@@ -1085,36 +1085,6 @@ p {
     align-items: flex-end;
 }
 
-.lang-switch {
-    margin-top: 10px;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.lang-switch a {
-    text-decoration: none;
-    font-weight: 500;
-    color: white;
-    margin-left: 0px;
-    font-size: 0.65rem;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-    opacity: 0.6;
-}
-
-.lang-switch a.active {
-    opacity: 1;
-    font-weight: 700;
-    text-decoration: underline;
-}
-
-.lang-switch .sep {
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-}
 
 /* EXPERIENCE SLIDER */
 .exp-image {
@@ -1594,64 +1564,6 @@ p {
 
     h3 {
         font-size: 1.25rem;
-    }
-
-    /* --- Navbar --- */
-    .navbar {
-        padding: 14px 20px;
-        flex-wrap: nowrap;
-        position: relative;
-    }
-
-    .logo {
-        font-size: 1.1rem;
-        white-space: normal;
-        flex: 1;
-    }
-
-    /* Show hamburger on mobile */
-    .hamburger {
-        display: flex;
-    }
-
-    /* Hide nav wrapper by default on mobile */
-    .nav-wrapper {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 260px;
-        background: #0B3C5D;
-        z-index: 1000;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 80px 30px 30px;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-wrapper.open {
-        display: flex;
-    }
-
-    .nav-wrapper nav {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 0;
-    }
-
-    .nav-wrapper nav a {
-        margin-left: 0;
-        padding: 12px 0;
-        font-size: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        display: block;
-    }
-
-    .lang-switch {
-        margin-top: 20px;
     }
 
     /* --- Container --- */
@@ -2175,7 +2087,7 @@ p {
    breakpoint and full desktop width, so tighten the logo and link spacing
    across that range only.
    ============================ */
-@media (min-width: 769px) and (max-width: 1300px) {
+@media (min-width: 821px) and (max-width: 1300px) {
     .navbar {
         padding: 24px 26px;
     }
@@ -2190,7 +2102,7 @@ p {
     }
 }
 
-@media (min-width: 769px) and (max-width: 1100px) {
+@media (min-width: 821px) and (max-width: 1100px) {
     .navbar {
         padding: 20px 18px;
     }
@@ -2202,5 +2114,215 @@ p {
     .navbar a {
         margin-left: 10px;
         font-size: 0.84rem;
+    }
+}
+
+/* Just above the hamburger breakpoint the longest language (RU) still needs
+   the logo to give way, so the seven links stay on one row down to 821px. */
+@media (min-width: 821px) and (max-width: 900px) {
+    .navbar {
+        padding: 18px 16px;
+    }
+
+    .logo {
+        font-size: 1.05rem;
+    }
+
+    .navbar a {
+        margin-left: 8px;
+        font-size: 0.78rem;
+    }
+}
+
+/* ============================
+   LANGUAGE DROPDOWN
+   ----------------------------
+   Replaces the inline "EN | DE | RU" links with one compact control.
+   Selectors are scoped under .navbar so they beat the generic `.navbar a`
+   rule regardless of source order.
+   ============================ */
+.lang-dd {
+    position: relative;
+    margin-top: 10px;
+}
+
+.navbar .lang-dd-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 5px 11px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.navbar .lang-dd-toggle:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.42);
+}
+
+.navbar .lang-dd-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.lang-dd-globe {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+}
+
+.lang-dd-chev {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 auto;
+    opacity: 0.85;
+    transition: transform 0.2s ease;
+}
+
+.lang-dd.open .lang-dd-chev {
+    transform: rotate(180deg);
+}
+
+.lang-dd-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 158px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #0B3C5D;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+    z-index: 1100;
+}
+
+.lang-dd-menu[hidden] {
+    display: none;
+}
+
+.navbar .lang-dd-menu a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.82rem;
+    letter-spacing: 0;
+    text-decoration: none;
+    opacity: 0.72;
+    transition: background 0.18s, opacity 0.18s;
+}
+
+.navbar .lang-dd-menu a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 1;
+}
+
+.navbar .lang-dd-menu a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    opacity: 1;
+}
+
+.navbar .lang-dd-menu a.active {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    opacity: 1;
+}
+
+.lang-dd-code {
+    min-width: 21px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+}
+
+/* ============================
+   NAVBAR — COLLAPSE TO HAMBURGER (≤ 820px)
+   ----------------------------
+   Seven links plus the language control stop fitting on one row below this
+   width in the longest language, so the inline nav becomes a drawer.
+   ============================ */
+@media (max-width: 820px) {
+    .navbar {
+        padding: 14px 20px;
+        flex-wrap: nowrap;
+        position: relative;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+        white-space: normal;
+        flex: 1;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-wrapper {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 260px;
+        background: #0B3C5D;
+        z-index: 1000;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 80px 30px 30px;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+    }
+
+    .nav-wrapper.open {
+        display: flex;
+    }
+
+    .nav-wrapper nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .nav-wrapper nav a {
+        margin-left: 0;
+        padding: 12px 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+    }
+
+    /* In the drawer the dropdown expands inline instead of floating */
+    .nav-wrapper .lang-dd {
+        width: 100%;
+        margin-top: 18px;
+    }
+
+    .nav-wrapper .lang-dd-menu {
+        position: static;
+        width: 100%;
+        min-width: 0;
+        margin-top: 8px;
+        box-shadow: none;
     }
 }

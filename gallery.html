@@ -70,12 +70,13 @@
 
 <body>
 
-    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 
     <header class="navbar">
         <div class="logo">Eranorris Villas &amp; Experiences</div>
 
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">
+        <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu"
+            aria-expanded="false" aria-controls="navWrapper">
             <span></span>
             <span></span>
             <span></span>
@@ -92,8 +93,41 @@
                 <a href="gallery.html" class="active" onclick="closeMobileNav()">Gallery</a>
             </nav>
 
-            <div class="lang-switch">
-                <a href="gallery.html" class="active">EN</a><span class="sep">|</span><a href="gallery-de.html">DE</a><span class="sep">|</span><a href="gallery-ru.html">RU</a>
+            <div class="lang-dd" id="langDd">
+                <button class="lang-dd-toggle" id="langDdToggle" type="button"
+                    aria-label="Change language" aria-haspopup="true" aria-expanded="false"
+                    aria-controls="langDdMenu">
+                    <svg class="lang-dd-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M3 12h18M12 3c2.6 3.2 2.6 14.8 0 18M12 3c-2.6 3.2-2.6 14.8 0 18" />
+                    </svg>
+                    <span class="lang-dd-current">EN</span>
+                    <svg class="lang-dd-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M2 4.5l4 4 4-4" />
+                    </svg>
+                </button>
+                <ul class="lang-dd-menu" id="langDdMenu" role="menu" hidden>
+                    <li role="none">
+                        <a role="menuitem" href="gallery.html" class="active" aria-current="true"
+                            onclick="localStorage.setItem('siteLang','en')">
+                            <span class="lang-dd-code">EN</span> English
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="gallery-de.html"
+                            onclick="localStorage.setItem('siteLang','de')">
+                            <span class="lang-dd-code">DE</span> Deutsch
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="gallery-ru.html"
+                            onclick="localStorage.setItem('siteLang','ru')">
+                            <span class="lang-dd-code">RU</span> Русский
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
@@ -671,21 +705,6 @@
     </footer>
 
     <script>
-        function toggleMobileNav() {
-            const nav = document.getElementById('navWrapper');
-            const ham = document.getElementById('hamburger');
-            const overlay = document.getElementById('mobileOverlay');
-            nav.classList.toggle('open');
-            ham.classList.toggle('open');
-            overlay.classList.toggle('open');
-            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-        }
-        function closeMobileNav() {
-            document.getElementById('navWrapper').classList.remove('open');
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
 
         // ── Gallery Filter ──
         document.addEventListener('DOMContentLoaded', () => {
@@ -712,6 +731,7 @@
         });
     </script>
 
+    <script src="js/nav.js" defer></script>
 </body>
 
 </html>
