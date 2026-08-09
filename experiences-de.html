@@ -178,6 +178,7 @@
             margin-bottom: 56px;
             display: flex;
             flex-direction: row;
+            align-items: flex-start;
             min-height: 460px;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             scroll-margin-top: 80px;
@@ -202,6 +203,7 @@
         }
 
         .ecf-slides {
+            display: none;
             width: 100%;
             height: 100%;
             position: relative;
@@ -220,6 +222,47 @@
         .ecf-slide.active {
             opacity: 1;
         }
+
+        /* Desktop photo mosaic (dedicated images) */
+        .ecf-mosaic { display: flex; flex-direction: column; gap: 8px; }
+        .ecf-cover {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            max-height: 340px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+        .ecf-thumbs {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .ecf-thumb {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            cursor: pointer;
+        }
+        .ecf-more {
+            position: absolute;
+            right: 0; bottom: 0;
+            width: calc((100% - 16px) / 3);
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(11, 60, 93, 0.55);
+            color: #fff; font-size: 0.95rem; font-weight: 600;
+            pointer-events: none; z-index: 2;
+        }
+
+        /* Carousel controls are used on the mobile view only */
+        .ecf-nav, .ecf-dots, .ecf-count { display: none; }
+
 
         .ecf-nav {
             position: absolute;
@@ -520,6 +563,12 @@
                 height: 280px;
             }
 
+            .ecf-mosaic { display: none; }
+            .ecf-slides { display: block; }
+            .ecf-nav,
+            .ecf-dots,
+            .ecf-count { display: flex; }
+
             .ecf-body {
                 padding: 28px 24px;
             }
@@ -553,6 +602,21 @@
                 justify-content: center;
             }
         }
+
+        /* ── Shared photo lightbox ── */
+        .ecf-lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 24px; }
+        .ecf-lightbox[hidden] { display: none; }
+        .ecf-lb-stage { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .ecf-lb-stage img { max-width: 92vw; max-height: 82vh; width: auto; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .ecf-lb-count { color: #fff; font-size: 0.9rem; letter-spacing: 0.02em; }
+        .ecf-lb-close, .ecf-lb-nav { position: absolute; background: rgba(255,255,255,0.12); color: #fff; border: none; border-radius: 50%; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .ecf-lb-close:hover, .ecf-lb-nav:hover { background: rgba(255,255,255,0.28); }
+        .ecf-lb-close:focus-visible, .ecf-lb-nav:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+        .ecf-lb-close { top: 18px; right: 22px; width: 44px; height: 44px; font-size: 28px; line-height: 1; }
+        .ecf-lb-nav { top: 50%; transform: translateY(-50%); width: 48px; height: 48px; font-size: 22px; }
+        .ecf-lb-nav.prev { left: 20px; }
+        .ecf-lb-nav.next { right: 20px; }
+        @media (max-width: 600px) { .ecf-lb-nav { width: 40px; height: 40px; } .ecf-lb-nav.prev { left: 8px; } .ecf-lb-nav.next { right: 8px; } }
     </style>
 </head>
 
@@ -630,6 +694,25 @@
             <!-- ── Experience 1: Cinnamon ── -->
             <div class="exp-card-full" id="cinnamon">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp"
+                            alt="Paar haelt ein Buendel frischer Zimtstangen, Sri Lanka" width="1600" height="2133" loading="eager" fetchpriority="high">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/cinnamon-experience/webp/local-guide-cinnamon-harvesting.webp"
+                                alt="Lokaler Guide erntet Zimt im Zimtgarten, Sri Lanka" width="1600" height="2133" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/cinnamon-experience/webp/cinnamon-processing-tools.webp"
+                                alt="Werkzeuge zur Zimtverarbeitung und frisch geschaelter Zimt auf einem Tisch" width="1600" height="2125" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/cinnamon-experience/webp/tourists-cinnamon-peeling-workshop.webp"
+                                alt="Gaeste beim Zimt-Schael-Workshop auf einer Veranda" width="1600" height="2133" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/cinnamon-experience/webp/guest-carving-cinnamon-stick.webp"
+                                alt="Gast schaelt Zimt von Hand waehrend des Workshops" width="1600" height="2133" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/cinnamon-experience/webp/guest-holding-cinnamon-branches.webp"
+                                alt="Gast haelt frisch geschnittene Zimt-Zweige im Garten" width="1600" height="2133" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="6" src="assets/images/cinnamon-experience/webp/traditional-sri-lankan-lunch.webp"
+                                alt="Traditionelles sri-lankisches Mittagessen mit Reis, Currys und Papaya" width="1600" height="1205" loading="lazy" decoding="async">
+                            <div class="ecf-more">+1 Foto</div>
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-cinnamon">
                         <img src="assets/images/cinnamon-experience/webp/couple-holding-cinnamon-bundle.webp"
                             alt="Paar haelt ein Buendel frischer Zimtstangen, Sri Lanka"
@@ -718,6 +801,22 @@
             <!-- ── Experience 2: Yala Safari ── -->
             <div class="exp-card-full" id="yala" style="flex-direction: row-reverse;">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/yala/webp/elephant2.webp"
+                            alt="Wilde Elefanten im Yala-Nationalpark, Sri Lanka" width="612" height="421" loading="lazy" decoding="async">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/yala/webp/elephant.webp"
+                                alt="Elefanten an einem Wasserloch im Yala-Nationalpark" width="1400" height="1000" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/yala/webp/leapord.webp"
+                                alt="Leopard in freier Wildbahn waehrend einer Safari im Yala-Nationalpark" width="1400" height="1000" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/yala/webp/bear.webp"
+                                alt="Lippenbaer bei einer Safari im Yala-Nationalpark, Sri Lanka" width="1400" height="1000" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/yala/webp/peacock.webp"
+                                alt="Pfau in der Wildnis des Yala-Nationalparks" width="1400" height="1000" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/yala/webp/leapord2.webp"
+                                alt="Leopard in natuerlicher Umgebung im Yala-Nationalpark" width="1400" height="1000" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-yala">
                         <img src="assets/images/yala/webp/elephant2.webp"
                             alt="Wilde Elefanten im Yala-Nationalpark, Sri Lanka" class="ecf-slide active" width="612" height="421" loading="lazy" decoding="async">
@@ -793,6 +892,25 @@
             <!-- ── Experience 3: Kayaking ── -->
             <div class="exp-card-full" id="kayaking">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/kayak/webp/serene-sunrise-calm-rathgama-lagoon-reflections.webp"
+                            alt="Sonnenaufgangsreflexionen auf der ruhigen Rathgama-Lagune, Sued-Sri Lanka" width="960" height="1280" loading="lazy" decoding="async">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/kayak/webp/sunset-kayaking-rathgama-lagoon-cormorants-silhouette.webp"
+                                alt="Kajakfahren bei Sonnenuntergang auf der Rathgama-Lagune mit Kormoranen" width="960" height="1280" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/kayak/webp/kayaking-yellow-tandem-kayak-rathgama-lagoon.webp"
+                                alt="Gelbes Tandem-Kajak auf der ruhigen Rathgama-Lagune, Sri Lanka" width="1200" height="1600" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/kayak/webp/couple-kayaking-orange-lifejackets-peaceful-green-shore.webp"
+                                alt="Paar im Kajak nahe dem gruenen Ufer der Rathgama-Lagune" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/kayak/webp/sunset-paddle-sparkling-calm-lagoon-water-closeup.webp"
+                                alt="Paddel im ruhigen Lagunenwasser bei Sonnenuntergang, Rathgama" width="1280" height="960" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/kayak/webp/couple-tandem-kayak-distant-rathgama-lagoon-blue-sky.webp"
+                                alt="Gelbes Tandem-Kajak in der Ferne auf der Rathgama-Lagune unter blauem Himmel" width="1280" height="1280" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="6" src="assets/images/kayak/webp/couple-paddling-yellow-tandem-kayak-mangrove-shoreline.webp"
+                                alt="Paar paddelt zum Mangrovenufer der Rathgama-Lagune" width="1280" height="1280" loading="lazy" decoding="async">
+                            <div class="ecf-more">+12 Fotos</div>
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-kayaking">
                         <img src="assets/images/kayak/webp/serene-sunrise-calm-rathgama-lagoon-reflections.webp"
                             alt="Sonnenaufgangsreflexionen auf der ruhigen Rathgama-Lagune, Sued-Sri Lanka"
@@ -918,6 +1036,22 @@
             <!-- ── Experience 4: Tour um Hikkaduwa ── -->
             <div class="exp-card-full" id="around-hikkaduwa" style="flex-direction: row-reverse;">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/around-hikkaduwa/webp/turtle_4.webp"
+                            alt="Meeresschildkröten in der Schildkröten-Aufzuchtstation" width="1601" height="1080" loading="lazy" decoding="async">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/around-hikkaduwa/webp/turtle_5.webp"
+                                alt="Junge Meeresschildkröte in der Rettungsstation" width="1800" height="600" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/around-hikkaduwa/webp/turtle_6.webp"
+                                alt="Schildkröten-Aufzuchtprozess" width="761" height="507" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_1.webp"
+                                alt="Kräuterweberei-Demonstration in Hikkaduwa" width="1440" height="1440" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_2.webp"
+                                alt="Bunte Kräutergewebe aus natürlichen Pflanzenmaterialien" width="2048" height="1367" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/around-hikkaduwa/webp/hearbal_cloth_weaving_3.webp"
+                                alt="Natürliche Stoffherstellungsprozesse" width="1275" height="851" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-around-hikkaduwa">
                         <img src="assets/images/around-hikkaduwa/webp/turtle_4.webp"
                             alt="Meeresschildkröten in der Schildkröten-Aufzuchtstation"
@@ -995,6 +1129,22 @@
             <!-- ── Experience 5: Madu-Fluss-Bootsafari ── -->
             <div class="exp-card-full" id="madu-river">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/madu-river/webp/madu_river_boat_safari_1.webp"
+                            alt="Bootsafari auf dem Madu-Fluss durch Mangrovenwald" width="1280" height="720" loading="lazy" decoding="async">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/madu-river/webp/madu_river_boat_safari_2.webp"
+                                alt="Bootsfahrt durch Mangrovenbaldachin am Madu-Fluss" width="1280" height="720" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/madu-river/webp/madu_river_boat_safari_3.webp"
+                                alt="Mangrovenwald über dem ruhigen Madu-Fluss" width="1280" height="720" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/madu-river/webp/madu_river_boat_safari_4.webp"
+                                alt="Madu-Fluss Bootsabenteuer" width="795" height="450" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/madu-river/webp/madu_river_boat_safari_5.webp"
+                                alt="Fischtherapie im Madu-Fluss, Sri Lanka" width="720" height="540" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/madu-river/webp/madu_river_boat_safari_6.webp"
+                                alt="Krokodilbeobachtung auf Madu-Fluss-Safaris" width="1366" height="768" loading="lazy" decoding="async">
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-madu-river">
                         <img src="assets/images/madu-river/webp/madu_river_boat_safari_1.webp"
                             alt="Bootsafari auf dem Madu-Fluss durch Mangrovenwald"
@@ -1074,6 +1224,25 @@
             <!-- ── Experience 6: Walbeobachtung & Galle-Tour ── -->
             <div class="exp-card-full" id="whale-watching" style="flex-direction: row-reverse;">
                 <div class="ecf-gallery">
+                                        <div class="ecf-mosaic">
+                        <img class="ecf-cover" data-i="0" src="assets/images/whale-watching-and-galle/webp/whale_watching_1.webp"
+                            alt="Blauwal taucht während einer Walbeobachtung bei Mirissa, Sri Lanka, auf" width="1000" height="900" loading="lazy" decoding="async">
+                        <div class="ecf-thumbs">
+                            <img class="ecf-thumb" data-i="1" src="assets/images/whale-watching-and-galle/webp/whale_watching_3.webp"
+                                alt="Wal- und Delfinbeobachtung auf dem Meer vor Mirissa, Sri Lanka" width="800" height="350" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="2" src="assets/images/whale-watching-and-galle/webp/whale_watching_4.webp"
+                                alt="Großes Walbeobachtungsboot verlässt den Hafen Mirissa" width="1200" height="800" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="3" src="assets/images/whale-watching-and-galle/webp/coconut_tree_hill_1.webp"
+                                alt="Coconut Tree Hill Mirissa – malerischer Aussichtspunkt über dem Ozean" width="1280" height="720" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="4" src="assets/images/whale-watching-and-galle/webp/coconut_tree_hill_2.webp"
+                                alt="Blick vom Coconut Tree Hill Mirissa mit Palmen und türkisfarbenem Meer" width="1680" height="945" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="5" src="assets/images/whale-watching-and-galle/webp/stilt_fishing_1.webp"
+                                alt="Traditionelle Stelzenfischer auf Pfählen bei Sonnenuntergang an der Küste Sri Lankas" width="812" height="537" loading="lazy" decoding="async">
+                            <img class="ecf-thumb" data-i="6" src="assets/images/whale-watching-and-galle/webp/stilt_fishing_2.webp"
+                                alt="Silhouetten der berühmten Stelzenfischer Sri Lankas auf Stöcken im Meer" width="669" height="446" loading="lazy" decoding="async">
+                            <div class="ecf-more">+7 Fotos</div>
+                        </div>
+                    </div>
                     <div class="ecf-slides" id="slides-whale-watching">
                         <img src="assets/images/whale-watching-and-galle/webp/whale_watching_1.webp"
                             alt="Blauwal taucht während einer Walbeobachtung bei Mirissa, Sri Lanka, auf"
@@ -1308,6 +1477,51 @@
         const waBadge = document.querySelector('.wa-badge');
         waToggle.addEventListener('click', () => { waChat.style.display = 'flex'; waBadge.style.display = 'none'; });
         waClose.addEventListener('click', () => { waChat.style.display = 'none'; });
+    </script>
+
+    <!-- Shared photo lightbox (one instance for all experience cards) -->
+    <div class="ecf-lightbox" id="ecfLightbox" role="dialog" aria-modal="true" aria-label="Erlebnis-Fotogalerie" hidden>
+        <button class="ecf-lb-close" id="ecfLbClose" type="button" aria-label="Galerie schließen">&times;</button>
+        <button class="ecf-lb-nav prev" id="ecfLbPrev" type="button" aria-label="Vorheriges Foto">&#10094;</button>
+        <figure class="ecf-lb-stage">
+            <img id="ecfLbImg" src="" alt="">
+            <figcaption class="ecf-lb-count" id="ecfLbCount"></figcaption>
+        </figure>
+        <button class="ecf-lb-nav next" id="ecfLbNext" type="button" aria-label="Nächstes Foto">&#10095;</button>
+    </div>
+
+    <script>
+        (function () {
+            const lb = document.getElementById('ecfLightbox');
+            if (!lb) return;
+            const lbImg = document.getElementById('ecfLbImg');
+            const lbCount = document.getElementById('ecfLbCount');
+            const lbClose = document.getElementById('ecfLbClose');
+            const lbPrev = document.getElementById('ecfLbPrev');
+            const lbNext = document.getElementById('ecfLbNext');
+            let photos = [], idx = 0, lastFocus = null;
+            function render() { const p = photos[idx]; if (!p) return; lbImg.src = p.src; lbImg.alt = p.alt || ''; lbCount.textContent = `${idx+1} / ${photos.length}`; }
+            function open(list, start, trigger) { if (!list.length) return; photos = list; idx = start; lastFocus = trigger || document.activeElement; lb.hidden = false; document.body.style.overflow = 'hidden'; render(); lbClose.focus(); document.addEventListener('keydown', onKey); }
+            function close() { lb.hidden = true; document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+            function go(d) { idx = (idx + d + photos.length) % photos.length; render(); }
+            function onKey(e) {
+                if (e.key === 'Escape') close();
+                else if (e.key === 'ArrowRight') go(1);
+                else if (e.key === 'ArrowLeft') go(-1);
+                else if (e.key === 'Tab') { const f = [lbClose, lbPrev, lbNext]; const i = f.indexOf(document.activeElement); if (e.shiftKey) { if (i <= 0) { e.preventDefault(); f[f.length-1].focus(); } } else { if (i === f.length-1) { e.preventDefault(); f[0].focus(); } } }
+            }
+            lbClose.addEventListener('click', close);
+            lbNext.addEventListener('click', () => go(1));
+            lbPrev.addEventListener('click', () => go(-1));
+            lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+            document.querySelectorAll('.exp-card-full').forEach(card => {
+                const slides = [...card.querySelectorAll('.ecf-slides .ecf-slide')];
+                const list = slides.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
+                const mosaic = card.querySelector('.ecf-mosaic');
+                if (!mosaic || !list.length) return;
+                mosaic.addEventListener('click', (e) => { const el = e.target.closest('.ecf-cover, .ecf-thumb'); if (!el) return; open(list, parseInt(el.dataset.i || '0', 10), el); });
+            });
+        })();
     </script>
 
     <script src="js/nav.js" defer></script>
