@@ -690,6 +690,9 @@
 
             .vcf-slides {
                 display: block;
+                /* Slides are absolutely positioned, so the carousel needs its
+                   own height here — the container no longer supplies one. */
+                aspect-ratio: 4 / 3;
             }
 
             .vcf-nav,
