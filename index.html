@@ -11,6 +11,7 @@
 
         gtag('config', 'G-TBE06WHJCS');
     </script>
+    <script src="js/analytics.js" defer></script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -83,7 +84,6 @@
           "longitude": 80.1059
         },
         "telephone": "+94710630867",
-        "priceRange": "USD 18–85",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -91,66 +91,15 @@
         "sameAs": [
           "https://www.airbnb.com/users/show/610763596",
           "https://wa.me/94710630867"
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "10",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Lilia"},
-            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
-            "reviewBody": "We stayed at the Birdsong Villa for a total of 6 weeks and decided to return at the end of our Sri Lanka trip. We felt at home from day one. We will not only return to Birdsong Villa, but to friends."
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Ivan"},
-            "reviewRating": {"@type": "Rating", "ratingValue": "5"},
-            "reviewBody": "Very convenient to work remotely — fiber optic internet, a dedicated work area and air conditioning. All the conditions for long stays were created."
-          }
         ]
       },
       {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Can I book a villa directly without Airbnb?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Booking directly via WhatsApp always gives you the best price with no platform fees or middlemen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are the villas suitable for remote work and long stays?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Both villas have fast, reliable Wi-Fi, dedicated workspaces, fully equipped kitchens, and are ideal for weekly and monthly stays."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Where are the villas located?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our villas are located in Southern Sri Lanka — Serene Luxe is near Hikkaduwa beach, and Birdsong Villa is in the quiet village of Rathgama, 50m from the lagoon and 3km from the beach."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What local experiences do you offer?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We offer a hands-on cinnamon experience guided by local artisans, a private Yala National Park safari, and kayaking on Rathgama Lagoon."
-            }
-          }
-        ]
+        "@type": "WebSite",
+        "@id": "https://eranorrissrilanka.com/#website",
+        "url": "https://eranorrissrilanka.com/",
+        "name": "Eranorris Villas & Experiences",
+        "alternateName": "Eranorris"
       }
     ]
     </script>
@@ -175,7 +124,7 @@
 
         <div class="nav-wrapper" id="navWrapper">
             <nav>
-                <a href="index.html" onclick="closeMobileNav()">Home</a>
+                <a href="/" onclick="closeMobileNav()">Home</a>
                 <a href="villas.html" onclick="closeMobileNav()">Villas</a>
                 <a href="experiences.html" onclick="closeMobileNav()">Experiences</a>
                 <a href="offers.html" onclick="closeMobileNav()">Offers</a>
@@ -201,7 +150,7 @@
                 </button>
                 <ul class="lang-dd-menu" id="langDdMenu" role="menu" hidden>
                     <li role="none">
-                        <a role="menuitem" href="index.html" class="active" aria-current="true"
+                        <a role="menuitem" href="/" class="active" aria-current="true"
                             onclick="localStorage.setItem('siteLang','en')">
                             <span class="lang-dd-code">EN</span> English
                         </a>
@@ -312,7 +261,7 @@
                 <a class="btn-primary" href="villas.html">See Villas for Long Stays</a>
                 <a class="btn-secondary"
                     href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20a%20weekly%20or%20monthly%20stay."
-                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                    target="_blank">
                     Ask About Monthly Rates
                 </a>
             </div>
@@ -349,7 +298,7 @@
                 </div>
             </div>
             <div class="direct-cta">
-                <a class="btn-primary" href="https://wa.me/94710630867?text=Hello%2C%20I%20would%20like%20to%20book%20a%20villa%20directly.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                <a class="btn-primary" href="https://wa.me/94710630867?text=Hello%2C%20I%20would%20like%20to%20book%20a%20villa%20directly.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." target="_blank">
                     💬 Book Direct on WhatsApp
                 </a>
             </div>
@@ -466,8 +415,7 @@
                     </div> -->
 
                     <div class="villa-actions">
-                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Serene%20Luxe%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Serene%20Luxe%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank">
                             💬 Book Serene Luxe Direct
                         </a>
                         <a href="villas.html#serene-luxe" class="btn-secondary">View Villa →</a>
@@ -555,8 +503,7 @@
                     </div> -->
 
                     <div class="villa-actions">
-                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Birdsong%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                        <a href="https://wa.me/94710630867?text=Hello%2C%20I%20am%20interested%20in%20booking%20Birdsong%20Villa.%20My%20dates%3A%20____%20to%20____.%20Guests%3A%20____." class="btn-primary" target="_blank">
                             💬 Book Birdsong Direct
                         </a>
                         <a href="villas.html#birdsong" class="btn-secondary">View Villa →</a>
@@ -629,8 +576,7 @@
                     </div>
 
                     <div class="villa-actions">
-                        <a href="https://wa.me/94710630867?text=Hello,%20I%20want%20to%20book%20Coco%20Garden%20Villas." class="btn-primary"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                        <a href="https://wa.me/94710630867?text=Hello,%20I%20want%20to%20book%20Coco%20Garden%20Villas." class="btn-primary">
                             Book Direct on WhatsApp
                         </a>
                         <a href="villas.html#coco-garden" class="btn-secondary">View Villa →</a>
@@ -731,8 +677,7 @@
 
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20the%20Cinnamon%20Experience."
-                            class="btn-secondary" target="_blank"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            class="btn-secondary" target="_blank">
                             Enquire on WhatsApp
                         </a>
                         <a href="experiences.html#cinnamon" class="btn-secondary">Learn More →</a>
@@ -790,8 +735,7 @@
 
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20the%20Yala%20Safari%20Experience."
-                            class="btn-secondary" target="_blank"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            class="btn-secondary" target="_blank">
                             Enquire on WhatsApp
                         </a>
                         <a href="experiences.html#yala" class="btn-secondary">Learn More →</a>
@@ -848,8 +792,7 @@
 
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20Kayaking%20in%20Rathgama%20Lagoon."
-                            class="btn-secondary" target="_blank"
-                            onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                            class="btn-secondary" target="_blank">
                             Enquire on WhatsApp
                         </a>
                         <a href="experiences.html#kayaking" class="btn-secondary">Learn More →</a>
@@ -938,8 +881,7 @@
 
             <div class="footer-contact">
                 <h4>Book Directly</h4>
-                <a class="whatsapp-footer" href="https://wa.me/94710630867" target="_blank"
-                    onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                <a class="whatsapp-footer" href="https://wa.me/94710630867" target="_blank">
                     WhatsApp: +94 71 063 0867
                 </a>
                 <p class="small">
@@ -964,8 +906,7 @@
             <h2>Contact Eranorris</h2>
 
             <p><strong>WhatsApp:</strong><br>
-                <a href="https://wa.me/94710630867" target="_blank"
-                    onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">
+                <a href="https://wa.me/94710630867" target="_blank">
                     +94 71 063 0867
                 </a>
             </p>
@@ -1109,15 +1050,15 @@
 
             <div class="wa-buttons">
                 <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20booking%20a%20villa."
-                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🏡
+                    target="_blank">🏡
                     Villa Booking</a>
 
                 <a href="https://wa.me/94710630867?text=Hello,%20I%20am%20interested%20in%20your%20experiences."
-                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">🌿
+                    target="_blank">🌿
                     Experiences</a>
 
                 <a href="https://wa.me/94710630867?text=Hello,%20I%20would%20like%20to%20ask%20a%20question."
-                    target="_blank" onclick="gtag('event', 'whatsapp_click', {'event_category': 'engagement'});">❓
+                    target="_blank">❓
                     General Inquiry</a>
             </div>
         </div>
